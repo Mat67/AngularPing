@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Equipe } from '../model/equipe';
+import { Joueur } from '../model/joueur';
 
 @Component({
   selector: 'app-equipe',
@@ -11,7 +12,5 @@ export class EquipeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

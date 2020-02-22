@@ -5,9 +5,13 @@ export class Match {
     constructor (tailleEquipe: number) {
         this.equipeReceveuse = new Equipe(tailleEquipe);
         this.equipeVisiteuse = new Equipe(tailleEquipe);
-        this.rencontres = new Array(20).fill(new Rencontre());
+        this.rencontres = new Array();
+        
+        for (let index = 0; index < 20; index++) {
+            this.rencontres.push(new Rencontre(this.equipeReceveuse.joueurs[0], this.equipeVisiteuse.joueurs[1]));
+        }
     }
-    
+
     equipeReceveuse: Equipe
     equipeVisiteuse: Equipe
     rencontres: Rencontre[]
