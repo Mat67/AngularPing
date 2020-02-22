@@ -11,7 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
-import { CompositionEquipeDirective } from './composition-equipe.directive';
+import { EquipeComponent } from './equipe/equipe.component';
+import { RencontresComponent } from './rencontres/rencontres.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -20,7 +21,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     AppComponent,
     HomeComponent,
     MatchDetailComponent,
-    CompositionEquipeDirective
+    EquipeComponent,
+    RencontresComponent
   ],
   imports: [
     BrowserModule,
