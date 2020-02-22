@@ -17,12 +17,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let rencontre of rencontres; index as i">
+            <tr *ngFor="let rencontre of match.rencontres; index as i">
               <th scope="row">{{ i + 1 }}</th>
               <td>
-                {{ rencontre.joueur1.nom }}
+                {{ rencontre.joueurEquipeReceveuse.nom }}
               </td>
-              <td>{{ rencontre.joueur2.nom }}</td>
+              <td>{{ rencontre.joueurEquipeVisiteuse.nom }}</td>
               <td>{{ rencontre.resultat}}</td>
               <td></td>
               <td></td>

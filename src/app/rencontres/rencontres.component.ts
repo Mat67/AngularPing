@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Rencontre } from '../model/rencontre';
+import { Match } from '../model/match';
 
 @Component({
   selector: 'app-rencontres',
@@ -6,18 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rencontres.component.css']
 })
 export class RencontresComponent implements OnInit {
-  rencontres = [];
+  match: Match;
+  
   constructor() { }
 
   ngOnInit(): void {
-    for (let index = 0; index < 10; index++) {
-      var rencontre = {
-        resultat: index,
-        joueur1: {nom: 'A' + index},
-        joueur2: {nom: 'B' + index},
-      };
-      this.rencontres.push(rencontre);
-    };
+    this.match = new Match(6);
   }
 
 }
