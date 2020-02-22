@@ -10,9 +10,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
+import { RencontresComponent } from './rencontres/rencontres.component';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
 import { EquipeComponent } from './equipe/equipe.component';
-import { RencontresComponent } from './rencontres/rencontres.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -20,9 +20,10 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
   declarations: [
     AppComponent,
     HomeComponent,
+    RencontresComponent,
     MatchDetailComponent,
     EquipeComponent,
-    RencontresComponent
+    
   ],
   imports: [
     BrowserModule,
