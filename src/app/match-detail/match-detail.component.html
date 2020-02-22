@@ -1,1 +1,17 @@
-<app-rencontres></app-rencontres>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-6">
+            <app-equipe [equipe]="match.equipeReceveuse"></app-equipe>
+        </div>
+        <div class="col-6">
+            <app-equipe [equipe]="match.equipeVisiteuse"></app-equipe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <app-rencontres [rencontres]="match.rencontres"></app-rencontres>
+        </div>
+    </div>
+</div>
+

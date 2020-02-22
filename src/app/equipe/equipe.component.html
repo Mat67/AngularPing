@@ -1,1 +1,19 @@
-<p>equipe works!</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Classement</th>
+      <th scope="col">Numéro Licence</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let joueur of equipe.joueurs; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ joueur.nom }}</td>
+      <td>{{ joueur.classement }}</td>
+      <td>{{ joueur.numeroLicence}}</td>
+    </tr>
+    </tbody>
+  </table>

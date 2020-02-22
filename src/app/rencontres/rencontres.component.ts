@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Rencontre } from '../model/rencontre';
 import { Match } from '../model/match';
 
@@ -8,6 +8,8 @@ import { Match } from '../model/match';
   styleUrls: ['./rencontres.component.css']
 })
 export class RencontresComponent implements OnInit {
+  @Input() rencontres: Rencontre[]
+
   match: Match;
   
   constructor() { }

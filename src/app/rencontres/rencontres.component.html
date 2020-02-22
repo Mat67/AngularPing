@@ -1,40 +1,33 @@
-<div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Joueur 1</th>
-              <th scope="col">Joueur 2</th>
-              <th scope="col">Résultat</th>
-              <th scope="col">1</th>
-              <th scope="col">2</th>
-              <th scope="col">3</th>
-              <th scope="col">4</th>
-              <th scope="col">5</th>
-              <th scope="col">Points</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let rencontre of match.rencontres; index as i">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>
-                {{ rencontre.joueurEquipeReceveuse.nom }}
-              </td>
-              <td>{{ rencontre.joueurEquipeVisiteuse.nom }}</td>
-              <td>{{ rencontre.resultat}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            </tbody>
-          </table>
-      </div>
-    </div>
-  </div>
-
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Joueur 1</th>
+    <th scope="col">Joueur 2</th>
+    <th scope="col">Résultat</th>
+    <th scope="col">1</th>
+    <th scope="col">2</th>
+    <th scope="col">3</th>
+    <th scope="col">4</th>
+    <th scope="col">5</th>
+    <th scope="col">Points</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rencontre of match.rencontres; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>
+      {{ rencontre.joueurEquipeReceveuse.nom }}
+    </td>
+    <td>{{ rencontre.joueurEquipeVisiteuse.nom }}</td>
+    <td>{{ rencontre.resultat}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

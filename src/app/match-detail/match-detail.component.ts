@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Match } from '../model/match';
 
 @Component({
   selector: 'app-match-detail',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./match-detail.component.css']
 })
 export class MatchDetailComponent implements OnInit {
-  
+  match: Match;
 
   constructor() {
-    
+    this.match = new Match(6);
    }
 
   ngOnInit(): void {
