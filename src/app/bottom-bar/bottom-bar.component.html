@@ -9,7 +9,7 @@
                       {{ match.scoreEquipeReceveuse() }} - {{ match.scoreEquipeVisiteuse() }}
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-success">Signer</button>
+                <button type="button" class="btn btn-success" [disabled]="!match.matchEstTermine()">Signer</button>
             </div>
         </div>
     </div> 

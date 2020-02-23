@@ -40,4 +40,8 @@ export class Match {
     public scoreEquipeVisiteuse(): number {
         return this.rencontres.filter(function (r) { return r.getResultat() < 0 }).length;
     }
+
+    public matchEstTermine(): boolean {
+        return this.rencontres.filter(function (r) { return r.getResultat() !== 0; }).length === this.rencontres.length;
+    }
 }
