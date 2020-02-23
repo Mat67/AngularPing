@@ -13,8 +13,8 @@ export class Match {
         var formule = new FormuleService().getFormule();
         
         formule.forEach(element => {
-            var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPoisition(element[0]);
-            var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPoisition(element[1]);
+            var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPosition(element[0]);
+            var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPosition(element[1]);
             
             var rencontre:Rencontre;
 
