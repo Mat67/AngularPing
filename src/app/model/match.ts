@@ -17,12 +17,11 @@ export class Match {
             var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPosition(element[1]);
             
             var rencontre:Rencontre;
-            var formule = element[0] + '-' [1];
             if (joueurEquipeReceveuse) {
                 rencontre = new RencontreSimple(joueurEquipeReceveuse, joueurEquipeVisiteuse);
             }
             else {
-                rencontre = new RencontreDouble(formule);
+                rencontre = new RencontreDouble(element[0]);
             }   
 
             this.rencontres.push(rencontre);
