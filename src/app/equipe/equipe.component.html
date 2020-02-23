@@ -1,27 +1,38 @@
-<table class="table table-striped table-sm">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Classement</th>
-      <th scope="col">Numéro Licence</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let joueur of equipe.joueurs; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td class="form-group">
-        <input type="text" class="form-control transparent" id="nom" required
-          [(ngModel)]="equipe.joueurs[i].nom" name="nom">
-      </td>
-      <td> 
-        <input type="text" class="form-control transparent" id="classement" required
-        [(ngModel)]="equipe.joueurs[i].classement" name="classement">
-      </td>
-      <td>
-        <input type="text" class="form-control transparent" id="numeroLicence" required
-        [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence">
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-12"></div>
+    <input class="form-control form-control-sm transparent text-center text-uppercase" placeholder="Nom Equipe"
+      id="nomEquipe" required
+            [(ngModel)]="equipe.nomEquipe" name="nomEquipe" />
+  </div>
+  <div class="row">
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Classement</th>
+        <th scope="col">Licence</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let joueur of equipe.joueurs; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td class="form-group">
+          <input type="text" class="form-control transparent" id="nom" required
+            [(ngModel)]="equipe.joueurs[i].nom" name="nom">
+        </td>
+        <td> 
+          <input type="text" class="form-control transparent" id="classement" required
+          [(ngModel)]="equipe.joueurs[i].classement" name="classement">
+        </td>
+        <td>
+          <input type="text" class="form-control transparent" id="numeroLicence" required
+          [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence">
+        </td>
+      </tr>
+      </tbody>
+    </table>  
+  </div>
+</div>
+

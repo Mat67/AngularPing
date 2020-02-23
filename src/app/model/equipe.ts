@@ -10,6 +10,7 @@ export class Equipe {
     }
 
     joueurs: Joueur[];
+    nomEquipe:string;
 
     public getJoueurByPosition(position:string) {
         return this.joueurs.find(function (j) {

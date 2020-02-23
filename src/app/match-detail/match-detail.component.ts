@@ -15,10 +15,5 @@ export class MatchDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
-    
   }
-
-
-  
 }
