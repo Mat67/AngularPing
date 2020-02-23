@@ -6,6 +6,8 @@ export class RencontreSimple extends Rencontre{
         super()
         this.joueurEquipeReceveuse = joueurEquipeReceveuse;
         this.joueurEquipeVisiteuse = joueurEquipeVisiteuse;
+        this.positionJoueurEquipeReceveuse = this.joueurEquipeReceveuse.position;
+        this.positionJoueurEquipeVisiteuse = this.joueurEquipeVisiteuse.position;
     }
 
     joueurEquipeReceveuse:Joueur;
