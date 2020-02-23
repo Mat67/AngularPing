@@ -1,5 +1,7 @@
 import { Joueur } from './joueur';
 import { Manche } from './manche';
+import { RencontreSimple } from './rencontre-simple';
+import { RencontreDouble } from './rencontre-double';
 
 export class Rencontre {
     constructor() {
@@ -11,8 +13,10 @@ export class Rencontre {
     }
     
     manches: Manche[] = new Array
-    positionJoueurEquipeReceveuse:string;
-    positionJoueurEquipeVisiteuse:string;
+
+    public getFormule() : string{
+        return '';
+    }
 
     public getVainqueur():string {
         var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
@@ -41,10 +45,18 @@ export class Rencontre {
             return '';
 
         if (score > 0)
-            return this.positionJoueurEquipeReceveuse;
+            return this.getNomJoueurEquipeReceveuse();
         else if (score < 0)
-            return this.positionJoueurEquipeVisiteuse;
+            return this.getNomJoueurEquipeVisiteuse();
         else
             return '';
+    }
+
+    getNomJoueurEquipeReceveuse():string {
+        return '';
+    }
+
+    getNomJoueurEquipeVisiteuse():string {
+        return '';
     }
 }

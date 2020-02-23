@@ -30,4 +30,8 @@ describe('RencontresComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('la formule de la rencontre est A-U', () => {
+    expect(component.rencontres[0].getFormule()).toBe('A-U');
+  });
 });

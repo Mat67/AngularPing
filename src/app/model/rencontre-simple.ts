@@ -3,13 +3,23 @@ import { Joueur } from './joueur';
 
 export class RencontreSimple extends Rencontre{
     constructor(joueurEquipeReceveuse:Joueur, joueurEquipeVisiteuse:Joueur) {
-        super()
+        super();
         this.joueurEquipeReceveuse = joueurEquipeReceveuse;
         this.joueurEquipeVisiteuse = joueurEquipeVisiteuse;
-        this.positionJoueurEquipeReceveuse = this.joueurEquipeReceveuse.position;
-        this.positionJoueurEquipeVisiteuse = this.joueurEquipeVisiteuse.position;
     }
 
     joueurEquipeReceveuse:Joueur;
     joueurEquipeVisiteuse:Joueur;
+
+    getFormule():string {
+        return this.getNomJoueurEquipeReceveuse() + '-' + this.getNomJoueurEquipeVisiteuse();
+    }
+
+    getNomJoueurEquipeReceveuse():string {
+        return this.joueurEquipeReceveuse.position;
+    }
+
+    getNomJoueurEquipeVisiteuse():string {
+        return this.joueurEquipeVisiteuse.position;
+    }
 }

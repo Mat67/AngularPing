@@ -14,19 +14,19 @@
   </thead>
   <tbody>
   <tr *ngFor="let rencontre of match.rencontres; index as i">
-    <th scope="row">{{ i + 1 }}</th>
+    <th scope="row">{{ rencontres[i].formule  }}</th>
     <td>
         <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
-        <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control" id="doubleEquipeReceveuse" required
+        <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control form-control-sm" id="doubleEquipeReceveuse" required
           [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="doubleEquipeReceveuse">
     </td>
     <td>
       <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'">{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
-        <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control" id="doubleEquipeVisiteuse" required
+        <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control form-control-sm" id="doubleEquipeVisiteuse" required
           [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="doubleEquipeVisiteuse">
     </td>
     <td *ngFor="let manche of rencontres[i].manches; index as y">
-      <input type="text" class="form-control manche" id="manche + y" required
+      <input type="text" class="form-control form-control-sm manche" id="manche + y" required
       [(ngModel)]="rencontres[i].manches[y].score" name="manche + y"/>
     </td>
     
