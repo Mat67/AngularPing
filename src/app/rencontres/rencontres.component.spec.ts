@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RencontresComponent } from './rencontres.component';
+import { Rencontre } from '../model/rencontre';
+import { Joueur } from '../model/joueur';
+import { Match } from '../model/match';
 
 describe('RencontresComponent', () => {
   let component: RencontresComponent;
@@ -16,6 +19,13 @@ describe('RencontresComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RencontresComponent);
     component = fixture.componentInstance;
+    var rencontres = [];
+    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
+    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
+    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
+    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
+    component.match = new Match(6);
+    component.rencontres = component.match.rencontres;
     fixture.detectChanges();
   });
 
