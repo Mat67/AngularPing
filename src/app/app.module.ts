@@ -14,6 +14,7 @@ import localeFrExtra from '@angular/common/locales/extra/fr';
 import { RencontresComponent } from './rencontres/rencontres.component';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
 import { EquipeComponent } from './equipe/equipe.component';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -23,7 +24,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     HomeComponent,
     RencontresComponent,
     MatchDetailComponent,
-    EquipeComponent
+    EquipeComponent,
+    BottomBarComponent
   ],
   imports: [
     BrowserModule,
