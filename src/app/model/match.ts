@@ -12,7 +12,7 @@ export class Match {
         
         formule.forEach(element => {
             var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPoisition(element[0]);
-            var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPoisition(element[0]);
+            var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPoisition(element[1]);
             this.rencontres.push(new Rencontre(joueurEquipeReceveuse, joueurEquipeVisiteuse));
         });
     }

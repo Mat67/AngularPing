@@ -21,9 +21,6 @@ describe('RencontresComponent', () => {
     component = fixture.componentInstance;
     var rencontres = [];
     rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
-    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
-    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
-    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
     component.match = new Match(6);
     component.rencontres = component.match.rencontres;
     fixture.detectChanges();
