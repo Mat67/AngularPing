@@ -22,10 +22,10 @@ describe('Equipe', () => {
   });
 
   it('Recuperation du joueur U', () => {
-    expect(new Equipe(6, 'U').getJoueurById('U').position).toBe('U');
+    expect(new Equipe(6, 'U').getJoueurByPoisition('U').position).toBe('U');
   });
 
   it('Recuperation du joueur E', () => {
-    expect(new Equipe(6, 'A').getJoueurById('E').position).toBe('E');
+    expect(new Equipe(6, 'A').getJoueurByPoisition('E').position).toBe('E');
   });
 });
