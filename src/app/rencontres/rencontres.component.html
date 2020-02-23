@@ -4,7 +4,6 @@
     <th scope="col">#</th>
     <th scope="col">Joueur 1</th>
     <th scope="col">Joueur 2</th>
-    <th scope="col">Résultat</th>
     <th scope="col">1</th>
     <th scope="col">2</th>
     <th scope="col">3</th>
@@ -26,13 +25,21 @@
         <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control" id="doubleEquipeVisiteuse" required
           [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="doubleEquipeVisiteuse">
     </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td >
+      <input type="text" class="manche"/>
+    </td>
+    <td>
+      <input type="text" class="manche"/>
+    </td>  
+    <td>
+      <input type="text" class="manche"/>
+    </td>  
+    <td>
+      <input type="text" class="manche"/>
+    </td>  
+    <td>
+      <input type="text" class="manche"/>
+    </td>
     <td></td>
   </tr>
   </tbody>

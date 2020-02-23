@@ -11,15 +11,15 @@
     <tr *ngFor="let joueur of equipe.joueurs; index as i">
       <th scope="row">{{ i + 1 }}</th>
       <td class="form-group">
-        <input type="text" class="form-control" id="nom" required
+        <input type="text" class="form-control transparent" id="nom" required
           [(ngModel)]="equipe.joueurs[i].nom" name="nom">
       </td>
       <td> 
-        <input type="text" class="form-control" id="classement" required
+        <input type="text" class="form-control transparent" id="classement" required
         [(ngModel)]="equipe.joueurs[i].classement" name="classement">
       </td>
       <td>
-        <input type="text" class="form-control" id="numeroLicence" required
+        <input type="text" class="form-control transparent" id="numeroLicence" required
         [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence">
       </td>
     </tr>
