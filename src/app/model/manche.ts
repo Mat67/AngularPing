@@ -10,5 +10,5 @@ export class Manche {
         return parseInt(scoreSplite[0]) - parseInt(scoreSplite[1]);
     }
 
-    score:string = '0';
+    score:string = '';
 }

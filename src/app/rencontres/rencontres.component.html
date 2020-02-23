@@ -25,22 +25,14 @@
         <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control" id="doubleEquipeVisiteuse" required
           [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="doubleEquipeVisiteuse">
     </td>
-    <td >
-      <input type="text" class="manche"/>
+    <td *ngFor="let manche of rencontres[i].manches; index as y">
+      <input type="text" class="form-control manche" id="manche + y" required
+      [(ngModel)]="rencontres[i].manches[y].score" name="manche + y"/>
     </td>
-    <td>
-      <input type="text" class="manche"/>
-    </td>  
-    <td>
-      <input type="text" class="manche"/>
-    </td>  
-    <td>
-      <input type="text" class="manche"/>
-    </td>  
-    <td>
-      <input type="text" class="manche"/>
+    
+    <td class="manche">
+      {{ rencontres[i].getVainqueur() }}
     </td>
-    <td></td>
   </tr>
   </tbody>
 </table>
