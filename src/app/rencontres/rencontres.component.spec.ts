@@ -20,10 +20,10 @@ describe('RencontresComponent', () => {
     fixture = TestBed.createComponent(RencontresComponent);
     component = fixture.componentInstance;
     var rencontres = [];
-    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
-    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
-    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
-    rencontres.push(new Rencontre(new Joueur(1, 'A'), new Joueur(2, 'U')));
+    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
+    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
+    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
+    rencontres.push(new Rencontre(new Joueur('A'), new Joueur('U')));
     component.match = new Match(6);
     component.rencontres = component.match.rencontres;
     fixture.detectChanges();

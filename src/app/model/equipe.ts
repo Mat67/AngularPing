@@ -5,15 +5,19 @@ export class Equipe {
         this.joueurs = new Array();
         
         for (let index = 0; index < nombreJoueurs; index++) {
-            this.joueurs.push(new Joueur(index, equipeAX));
+            this.joueurs.push(new Joueur(this.getLettreAlphabet(equipeAX, index)));
         }
     }
 
     joueurs: Joueur[];
 
-    public getJoueurById(id:string) {
+    public getJoueurById(position:string) {
         return this.joueurs.find(function (j) {
-            return j.id === id;
+            return j.position === position;
         });
+    }
+
+    private getLettreAlphabet(lettre:string, position:number) {
+        return String.fromCharCode(lettre.charCodeAt(0) + position);
     }
 }
