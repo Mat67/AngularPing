@@ -1,4 +1,5 @@
 import { Match } from './match';
+import { RencontreSimple } from './rencontre-simple';
 
 describe('Match', () => {
   it('should create an instance', () => {
@@ -6,7 +7,8 @@ describe('Match', () => {
   });
 
   it('Match 1 A contre U', () => {
-    expect(new Match(6).rencontres[0].joueurEquipeReceveuse.position).toBe('A');
-    expect(new Match(6).rencontres[0].joueurEquipeVisiteuse.position).toBe('U');
+    var rencontre =  new Match(6).rencontres[0] as RencontreSimple;
+    expect(rencontre.joueurEquipeReceveuse.position).toBe('A');
+    expect(rencontre.joueurEquipeVisiteuse.position).toBe('U');
   });
 });

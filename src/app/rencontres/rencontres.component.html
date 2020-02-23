@@ -17,9 +17,23 @@
   <tr *ngFor="let rencontre of match.rencontres; index as i">
     <th scope="row">{{ i + 1 }}</th>
     <td>
-      {{ rencontres[i].joueurEquipeReceveuse.nom }}
+      <div [ngSwitch]="true">
+        <div *ngSwitchCase="!!rencontres[i].joueurEquipeReceveuse">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
+        <div *ngSwitchDefault>
+          <input type="text" class="form-control" id="doubleEquipeReceveuse" required
+          [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="doubleEquipeReceveuse">
+        </div>
+      </div>
     </td>
-    <td>{{ rencontres[i].joueurEquipeVisiteuse.nom }}</td>
+    <td>
+      <div [ngSwitch]="true">
+        <div *ngSwitchCase="!!rencontres[i].joueurEquipeVisiteuse">{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
+        <div *ngSwitchDefault>
+          <input type="text" class="form-control" id="doubleEquipeVisiteuse" required
+          [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="doubleEquipeVisiteuse">
+        </div>
+      </div>
+    </td>
     <td></td>
     <td></td>
     <td></td>

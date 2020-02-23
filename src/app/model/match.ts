@@ -1,6 +1,8 @@
 import { Equipe } from './equipe';
 import { Rencontre } from './rencontre';
 import { FormuleService } from '../services/formule.service';
+import { RencontreSimple } from './rencontre-simple';
+import { RencontreDouble } from './rencontre-double';
 
 export class Match {
     constructor (tailleEquipe: number) {
@@ -13,7 +15,17 @@ export class Match {
         formule.forEach(element => {
             var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPoisition(element[0]);
             var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPoisition(element[1]);
-            this.rencontres.push(new Rencontre(joueurEquipeReceveuse, joueurEquipeVisiteuse));
+            
+            var rencontre:Rencontre;
+
+            if (joueurEquipeReceveuse) {
+                rencontre = new RencontreSimple(joueurEquipeReceveuse, joueurEquipeVisiteuse);
+            }
+            else {
+                rencontre = new RencontreDouble();
+            }   
+
+            this.rencontres.push(rencontre);
         });
     }
 

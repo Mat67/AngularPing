@@ -1,8 +1,9 @@
 import { Rencontre } from './rencontre';
 import { Joueur } from './joueur';
+import { RencontreSimple } from './rencontre-simple';
 
 describe('Rencontre', () => {
   it('should create an instance', () => {
-    expect(new Rencontre(new Joueur('A'), new Joueur('B'))).toBeTruthy();
+    expect(new RencontreSimple(new Joueur('A'), new Joueur('B'))).toBeTruthy();
   });
 });
