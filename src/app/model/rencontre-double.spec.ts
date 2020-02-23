@@ -6,10 +6,14 @@ describe('RencontreDouble', () => {
   });
 
   it('Retourne le nom des joueurs de l equipe receveuse', () => {
-    expect(new RencontreDouble('AB').getNomJoueurEquipeReceveuse()).toBe('AB');
+    var rencontre = new RencontreDouble('D1');
+    rencontre.doubleEquipeReceveuse = 'AB';
+    expect(rencontre.getNomJoueurEquipeReceveuse()).toBe('AB');
   });
 
   it('Retourne le nom des joueurs de l equipe receveuse', () => {
-    expect(new RencontreDouble('XY').getNomJoueurEquipeVisiteuse()).toBe('XY');
+    var rencontre = new RencontreDouble('DD');
+    rencontre.doubleEquipeVisiteuse = 'XY';
+    expect(rencontre.getNomJoueurEquipeVisiteuse()).toBe('XY');
   });
 });

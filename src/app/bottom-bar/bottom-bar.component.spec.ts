@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BottomBarComponent } from './bottom-bar.component';
+import { Match } from '../model/match';
 
 describe('BottomBarComponent', () => {
   let component: BottomBarComponent;
@@ -16,6 +17,7 @@ describe('BottomBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BottomBarComponent);
     component = fixture.componentInstance;
+    component.match = new Match(6);
     fixture.detectChanges();
   });
 

@@ -18,19 +18,16 @@ export class Rencontre {
         return '';
     }
 
-    public getVainqueur():string {
+    public getResultat() :number {
         var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
         var score = 0;
         var maxManchesGagnees = 0;
-
         this.manches.forEach(manche => {
             if (manche.getResultat() < 0) {
                 score--;
-                maxManchesGagnees++;
             }
             else if (manche.getResultat() > 0) {
                 score++;
-                maxManchesGagnees++;
             }
         });
 
@@ -40,9 +37,14 @@ export class Rencontre {
         if (tmp > maxManchesGagnees)
             maxManchesGagnees = tmp;
         
-
         if (maxManchesGagnees < nbManchesAGagner)
-            return '';
+            return 0;
+
+        return score;
+    }
+
+    public getVainqueur():string {
+        var score = this.getResultat();
 
         if (score > 0)
             return this.getNomJoueurEquipeReceveuse();
@@ -53,10 +55,12 @@ export class Rencontre {
     }
 
     getNomJoueurEquipeReceveuse():string {
+        // overreide par RencontreSimple et RencontreDouble
         return '';
     }
 
     getNomJoueurEquipeVisiteuse():string {
+        // overreide par RencontreSimple et RencontreDouble
         return '';
     }
 }

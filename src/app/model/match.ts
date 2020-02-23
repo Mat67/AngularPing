@@ -30,5 +30,14 @@ export class Match {
 
     equipeReceveuse: Equipe
     equipeVisiteuse: Equipe
+
     rencontres: Rencontre[]
+
+    public scoreEquipeReceveuse(): number {
+        return this.rencontres.filter(function (r) { return r.getResultat() > 0 }).length;
+    }
+
+    public scoreEquipeVisiteuse(): number {
+        return this.rencontres.filter(function (r) { return r.getResultat() < 0 }).length;
+    }
 }
