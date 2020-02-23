@@ -15,6 +15,7 @@ import { RencontresComponent } from './rencontres/rencontres.component';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
 import { EquipeComponent } from './equipe/equipe.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
+import { EnteteComponent } from './entete/entete.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -25,7 +26,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     RencontresComponent,
     MatchDetailComponent,
     EquipeComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    EnteteComponent
   ],
   imports: [
     BrowserModule,
