@@ -17,20 +17,27 @@ export class Rencontre {
     public getVainqueur():string {
         var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
         var score = 0;
-        var nbMancheJouees = 0;
+        var maxManchesGagnees = 0;
 
         this.manches.forEach(manche => {
             if (manche.getResultat() < 0) {
                 score--;
-                nbMancheJouees++;
+                maxManchesGagnees++;
             }
             else if (manche.getResultat() > 0) {
                 score++;
-                nbMancheJouees++;
+                maxManchesGagnees++;
             }
         });
 
-        if (nbMancheJouees < nbManchesAGagner)
+        maxManchesGagnees = this.manches.filter(function (m) { return m.getResultat() < 0 }).length;
+        var tmp = this.manches.filter(function (m) { return m.getResultat() > 0 }).length;
+
+        if (tmp > maxManchesGagnees)
+            maxManchesGagnees = tmp;
+        
+
+        if (maxManchesGagnees < nbManchesAGagner)
             return '';
 
         if (score > 0)

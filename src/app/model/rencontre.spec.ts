@@ -15,6 +15,8 @@ describe('Rencontre', () => {
   it('match non terminé', () => {
     var rencontre = new RencontreSimple(new Joueur('A'), new Joueur('B'));
     rencontre.manches[0].score = "11-9";
+    rencontre.manches[1].score = "11-9";
+    rencontre.manches[2].score = "11-13";
     expect(rencontre.getVainqueur()).toBe('');
   });
 
