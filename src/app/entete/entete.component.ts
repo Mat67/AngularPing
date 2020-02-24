@@ -13,5 +13,6 @@ export class EnteteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  selectedValue = null;
+  
 }

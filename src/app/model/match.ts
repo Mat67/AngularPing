@@ -28,8 +28,14 @@ export class Match {
         });
     }
 
-    equipeReceveuse: Equipe
-    equipeVisiteuse: Equipe
+    equipeReceveuse: Equipe;
+    equipeVisiteuse: Equipe;
+    journee:number=1;
+    saison:string;
+    categorie:string = 'Messieurs';
+    epreuve:string = 'Championnat par équipe';
+    division:string = 'Excellence';
+    poule:string='A';
 
     rencontres: Rencontre[]
 
