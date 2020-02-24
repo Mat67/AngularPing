@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Match } from '../model/match';
 
 @Component({
   selector: 'app-entete',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entete.component.css']
 })
 export class EnteteComponent implements OnInit {
+  @Input() match: Match;
 
   constructor() { }
 

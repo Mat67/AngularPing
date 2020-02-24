@@ -30,4 +30,9 @@ describe('Match', () => {
     match.rencontres.push(rencontre);
     expect(match.matchEstTermine()).toBe(true);
   });
+
+  it('Saison 2019/2020', () => {
+    var match =  new Match(6);
+    expect(match.getSaison()).toBe('2019/2020');
+  });
 });

@@ -33,6 +33,14 @@ export class Match {
 
     rencontres: Rencontre[]
 
+    public getSaison(): string {
+        var aujourdhui = new Date();
+        if (aujourdhui > new Date(aujourdhui.getFullYear(),7, 31))
+            return aujourdhui.getFullYear() + '/' + aujourdhui.getFullYear() + 1;
+        else
+            return aujourdhui.getFullYear() - 1 + '/' + aujourdhui.getFullYear();
+    }
+
     public scoreEquipeReceveuse(): number {
         return this.rencontres.filter(function (r) { return r.getResultat() > 0 }).length;
     }
