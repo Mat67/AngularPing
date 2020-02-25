@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Match } from '../model/match';
 
 @Component({
   selector: 'app-modal',
@@ -7,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
+  @Input() match: Match;
 
   closeResult: string;
 
