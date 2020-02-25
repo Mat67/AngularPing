@@ -34,6 +34,8 @@ export class EnteteComponent implements OnInit {
     });
 
     this.match.rencontres.forEach(rencontre => {
+      rencontre.manches.forEach(manche => manche.score = '');
+
       rencontre.manches.forEach(manche => {
         if (rencontre.getVainqueur() === '')
           manche.score = randomService.getRandomScore();
