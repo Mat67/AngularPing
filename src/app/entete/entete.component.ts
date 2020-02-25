@@ -24,9 +24,13 @@ export class EnteteComponent implements OnInit {
 
     this.match.equipeReceveuse.joueurs.forEach(joueur => {
       joueur.nom = randomService.getRandomString();
+      joueur.numeroLicence = randomService.random(100000, 999999).toString();
+      joueur.classement = randomService.random(0, 20).toString();
     });
     this.match.equipeVisiteuse.joueurs.forEach(joueur => {
       joueur.nom = randomService.getRandomString();
+      joueur.numeroLicence = randomService.random(100000, 999999).toString();
+      joueur.classement = randomService.random(0, 20).toString();
     });
 
     this.match.rencontres.forEach(rencontre => {
