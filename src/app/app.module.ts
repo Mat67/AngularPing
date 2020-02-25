@@ -17,6 +17,7 @@ import { EquipeComponent } from './equipe/equipe.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { EnteteComponent } from './entete/entete.component';
 import { SignaturePadModule } from '@ng-plus/signature-pad';
+import { ModalComponent } from './modal/modal.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -28,7 +29,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     MatchDetailComponent,
     EquipeComponent,
     BottomBarComponent,
-    EnteteComponent
+    EnteteComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

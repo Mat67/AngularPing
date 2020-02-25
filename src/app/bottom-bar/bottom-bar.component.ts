@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Match } from '../model/match';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -13,5 +14,4 @@ export class BottomBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
