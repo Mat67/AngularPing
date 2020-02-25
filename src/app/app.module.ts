@@ -16,6 +16,7 @@ import { MatchDetailComponent } from './match-detail/match-detail.component';
 import { EquipeComponent } from './equipe/equipe.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { EnteteComponent } from './entete/entete.component';
+import { SignaturePadModule } from '@ng-plus/signature-pad';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -33,7 +34,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    SignaturePadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
