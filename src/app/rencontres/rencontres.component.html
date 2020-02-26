@@ -16,14 +16,18 @@
   <tr *ngFor="let rencontre of match.rencontres; index as i">
     <th scope="row">{{ rencontres[i].getFormule() }}</th>
     <td>
-        <div *ngIf="!rencontres[i].doubleEquipeReceveuse">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
-        <input *ngIf="rencontres[i].doubleEquipeReceveuse" type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
+        <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'; else elseBlock">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
+        <ng-template #elseBlock>
+          <input #elseBlock type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
           [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="doubleEquipeReceveuse">
+        </ng-template>
     </td>
     <td>
-      <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'">{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
-      <input *ngIf="rencontres[i].constructor.name === 'RencontreDouble'" type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }}" required
+      <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'; else elseBlock">{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
+      <ng-template #elseBlock>
+        <input #elseBlock type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
         [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="doubleEquipeVisiteuse">
+      </ng-template>
     </td>
     <td *ngFor="let manche of rencontres[i].manches; index as y">
       <input type="text" class="form-control form-control-sm manche" id="{{ 'manche' + i + y }}" required
