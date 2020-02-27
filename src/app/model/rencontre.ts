@@ -63,4 +63,8 @@ export class Rencontre {
         // overreide par RencontreSimple et RencontreDouble
         return '';
     }
+
+    getTypeRencontre():string {
+        return '';
+    }
 }

@@ -22,4 +22,8 @@ export class RencontreSimple extends Rencontre{
     getNomJoueurEquipeVisiteuse():string {
         return this.joueurEquipeVisiteuse.position;
     }
+
+    getTypeRencontre():string {
+        return 'RencontreSimple';
+    }
 }

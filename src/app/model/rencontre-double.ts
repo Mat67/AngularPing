@@ -22,5 +22,7 @@ export class RencontreDouble extends Rencontre{
         return this.doubleEquipeVisiteuse;
     }
 
-    
+    getTypeRencontre():string {
+        return 'RencontreDouble';
+    }
 }
