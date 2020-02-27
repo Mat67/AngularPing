@@ -21,4 +21,6 @@ export class RencontreDouble extends Rencontre{
     getNomJoueurEquipeVisiteuse():string {
         return this.doubleEquipeVisiteuse;
     }
+
+    
 }
