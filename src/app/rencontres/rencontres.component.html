@@ -26,11 +26,11 @@
         </ng-template>
     </td>
     <td>
-      <div *ngIf="rencontres[i].constructor.name === 'RencontreDouble'; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
+      <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
+      <ng-template #thenBlock2>
         <div>{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
       </ng-template>
-      <ng-template #elseBlock>
+      <ng-template #elseBlock2>
         <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
         [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}">
       </ng-template>
