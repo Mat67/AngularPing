@@ -18,7 +18,7 @@
     <td>
         <div *ngIf="rencontres[i].constructor.name === 'RencontreSimple'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-          <div>{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
+          <div id="{{ i }} d">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
         </ng-template>
         <ng-template #elseBlock>
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
