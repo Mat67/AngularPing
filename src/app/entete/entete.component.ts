@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Match } from '../model/match';
 import { RandomService } from '../services/random.service';
 import { RencontreDouble } from '../model/rencontre-double';
+import * as Mustache from 'mustache';
 
 @Component({
   selector: 'app-entete',
@@ -16,6 +17,18 @@ export class EnteteComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  public imprimer() {
+    var view = {
+      title: "Joe",
+      calc: function () {
+        return 2 + 4;
+      }
+    };
+     
+    var output = Mustache.render("{{title}} spends {{calc}}", view);
+    alert(output);
+  }
+
   public random() {
     var randomService = new RandomService;
 
