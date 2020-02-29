@@ -18,6 +18,7 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { EnteteComponent } from './entete/entete.component';
 import { SignaturePadModule } from '@ng-plus/signature-pad';
 import { ModalComponent } from './modal/modal.component';
+import { PrintPageComponent } from './print-page/print-page.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -30,7 +31,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     EquipeComponent,
     BottomBarComponent,
     EnteteComponent,
-    ModalComponent
+    ModalComponent,
+    PrintPageComponent
   ],
   imports: [
     BrowserModule,

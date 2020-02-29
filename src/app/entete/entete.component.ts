@@ -18,15 +18,7 @@ export class EnteteComponent implements OnInit {
   }
   
   public imprimer() {
-    var view = {
-      title: "Joe",
-      calc: function () {
-        return 2 + 4;
-      }
-    };
-     
-    var output = Mustache.render("{{title}} spends {{calc}}", view);
-    alert(output);
+    window.print();
   }
 
   public random() {
