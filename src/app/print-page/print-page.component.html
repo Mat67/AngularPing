@@ -1,4 +1,35 @@
 <div class="container-fluid">
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Saison</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col">Epreuve</th>
+        <th scope="col">Journée</th>
+        <th scope="col">Division</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div>{{ match.getSaison() }}</div>
+        </td>
+        <td>
+          <div>{{ match.categorie }}</div>
+        </td>
+        <td>
+          <div>{{ match.epreuve}}</div>
+        </td>
+        <td>
+          <div>{{ match.journee}}</div>
+        </td>
+        <td>
+          <div>{{ match.division}}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
   <div class="container mt-2">
     <div class="row">
       <div class="col-12"></div>
@@ -11,7 +42,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
-              <th scope="col">Classement</th>
+              <th scope="col">Clt</th>
               <th scope="col">Licence</th>
             </tr>
           </thead>
@@ -37,7 +68,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
-              <th scope="col">Classement</th>
+              <th scope="col">Clt</th>
               <th scope="col">Licence</th>
             </tr>
           </thead>
