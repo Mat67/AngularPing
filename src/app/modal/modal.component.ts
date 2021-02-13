@@ -11,8 +11,6 @@ export class ModalComponent implements OnInit {
   @Input() match: Match;
 
   closeResult: string;
-  signatureEquipeReceveuse = undefined
-  signatureEquipeVisiteuse = undefined
 
   constructor(private modalService: NgbModal) { }
 
@@ -28,17 +26,29 @@ export class ModalComponent implements OnInit {
   }
 
   saveImageEquipeReceveuse(content) {
-    console.log(content)
-    this.signatureEquipeReceveuse = content
+    var match = this.match
+    
+    var reader = new FileReader();
+    reader.readAsDataURL(content); 
+    reader.onloadend = function() {
+        var base64data = reader.result;                
+        match.signatureEquipeReceveuse = base64data
+    }
   }
 
   saveImageEquipeVisiteuse (content) {
-    console.log(content)
-    this.signatureEquipeVisiteuse = content
+    var match = this.match
+    
+    var reader = new FileReader();
+    reader.readAsDataURL(content); 
+    reader.onloadend = function() {
+        var base64data = reader.result;                
+        match.signatureEquipeVisiteuse = base64data
+    }
   }
 
   isButtonImprimerActif() {
-    return this.signatureEquipeReceveuse && this.signatureEquipeVisiteuse
+    return this.match.signatureEquipeReceveuse && this.match.signatureEquipeVisiteuse
   }
 
   Imprimer() {
