@@ -2,28 +2,28 @@
   <table class="table table-sm table-bordered">
     <thead>
       <tr>
-        <th scope="col">Saison</th>
-        <th scope="col">Catégorie</th>
-        <th scope="col">Epreuve</th>
-        <th scope="col">Journée</th>
-        <th scope="col">Division</th>
+        <th class="td-center" scope="col">Saison</th>
+        <th class="td-center" scope="col">Catégorie</th>
+        <th class="td-center" scope="col">Epreuve</th>
+        <th class="td-center" scope="col">Journée</th>
+        <th class="td-center" scope="col">Division</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>
+        <td class="td-center">
           <div>{{ match.getSaison() }}</div>
         </td>
-        <td>
+        <td class="td-center">
           <div>{{ match.categorie }}</div>
         </td>
-        <td>
+        <td class="td-center">
           <div>{{ match.epreuve}}</div>
         </td>
-        <td>
+        <td class="td-center">
           <div>{{ match.journee}}</div>
         </td>
-        <td>
+        <td class="td-center">
           <div>{{ match.division}}</div>
         </td>
       </tr>
@@ -40,22 +40,22 @@
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Clt</th>
-              <th scope="col">Licence</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Nom</th>
+              <th scope="col" class="td-center">Clt</th>
+              <th scope="col" class="td-center">Licence</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let joueur of match.equipeReceveuse.joueurs; index as i">
-              <th scope="row">{{ match.equipeReceveuse.joueurs[i].position }}</th>
+              <th scope="row" class="td-center">{{ match.equipeReceveuse.joueurs[i].position }}</th>
               <td class="form-group">
                 <div>{{ match.equipeReceveuse.joueurs[i].nom }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeReceveuse.joueurs[i].classement }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
@@ -66,10 +66,10 @@
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Clt</th>
-              <th scope="col">Licence</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Nom</th>
+              <th scope="col" class="td-center">Clt</th>
+              <th scope="col" class="td-center">Licence</th>
             </tr>
           </thead>
           <tbody>
@@ -78,10 +78,10 @@
               <td class="form-group">
                 <div>{{ match.equipeVisiteuse.joueurs[i].nom }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeVisiteuse.joueurs[i].classement }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
@@ -94,20 +94,20 @@
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Joueur 1</th>
-              <th scope="col">Joueur 2</th>
-              <th scope="col">1</th>
-              <th scope="col">2</th>
-              <th scope="col">3</th>
-              <th scope="col">4</th>
-              <th scope="col">5</th>
-              <th scope="col">Points</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Joueur 1</th>
+              <th scope="col" class="td-center">Joueur 2</th>
+              <th scope="col" class="td-center">1</th>
+              <th scope="col" class="td-center">2</th>
+              <th scope="col" class="td-center">3</th>
+              <th scope="col" class="td-center">4</th>
+              <th scope="col" class="td-center">5</th>
+              <th scope="col" class="td-center">Points</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let rencontre of match.rencontres; index as i">
-              <th scope="row">{{ match.rencontres[i].getFormule() }}</th>
+              <th scope="row" class="td-center">{{ match.rencontres[i].getFormule() }}</th>
       
               <td>
                 <div *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock">
@@ -130,15 +130,23 @@
                 </ng-template>
               </td>
       
-              <td *ngFor="let manche of match.rencontres[i].manches; index as y">
+              <td class="td-center" *ngFor="let manche of match.rencontres[i].manches; index as y">
                 <div>{{ match.rencontres[i].manches[y].score }}</div>
               </td>
       
-              <td class="manche">
+              <td class="manche td-center">
                 {{ match.rencontres[i].getVainqueur() }}
               </td>
             </tr>
           </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="7" ></td>
+              <td class="td-center" > {{ match.scoreEquipeReceveuse() }}</td>
+              <td class="td-center"> {{ match.scoreEquipeVisiteuse() }}</td>
+            </tr>
+        </tfoot>
         </table>
       </div>
       
