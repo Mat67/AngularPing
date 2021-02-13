@@ -12,6 +12,9 @@ app-print-page {
 @media print {
 /* invert the display (show/hide) properties of the main */
 /* aplication component and the printing component       */
+    .noprint{
+        display:none;
+    }
 
     app-print-page {
         display: block;

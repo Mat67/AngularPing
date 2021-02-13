@@ -41,7 +41,8 @@ export class ModalComponent implements OnInit {
     return this.signatureEquipeReceveuse && this.signatureEquipeVisiteuse
   }
 
-  imprimer() {
+  Imprimer() {
+    this.modalService.dismissAll()
     window.print()
   }
 

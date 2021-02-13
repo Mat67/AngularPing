@@ -1,4 +1,4 @@
-<ng-template #content let-modal>
+<ng-template #content let-modal  id="myModal">
     <div class="container">
       <div class="row">
         <div class="col-6">
@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="row">
-        <button [disabled]="!isButtonImprimerActif()" class="btn btn-lg btn-outline-primary" (click)="imprimer()">Imprimer</button>
+        <button [disabled]="!isButtonImprimerActif()" class="btn btn-lg btn-outline-primary" (click)="Imprimer(event)" >Imprimer</button>
       </div>
     </div>
 </ng-template>
