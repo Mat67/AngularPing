@@ -3,12 +3,15 @@
       <div class="row">
         <div class="col-6">
           <label>Capitaine {{ match.equipeReceveuse.nomEquipe }}</label>
-          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false"></ng-signature-pad>
+          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false" (done)="saveImageEquipeReceveuse($event)" [emitOnDragEnd]="true"></ng-signature-pad>
         </div>
         <div class="col-6">
           <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }}</label>
-          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false"></ng-signature-pad>
+          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false" (done)="saveImageEquipeVisiteuse($event)" [emitOnDragEnd]="true"></ng-signature-pad>
         </div>
+      </div>
+      <div class="row">
+        <button [disabled]="!isButtonImprimerActif()" class="btn btn-lg btn-outline-primary" (click)="imprimer()">Imprimer</button>
       </div>
     </div>
 </ng-template>

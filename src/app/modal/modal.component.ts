@@ -11,17 +11,38 @@ export class ModalComponent implements OnInit {
   @Input() match: Match;
 
   closeResult: string;
+  signatureEquipeReceveuse = undefined
+  signatureEquipeVisiteuse = undefined
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
+
   open(content) {
     this.modalService.open(content, { size: 'xl', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  saveImageEquipeReceveuse(content) {
+    console.log(content)
+    this.signatureEquipeReceveuse = content
+  }
+
+  saveImageEquipeVisiteuse (content) {
+    console.log(content)
+    this.signatureEquipeVisiteuse = content
+  }
+
+  isButtonImprimerActif() {
+    return this.signatureEquipeReceveuse && this.signatureEquipeVisiteuse
+  }
+
+  imprimer() {
+    window.print()
   }
 
   private getDismissReason(reason: any): string {

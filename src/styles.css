@@ -21,6 +21,14 @@ app-print-page {
         display: none;
     }
 
+    app-modal {
+        display: none;
+    }
+
+    ng-signature-pad{
+        display: none;
+    }
+    
     app-bottom-bar {
         display: none;
     }
