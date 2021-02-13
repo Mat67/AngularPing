@@ -1,39 +1,42 @@
 <div class="container-fluid">
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th class="td-center" scope="col">Saison</th>
-        <th class="td-center" scope="col">Catégorie</th>
-        <th class="td-center" scope="col">Epreuve</th>
-        <th class="td-center" scope="col">Journée</th>
-        <th class="td-center" scope="col">Division</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="td-center">
-          <div>{{ match.getSaison() }}</div>
-        </td>
-        <td class="td-center">
-          <div>{{ match.categorie }}</div>
-        </td>
-        <td class="td-center">
-          <div>{{ match.epreuve}}</div>
-        </td>
-        <td class="td-center">
-          <div>{{ match.journee}}</div>
-        </td>
-        <td class="td-center">
-          <div>{{ match.division}}</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container mt-2">
+    <table class="table table-sm table-bordered">
+      <thead>
+        <tr>
+          <th class="td-center" scope="col">Saison</th>
+          <th class="td-center" scope="col">Catégorie</th>
+          <th class="td-center" scope="col">Epreuve</th>
+          <th class="td-center" scope="col">Journée</th>
+          <th class="td-center" scope="col">Division</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-center">
+            <div>{{ match.getSaison() }}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.categorie }}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.epreuve}}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.journee}}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.division}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 
   <div class="container mt-2">
     <div class="row">
-      <div class="col-12"></div>
-      <div>{{ match.equipeReceveuse.nomEquipe }}</div>
+      <div class="col-6 text-center text-uppercase">{{ match.equipeReceveuse.nomEquipe }}</div>
+      <div class="col-6 text-center text-uppercase">{{ match.equipeVisiteuse.nomEquipe }}</div>
     </div>
     <div class="row">
       <div class="col">
@@ -89,6 +92,7 @@
         </table>
       </div>
     </div>
+    
     <div class="row">
       <div class="col">
         <table class="table table-sm table-bordered">
@@ -142,14 +146,28 @@
 
           <tfoot>
             <tr>
-              <td colspan="7" ></td>
-              <td class="td-center" > {{ match.scoreEquipeReceveuse() }}</td>
-              <td class="td-center"> {{ match.scoreEquipeVisiteuse() }}</td>
+              <td colspan="8"></td>
+              <td class="td-center">{{ match.scoreEquipeReceveuse() }} - {{ match.scoreEquipeVisiteuse() }}</td>
             </tr>
         </tfoot>
         </table>
       </div>
       
+    </div>
+  </div>
+
+
+  <div class="container mt-2">
+    <div class="border">
+      <div class="row">
+        <div class="col-5 text-uppercase">Résultat</div>
+
+        <div class="col-5 text-uppercase">
+          {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}
+        </div>
+       
+        <div class="col-2 text-center text-uppercase">{{ match.scoreEquipeReceveuse() }} à {{ match.scoreEquipeVisiteuse() }}</div>
+      </div>
     </div>
   </div>
 </div>
