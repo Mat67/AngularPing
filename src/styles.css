@@ -12,6 +12,9 @@ app-print-page {
 @media print {
 /* invert the display (show/hide) properties of the main */
 /* aplication component and the printing component       */
+    .noprint{
+        display:none;
+    }
 
     app-print-page {
         display: block;
@@ -21,6 +24,14 @@ app-print-page {
         display: none;
     }
 
+    app-modal {
+        display: none;
+    }
+
+    ng-signature-pad{
+        display: none;
+    }
+    
     app-bottom-bar {
         display: none;
     }

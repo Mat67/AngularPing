@@ -1,62 +1,82 @@
 <div class="container-fluid">
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Saison</th>
-        <th scope="col">Catégorie</th>
-        <th scope="col">Epreuve</th>
-        <th scope="col">Journée</th>
-        <th scope="col">Division</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div>{{ match.getSaison() }}</div>
-        </td>
-        <td>
-          <div>{{ match.categorie }}</div>
-        </td>
-        <td>
-          <div>{{ match.epreuve}}</div>
-        </td>
-        <td>
-          <div>{{ match.journee}}</div>
-        </td>
-        <td>
-          <div>{{ match.division}}</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-3">
+        <h6>F.S.C.F</h6>
+        <h6>AVANT-GARDE-DU RHIN</h6>
+      </div>
+      <div class="col-6 text-center">
+        <h1>FEUILLE DE MATCH</h1>
+       
+      </div>
+
+      <div class="col-3">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <table class="table table-sm table-bordered">
+      <thead>
+        <tr>
+          <th class="td-center" scope="col">Saison</th>
+          <th class="td-center" scope="col">Catégorie</th>
+          <th class="td-center" scope="col">Epreuve</th>
+          <th class="td-center" scope="col">Journée</th>
+          <th class="td-center" scope="col">Division</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-center">
+            <div>{{ match.getSaison() }}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.categorie }}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.epreuve}}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.journee}}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.division}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 
   <div class="container mt-2">
     <div class="row">
-      <div class="col-12"></div>
-      <div>{{ match.equipeReceveuse.nomEquipe }}</div>
+      <div class="col-6 text-center text-uppercase">{{ match.equipeReceveuse.nomEquipe }}</div>
+      <div class="col-6 text-center text-uppercase">{{ match.equipeVisiteuse.nomEquipe }}</div>
     </div>
     <div class="row">
       <div class="col">
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Clt</th>
-              <th scope="col">Licence</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Nom</th>
+              <th scope="col" class="td-center">Clt</th>
+              <th scope="col" class="td-center">Licence</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let joueur of match.equipeReceveuse.joueurs; index as i">
-              <th scope="row">{{ match.equipeReceveuse.joueurs[i].position }}</th>
+              <th scope="row" class="td-center">{{ match.equipeReceveuse.joueurs[i].position }}</th>
               <td class="form-group">
                 <div>{{ match.equipeReceveuse.joueurs[i].nom }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeReceveuse.joueurs[i].classement }}</div>
               </td>
-              <td>
-                <div>{{ match.equipeReceveuse.joueurs[i].licence }}</div>
+              <td class="td-center">
+                <div>{{ match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
@@ -66,10 +86,10 @@
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Clt</th>
-              <th scope="col">Licence</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Nom</th>
+              <th scope="col" class="td-center">Clt</th>
+              <th scope="col" class="td-center">Licence</th>
             </tr>
           </thead>
           <tbody>
@@ -78,36 +98,37 @@
               <td class="form-group">
                 <div>{{ match.equipeVisiteuse.joueurs[i].nom }}</div>
               </td>
-              <td>
+              <td class="td-center">
                 <div>{{ match.equipeVisiteuse.joueurs[i].classement }}</div>
               </td>
-              <td>
-                <div>{{ match.equipeVisiteuse.joueurs[i].licence }}</div>
+              <td class="td-center">
+                <div>{{ match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    
     <div class="row">
       <div class="col">
         <table class="table table-sm table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Joueur 1</th>
-              <th scope="col">Joueur 2</th>
-              <th scope="col">1</th>
-              <th scope="col">2</th>
-              <th scope="col">3</th>
-              <th scope="col">4</th>
-              <th scope="col">5</th>
-              <th scope="col">Points</th>
+              <th scope="col" class="td-center">#</th>
+              <th scope="col" class="td-center">Joueur 1</th>
+              <th scope="col" class="td-center">Joueur 2</th>
+              <th scope="col" class="td-center">1</th>
+              <th scope="col" class="td-center">2</th>
+              <th scope="col" class="td-center">3</th>
+              <th scope="col" class="td-center">4</th>
+              <th scope="col" class="td-center">5</th>
+              <th scope="col" class="td-center">Points</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let rencontre of match.rencontres; index as i">
-              <th scope="row">{{ match.rencontres[i].getFormule() }}</th>
+              <th scope="row" class="td-center">{{ match.rencontres[i].getFormule() }}</th>
       
               <td>
                 <div *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock">
@@ -130,109 +151,121 @@
                 </ng-template>
               </td>
       
-              <td *ngFor="let manche of match.rencontres[i].manches; index as y">
+              <td class="td-center" *ngFor="let manche of match.rencontres[i].manches; index as y">
                 <div>{{ match.rencontres[i].manches[y].score }}</div>
               </td>
       
-              <td class="manche">
+              <td class="manche td-center">
                 {{ match.rencontres[i].getVainqueur() }}
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="8"></td>
+              <td class="td-center">{{ match.scoreEquipeReceveuse() }} - {{ match.scoreEquipeVisiteuse() }}</td>
+            </tr>
+        </tfoot>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <div class="container mt-2">
+    <div class="border">
+      <div class="row p-2">
+        <div class="col-5 text-uppercase">Résultat</div>
+
+        <div class="col-5 text-uppercase">
+          {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}
+        </div>
+       
+        <div class="col-2 text-center text-uppercase">{{ match.scoreEquipeReceveuse() }} à {{ match.scoreEquipeVisiteuse() }}</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-3">
+    <div class="row p-3" >
+      <div class="col-5 border">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à faire, s'il y a lieu, au verso.</div>
+
+      <div class="col-2">
+        
+      </div>
+
+      <div class="col-3 border align-self-center p-3">
+        HOMOLOGATION
+      </div>
+
+      
+      <div class="col-2 border">
+        <div class="row pl-2 pt-1">
+          P.V. N° : 
+        </div>
+        <div class="row pl-2">
+          Date :
+        </div>
+        
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-6">
+        <table class="table-sm table-bordered  d-block d-md-table">
+          <thead>
+            <tr>
+              <th scope="col" colspan="2" class="td-center">SIGNATURES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td class="td-center">
+                <div class="small-text">Le Capitaine de l'équipe gagnante</div>
+              </td>
+              <td class="td-center">
+                <div class="small-text">Le Capitaine de l'équipe perdante</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-center">
+                <img class="signature" [src]="match.signatureEquipeReceveuse" />
+              </td>
+              <td class="td-center">
+                <img class="signature" [src]="match.signatureEquipeVisiteuse" />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      
+      <div class="col-6 ">
+        <table class="table-sm table-bordered table-responsive  d-block d-md-table">
+          <tr >
+            <td class="td-center" rowspan="2">
+              Points math acquis
+            </td>
+
+            <td class="td-center">
+              Equipe recevante : 2
+             </td>
+          </tr>
+          <tr>
+            <td class="td-center">
+              Equipe visiteuse : 4
+            </td>
+          </tr>
+        </table>
+      </div>
       
     </div>
-
   </div>
-
-  
 </div>
 
-
-<!-- <div class="container-fluid">
-   
-    <div class="row no-gutters items-group">
-        <div *ngFor="let rencontre of match.rencontres; index as i">
-            <div>fdfdfdfddfxxxxxxxxxxx {{ match.rencontres[i].getFormule() }}</div>
-        </div>
-            
-    </div>
-
-    <div class="row no-gutters">
-      <div class="col">
-        <h1> Assistência Nº 1 </h1>
-      </div>
-    </div>
-  
-    <div class="row no-gutters">
-      <div class="col">
-        <img
-        src="../../assets/logotipo.svg"
-        alt="logotipo"
-        class="logotipo">
-      </div>
-  
-      <div class="col">
-        <h2>N Reparações</h2>
-        <p>91 886 73 76</p>    
-        <div class="address">
-          <p>geral@nreparacoes.com</p>
-          <p>Av. Dr. Ribeiro de Magalhães, 1391</p>
-          <p>Centro Comercial 123, Loja BD</p>
-          <p>4610-108 Felgueiras</p>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row no-gutters items-group">
-      <div class="col-3 label">
-        <p>Cliente:</p>
-        <p>Contacto:</p>
-      </div>
-  
-      <div class="col-9">
-        <p>Manuel Alberto Magalhães Carvalho</p>
-        <p>91 000 00 00</p>
-      </div>
-    </div>
-  
-    <div class="row no-gutters items-group">
-      <div class="col-3 label">
-        <p>Equipamento:</p>
-        <p>Cor:</p>
-        <p>Serial:</p>
-        <p>Problema:</p>
-        <p>Observações:</p>
-      </div>
-  
-      <div class="col-9">
-        <p>Telemóvel > Apple > Iphone 6</p>
-        <p>Cinza</p>
-        <p>appl2015ewfwejuk23423</p>
-        <p>Não arranca</p>
-        <p>codigo: 1798 - tem de ficar pronto até dia 12/02/2019</p>
-      </div>
-    </div>
-  
-    <div class="row no-gutters items-group">
-      <div class="col">
-        <p class="label">Condições Gerais:</p>
-        <ul class="disclaimer">
-          <li>Prazo para levantar 90 dias</li>
-          <li>Garantia 90 dias</li>
-          <li>Esta assistência só é entregue a quem apresentar este documento</li>
-          <li>O preço acresce 10% a cada 30 dias após fim do prazo de levantamento (taxa de conservação)</li>
-          <li>Os dados do cliente, acima mencionados, ficam registados na N Reparações apenas para efeitos de comunicação
-            em relação às suas assistências e facturação
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="row no-gutters">
-      <div class="col">
-        <p class="disclaimer signature-field">Declaro que li e concordo com o disposto neste documento em 03/02/2019</p>
-      </div>
-    </div>
-  </div> -->

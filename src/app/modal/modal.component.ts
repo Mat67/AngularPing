@@ -16,12 +16,44 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   open(content) {
     this.modalService.open(content, { size: 'xl', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  saveImageEquipeReceveuse(content) {
+    var match = this.match
+    
+    var reader = new FileReader();
+    reader.readAsDataURL(content); 
+    reader.onloadend = function() {
+        var base64data = reader.result;                
+        match.signatureEquipeReceveuse = base64data
+    }
+  }
+
+  saveImageEquipeVisiteuse (content) {
+    var match = this.match
+    
+    var reader = new FileReader();
+    reader.readAsDataURL(content); 
+    reader.onloadend = function() {
+        var base64data = reader.result;                
+        match.signatureEquipeVisiteuse = base64data
+    }
+  }
+
+  isButtonImprimerActif() {
+    return this.match.signatureEquipeReceveuse && this.match.signatureEquipeVisiteuse
+  }
+
+  Imprimer() {
+    this.modalService.dismissAll()
+    window.print()
   }
 
   private getDismissReason(reason: any): string {
