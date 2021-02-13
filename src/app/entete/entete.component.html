@@ -1,3 +1,4 @@
+<h1>Feuille de match</h1>
 <div class="container">
     <div class="row">
         <div class="col-2">
@@ -12,17 +13,17 @@
                 <option>Dames</option>
             </select>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <label for="epreuve">Epreuve</label>
             <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve">
                 <option>Championnat par équipe</option>
             </select>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <label for="journee">Journée</label>
             <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee"/>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <label for="division">Division</label>
             <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division">
                 <option>Excellence</option>

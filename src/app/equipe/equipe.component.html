@@ -8,25 +8,25 @@
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Classement</th>
-          <th scope="col">Licence</th>
+          <th scope="col" style="width: 10%">#</th>
+          <th scope="col" style="width: 50%">Nom</th>
+          <th scope="col" style="width: 8%">Classement</th>
+          <th scope="col" style="width: 32%">Licence</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let joueur of equipe.joueurs; index as i">
-          <th scope="row">{{ joueur.position }}</th>
+          <td scope="row" style="font-weight: bold;">{{ joueur.position }}</td>
           <td class="form-group">
-            <input type="text" class="form-control transparent" id="{{ 'nom' +  i  }}" required
+            <input type="search" class="form-control transparent" id="{{ 'nom' +  i  }}" required
               [(ngModel)]="equipe.joueurs[i].nom" name="nom">
           </td>
           <td>
-            <input type="text" class="form-control transparent" id="{{ 'classement' + i  }}" required
+            <input type="search" class="form-control transparent" id="{{ 'classement' + i  }}" required
               [(ngModel)]="equipe.joueurs[i].classement" name="classement">
           </td>
           <td>
-            <input type="text" class="form-control transparent" id="{{ 'numeroLicence' + i }}" required
+            <input type="search" class="form-control transparent" id="{{ 'numeroLicence' + i }}" required
               [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence">
           </td>
         </tr>

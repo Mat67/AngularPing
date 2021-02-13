@@ -47,11 +47,22 @@ export class Rencontre {
         var score = this.getResultat();
 
         if (score > 0)
-            return this.getNomJoueurEquipeReceveuse();
+            return this.getPositionJoueurEquipeReceveuse();
         else if (score < 0)
-            return this.getNomJoueurEquipeVisiteuse();
+            return this.getPositionJoueurEquipeVisiteuse();
         else
             return '';
+    }
+
+    
+    getPositionJoueurEquipeReceveuse():string {
+        // override par RencontreSimple et RencontreDouble
+        return '';
+    }
+
+    getPositionJoueurEquipeVisiteuse():string {
+        // override par RencontreSimple et RencontreDouble
+        return '';
     }
 
     getNomJoueurEquipeReceveuse():string {
