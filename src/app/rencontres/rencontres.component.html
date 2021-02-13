@@ -18,21 +18,21 @@
     <td>
         <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-          <div id="{{ i }} d">{{ rencontres[i].joueurEquipeReceveuse.nom }}</div>
+          <div id="{{ i }} d">{{ rencontres[i].getNomJoueurEquipeReceveuse() }}</div>
         </ng-template>
         <ng-template #elseBlock>
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
-          [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}">
+          [ngModel]="rencontres[i].getNomJoueurEquipeReceveuse()" name="{{ 'doubleEquipeReceveuse' + i }}">
         </ng-template>
     </td>
     <td>
       <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
       <ng-template #thenBlock2>
-        <div>{{ rencontres[i].joueurEquipeVisiteuse.nom }}</div>
+        <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
       </ng-template>
       <ng-template #elseBlock2>
         <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
-        [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}">
+        [ngModel]="rencontres[i].getNomJoueurEquipeVisiteuse()" name="{{ 'doubleEquipeVisiteuse' + i }}">
       </ng-template>
     </td>
     <td *ngFor="let manche of rencontres[i].manches; index as y">

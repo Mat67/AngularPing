@@ -55,12 +55,12 @@ export class Rencontre {
     }
 
     getNomJoueurEquipeReceveuse():string {
-        // overreide par RencontreSimple et RencontreDouble
+        // override par RencontreSimple et RencontreDouble
         return '';
     }
 
     getNomJoueurEquipeVisiteuse():string {
-        // overreide par RencontreSimple et RencontreDouble
+        // override par RencontreSimple et RencontreDouble
         return '';
     }
 

@@ -2,7 +2,7 @@
 
 <app-entete [match]="match"></app-entete>
 
-<div class="container">
+<div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
     <div class="row">
         <div class="col-6">
             <app-equipe [equipe]="match.equipeReceveuse"></app-equipe>
@@ -18,5 +18,8 @@
     </div>
 </div>
 
-<app-bottom-bar [match]="match"></app-bottom-bar>
+<div style="display : table-row; height: 100%;">
+    <app-bottom-bar [match]="match"></app-bottom-bar>
+</div>
+
 

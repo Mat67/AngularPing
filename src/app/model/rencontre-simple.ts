@@ -12,15 +12,23 @@ export class RencontreSimple extends Rencontre{
     joueurEquipeVisiteuse:Joueur;
 
     getFormule():string {
-        return this.getNomJoueurEquipeReceveuse() + '-' + this.getNomJoueurEquipeVisiteuse();
+        return this.getPositionJoueurEquipeReceveuse() + '-' + this.getPositionJoueurEquipeVisiteuse();
     }
 
-    getNomJoueurEquipeReceveuse():string {
+    getPositionJoueurEquipeReceveuse():string {
         return this.joueurEquipeReceveuse.position;
     }
 
-    getNomJoueurEquipeVisiteuse():string {
+    getNomJoueurEquipeReceveuse():string {
+        return this.joueurEquipeReceveuse.nom;
+    }
+
+    getPositionJoueurEquipeVisiteuse():string {
         return this.joueurEquipeVisiteuse.position;
+    }
+
+    getNomJoueurEquipeVisiteuse():string {
+        return this.joueurEquipeVisiteuse.nom;
     }
 
     getTypeRencontre():string {
