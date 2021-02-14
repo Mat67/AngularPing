@@ -3,6 +3,8 @@ import { Rencontre } from './rencontre';
 import { FormuleService } from '../services/formule.service';
 import { RencontreSimple } from './rencontre-simple';
 import { RencontreDouble } from './rencontre-double';
+import { Timestamp } from 'rxjs';
+import { Time } from '@angular/common';
 
 export class Match {
     constructor (tailleEquipe: number) {
@@ -32,6 +34,8 @@ export class Match {
     equipeVisiteuse: Equipe;
     journee:number=1;
     saison:string;
+    Date:Date;
+    Heure:Time;
     categorie:string = 'Messieurs';
     epreuve:string = 'Championnat par équipe';
     division:string = 'Excellence';
