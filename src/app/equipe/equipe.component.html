@@ -15,11 +15,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let joueur of equipe.joueurs; index as i">
-          <td scope="row text-center" class="text-center font-weight-bold">{{ joueur.position }}</td>
+        <tr *ngFor="let joueur of equipe.joueurs; index as i" (dblclick)="setCaptain(joueur)" [ngClass]="joueur.isCapitaine ? 'table-info': ''">
+          <td scope="row" class="td-position">{{ joueur.position }}</td>
           <td class="form-group">
             <input type="search" class="form-control transparent" id="{{ 'nom' +  i  }}" required
-              [(ngModel)]="equipe.joueurs[i].nom" name="nom">
+              [(ngModel)]="equipe.joueurs[i].nom" name="nom"  >
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'classement' + i  }}" required

@@ -3,6 +3,7 @@ export class Joueur {
     nom: string;
     classement: string;
     numeroLicence: string;
+    isCapitaine: boolean;
 
     constructor (position:string) {
         this.position = position;
