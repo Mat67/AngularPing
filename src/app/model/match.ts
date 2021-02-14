@@ -37,8 +37,8 @@ export class Match {
     division:string = 'Excellence';
     poule:string='A';
     lieu:string;
-    signatureEquipeReceveuse = undefined
-    signatureEquipeVisiteuse = undefined
+    signatureEquipeReceveuse = undefined;
+    signatureEquipeVisiteuse = undefined;
 
     rencontres: Rencontre[]
 
@@ -58,6 +58,38 @@ export class Match {
         return this.rencontres.filter(function (r) { return r.getResultat() < 0 }).length;
     }
 
+    public getPointEquipeReceveuse(): number {
+        return this.getPointFromScore(this.scoreEquipeReceveuse());
+    }
+
+    public getPointEquipeVisiteuse(): number {
+        return this.getPointFromScore(this.scoreEquipeVisiteuse());
+    }
+
+    public getPointFromScore(score) : number
+    {
+        if(score >= 16 )
+        {
+            return 5;
+        }
+        else if(score <= 4)
+        {
+            return 1;
+        }
+        else if(score == 10)
+        {
+            return 3;
+        }
+        else if(score > 10 && score < 16)
+        {
+            return 4;
+        }
+        else if(score > 4 && score < 10)
+        {
+            return 2;
+        }
+    }
+    
     public matchEstTermine(): boolean {
         return this.rencontres.filter(function (r) { return r.getResultat() !== 0; }).length === this.rencontres.length;
     }
