@@ -1,33 +1,67 @@
 <h1>Feuille de match</h1>
 <div class="container">
     <div class="row">
-        <div class="col-2">
-            <label for="saison">SAISON</label>
-            <br/>
-            <label for="saison">{{ match.getSaison() }}</label>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="saison">SAISON</label>
+                        <br/>
+                        <label for="saison">{{ match.getSaison() }}</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label for="Date/Heure">Date/Heure</label>
+                        <br/>
+                        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                 
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label for="Lieu">Lieu</label>
+                        <br/>
+                        <input type="text" class="form-control form-control-sm text-uppercase" [(ngModel)]="match.lieu"/>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-2">
-            <label for="categorie">Catégorie</label>
-            <select class="form-control form-control-sm custom-select" id="categorie" [(ngModel)]="match.categorie">
-                <option>Messieurs</option>
-                <option>Dames</option>
-            </select>
-        </div>
-        <div class="col-3">
-            <label for="epreuve">Epreuve</label>
-            <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve">
-                <option>Championnat par équipe</option>
-            </select>
-        </div>
-        <div class="col-2">
-            <label for="journee">Journée</label>
-            <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee"/>
-        </div>
-        <div class="col-3">
-            <label for="division">Division</label>
-            <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division">
-                <option>Excellence</option>
-            </select>
+
+        <div class="col-6">
+            <div class="row">
+           
+                <div class="col-6 form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select class="form-control form-control-sm custom-select" id="categorie" [(ngModel)]="match.categorie">
+                        <option>Messieurs</option>
+                        <option>Dames</option>
+                    </select>
+                </div>
+                <div class="col-6 form-group">
+                    <label for="epreuve">Epreuve</label>
+                    <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve">
+                        <option>Championnat par équipe</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="journee">Journée</label>
+                    <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee"/>
+                </div>
+                <div class="col-6 form-group">
+                    <label for="division">Division</label>
+                    <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division">
+                        <option>Excellence</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </div> 

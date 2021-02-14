@@ -36,6 +36,7 @@ export class Match {
     epreuve:string = 'Championnat par équipe';
     division:string = 'Excellence';
     poule:string='A';
+    lieu:string;
     signatureEquipeReceveuse = undefined
     signatureEquipeVisiteuse = undefined
 
