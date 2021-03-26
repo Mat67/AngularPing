@@ -18,7 +18,7 @@ export class Rencontre {
         return '';
     }
 
-    public getResultat() :number {
+    public getResultat() : number {
         var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
         var score = 0;
         var maxManchesGagnees = 0;

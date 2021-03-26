@@ -22,6 +22,15 @@ export class RencontreDouble extends Rencontre{
         return this.doubleEquipeVisiteuse;
     }
 
+    getPositionJoueurEquipeReceveuse():string {
+        return this.doubleEquipeReceveuse;
+    }
+
+    getPositionJoueurEquipeVisiteuse():string {
+        // override par RencontreSimple et RencontreDouble
+        return this.doubleEquipeVisiteuse;
+    }
+
     getTypeRencontre():string {
         return 'RencontreDouble';
     }
