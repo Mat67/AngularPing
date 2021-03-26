@@ -36,7 +36,7 @@
       </ng-template>
     </td>
     <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
-      <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required
+      <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required (keypress)="omit_number(rencontres[i].manches[y].score, $event)"
       [(ngModel)]="rencontres[i].manches[y].score" name=" {{ 'manche' + i + y }}" style="padding: 0%;"/>
     </td>
     
