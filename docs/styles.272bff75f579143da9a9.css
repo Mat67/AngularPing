@@ -1,0 +1,1 @@
+.transparent{border:0;background:transparent}app-print-page{display:none}@media print{.noprint{display:none}app-print-page{display:block}app-bottom-bar,app-entete,app-equipe,app-modal,app-rencontres,ng-signature-pad{display:none}}
