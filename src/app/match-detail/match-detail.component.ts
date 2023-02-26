@@ -7,10 +7,10 @@ import { Match } from '../model/match';
   styleUrls: ['./match-detail.component.css']
 })
 export class MatchDetailComponent implements OnInit {
-  match: Match;
+  Contexte: Match[];
 
   constructor() {
-    this.match = new Match(6);
+    this.Contexte = []
    }
 
   ngOnInit(): void {

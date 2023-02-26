@@ -9,16 +9,17 @@ import { Match } from '../model/match';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
-  @Input() match: Match;
+  @Input() contexte: Match[];
 
   closeResult: string;
   constructor(private modalService: NgbModal) { }
 
   openNouvelleRencontre(content) {
     this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+      this.contexte.length = 0
+      this.contexte.push(new Match(+result))
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      ///this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
@@ -32,11 +33,15 @@ export class NavigationComponent {
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return 'ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return 'BACKDROP_CLICK';
     } else {
-      return  `with: ${reason}`;
+      return  `reason`;
     }
+  }
+
+  nouvelleFeuille(nombreJoueurs) {
+    var a = ''
   }
 }

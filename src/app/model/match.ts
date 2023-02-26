@@ -11,20 +11,20 @@ export class Match {
         this.equipeReceveuse = new Equipe(tailleEquipe, 'A');
         this.equipeVisiteuse = new Equipe(tailleEquipe, 'U');
         this.rencontres = new Array();
-        
+
         var formule = new FormuleService().getFormule();
-        
+
         formule.forEach(element => {
             var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPosition(element[0]);
             var joueurEquipeVisiteuse = this.equipeVisiteuse.getJoueurByPosition(element[1]);
-            
+
             var rencontre:Rencontre;
             if (joueurEquipeReceveuse) {
                 rencontre = new RencontreSimple(joueurEquipeReceveuse, joueurEquipeVisiteuse);
             }
             else {
                 rencontre = new RencontreDouble(element[0]);
-            }   
+            }
 
             this.rencontres.push(rencontre);
         });
@@ -93,7 +93,7 @@ export class Match {
             return 2;
         }
     }
-    
+
     public matchEstTermine(): boolean {
         return this.rencontres.filter(function (r) { return r.getResultat() !== 0; }).length === this.rencontres.length;
     }
