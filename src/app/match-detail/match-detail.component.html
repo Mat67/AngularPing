@@ -1,29 +1,29 @@
-<app-navigation [contexte]="Contexte"/>
+<app-navigation [app]="app"/>
 
 
 
-<app-print-page [match]="Contexte[0]"></app-print-page>
+<app-print-page [match]="app.match"></app-print-page>
 
-<app-entete [match]="Contexte[0]"></app-entete>
+<app-entete [match]="app.match"></app-entete>
 
 <div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
     <div class="row">
         <div class="col-6">
-            <app-equipe [equipe]="Contexte[0].equipeReceveuse"></app-equipe>
+            <app-equipe [equipe]="app.match.equipeReceveuse"></app-equipe>
         </div>
         <div class="col-6">
-            <app-equipe [equipe]="Contexte[0].equipeVisiteuse"></app-equipe>
+            <app-equipe [equipe]="app.match.equipeVisiteuse"></app-equipe>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <app-rencontres [rencontres]="Contexte[0].rencontres"></app-rencontres>
+            <app-rencontres [rencontres]="app.match.rencontres"></app-rencontres>
         </div>
     </div>
 </div>
 
 <div style="display : table-row; height: 100%;">
-    <app-bottom-bar [match]="Contexte[0]"></app-bottom-bar>
+    <app-bottom-bar [match]="app.match"></app-bottom-bar>
 </div>
 
 

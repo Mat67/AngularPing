@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Match } from '../model/match';
+import { App } from '../model/app';
 
 @Component({
   selector: 'app-match-detail',
@@ -7,10 +7,10 @@ import { Match } from '../model/match';
   styleUrls: ['./match-detail.component.css']
 })
 export class MatchDetailComponent implements OnInit {
-  Contexte: Match[];
+  app: App;
 
   constructor() {
-    this.Contexte = []
+    this.app = new App()
    }
 
   ngOnInit(): void {
