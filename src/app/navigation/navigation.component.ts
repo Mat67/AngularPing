@@ -16,7 +16,7 @@ export class NavigationComponent {
 
   ngOnInit(): void {
     if (!this.app.match) {
-      this.openNouvelleRencontre(this.content);
+      //this.openNouvelleRencontre(this.content);
     }
   }
 

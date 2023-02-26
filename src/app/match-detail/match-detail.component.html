@@ -1,29 +1,35 @@
-<app-navigation [app]="app"/>
+<app-navigation [app]="app" />
 
+<div *ngIf="!afficher()">
+  <span class="align-middle">
+    <h1 class="text-center align-middle">BIENVENUE</h1>
+  </span>
 
-
-<app-print-page [match]="app.match"></app-print-page>
-
-<app-entete [match]="app.match"></app-entete>
-
-<div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
-    <div class="row">
-        <div class="col-6">
-            <app-equipe [equipe]="app.match.equipeReceveuse"></app-equipe>
-        </div>
-        <div class="col-6">
-            <app-equipe [equipe]="app.match.equipeVisiteuse"></app-equipe>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <app-rencontres [rencontres]="app.match.rencontres"></app-rencontres>
-        </div>
-    </div>
 </div>
 
-<div style="display : table-row; height: 100%;">
+
+<div *ngIf="afficher()">
+  <app-print-page [match]="app.match"></app-print-page>
+
+  <app-entete [match]="app.match"></app-entete>
+
+  <div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
+    <div class="row">
+      <div class="col-6">
+        <app-equipe [equipe]="app.match.equipeReceveuse"></app-equipe>
+      </div>
+      <div class="col-6">
+        <app-equipe [equipe]="app.match.equipeVisiteuse"></app-equipe>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <app-rencontres [rencontres]="app.match.rencontres"></app-rencontres>
+      </div>
+    </div>
+  </div>
+
+  <div style="display : table-row; height: 100%;">
     <app-bottom-bar [match]="app.match"></app-bottom-bar>
+  </div>
 </div>
-
-

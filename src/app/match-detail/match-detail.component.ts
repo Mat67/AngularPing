@@ -16,4 +16,8 @@ export class MatchDetailComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  afficher() {
+    return this.app.match
+  }
 }
