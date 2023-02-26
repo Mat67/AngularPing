@@ -1,0 +1,38 @@
+<ng-template #contentNouvelleRencontre let-modal  id="modalNouvelleRencontre">
+  <div class="container">
+    <div class="row">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nouvelle rencontre</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-2">
+              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('3')">
+                3 joueurs
+              </button >
+            </div>
+
+            <div class="col-2">
+              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('4')">
+                4 joueurs
+              </button >
+            </div>
+
+            <div class="col-2">
+              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('6')">
+                6 joueurs
+              </button >
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('Annuler')">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<a class="nav-link" href="#"  (click)="openNouvelleRencontre(contentNouvelleRencontre)">Nouvelle rencontre</a>

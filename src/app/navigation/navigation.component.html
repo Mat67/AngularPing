@@ -1,48 +1,7 @@
-<ng-template #contentNouvelleRencontre let-modal  id="modalNouvelleRencontre">
-  <div class="container">
-    <div class="row">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nouvelle rencontre</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-2">
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('3')">
-                3 joueurs
-              </button >
-            </div>
-
-            <div class="col-2">
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('4')">
-                4 joueurs
-              </button >
-            </div>
-
-            <div class="col-2">
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('6')">
-                6 joueurs
-              </button >
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('Annuler')">Annuler</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
 
 
 
-<ng-template #contentChargerRencontre let-modal  id="modalChargerRencontre">
-  <div class="container">
-    <div class="row">
-      modalChargerRencontre
-    </div>
-  </div>
-</ng-template>
+
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,33 +12,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#"  (click)="openNouvelleRencontre(contentNouvelleRencontre)">Nouvelle rencontre</a>
+        <app-nouvelle-rencontre [app]="app"/>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"  (click)="openChargerRencontre(contentChargerRencontre)">Charger une rencontre</a>
+        <app-charger-rencontre [app]="app"/>
       </li>
     </ul>
   </div>
 </nav>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

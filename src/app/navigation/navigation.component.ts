@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component,  Input  } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { App } from '../model/app';
 
@@ -10,29 +10,17 @@ import { App } from '../model/app';
 })
 export class NavigationComponent {
   @Input() app: App;
-  @ViewChild('contentNouvelleRencontre', { static: true }) content: TemplateRef<any>;
-  closeResult: string;
+
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-    if (!this.app.match) {
-      //this.openNouvelleRencontre(this.content);
-    }
-  }
 
-  openNouvelleRencontre(content) {
-    this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
-      this.app.creerNouvelleRencontre(+result)
-    }, (reason) => {
-      ///this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
+
 
   openChargerRencontre(content) {
     this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
     });
   }
 
@@ -44,9 +32,5 @@ export class NavigationComponent {
     } else {
       return  `reason`;
     }
-  }
-
-  nouvelleFeuille(nombreJoueurs) {
-    var a = ''
   }
 }

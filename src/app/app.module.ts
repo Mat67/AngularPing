@@ -21,6 +21,8 @@ import { ModalComponent } from './modal/modal.component';
 import { PrintPageComponent } from './print-page/print-page.component';
 import { ChoixAccueilComponent } from './choix-accueil/choix-accueil.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { NouvelleRencontreComponent } from './nouvelle-rencontre/nouvelle-rencontre.component';
+import { ChargerRencontreComponent } from './charger-rencontre/charger-rencontre.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -36,7 +38,9 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     ModalComponent,
     PrintPageComponent,
     ChoixAccueilComponent,
-    NavigationComponent
+    NavigationComponent,
+    NouvelleRencontreComponent,
+    ChargerRencontreComponent
   ],
   imports: [
     BrowserModule,
