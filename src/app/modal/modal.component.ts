@@ -27,22 +27,22 @@ export class ModalComponent implements OnInit {
 
   saveImageEquipeReceveuse(content) {
     var match = this.match
-    
+
     var reader = new FileReader();
-    reader.readAsDataURL(content); 
+    reader.readAsDataURL(content);
     reader.onloadend = function() {
-        var base64data = reader.result;                
+        var base64data = reader.result;
         match.signatureEquipeReceveuse = base64data
     }
   }
 
   saveImageEquipeVisiteuse (content) {
     var match = this.match
-    
+
     var reader = new FileReader();
-    reader.readAsDataURL(content); 
+    reader.readAsDataURL(content);
     reader.onloadend = function() {
-        var base64data = reader.result;                
+        var base64data = reader.result;
         match.signatureEquipeVisiteuse = base64data
     }
   }

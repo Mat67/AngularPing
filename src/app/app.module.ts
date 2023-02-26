@@ -20,6 +20,7 @@ import { SignaturePadModule } from '@ng-plus/signature-pad';
 import { ModalComponent } from './modal/modal.component';
 import { PrintPageComponent } from './print-page/print-page.component';
 import { ChoixAccueilComponent } from './choix-accueil/choix-accueil.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
 
@@ -34,7 +35,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);;
     EnteteComponent,
     ModalComponent,
     PrintPageComponent,
-    ChoixAccueilComponent
+    ChoixAccueilComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
