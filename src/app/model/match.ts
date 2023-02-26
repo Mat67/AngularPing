@@ -7,9 +7,11 @@ import { Timestamp } from 'rxjs';
 import { Time } from '@angular/common';
 
 export class Match {
-    constructor (tailleEquipe: number) {
-        this.equipeReceveuse = new Equipe(tailleEquipe, 'A');
-        this.equipeVisiteuse = new Equipe(tailleEquipe, 'U');
+
+  constructor (tailleEquipe: number) {
+    this.id = new Date().getTime()
+    this.equipeReceveuse = new Equipe(tailleEquipe, 'A');
+    this.equipeVisiteuse = new Equipe(tailleEquipe, 'U');
         this.rencontres = new Array();
 
         var formule = new FormuleService().getFormule();
@@ -28,10 +30,11 @@ export class Match {
 
             this.rencontres.push(rencontre);
         });
-    }
+      }
 
-    equipeReceveuse: Equipe;
-    equipeVisiteuse: Equipe;
+      equipeReceveuse: Equipe;
+      equipeVisiteuse: Equipe;
+      id: any;
     journee:number=1;
     saison:string;
     Date:Date;

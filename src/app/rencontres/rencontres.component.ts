@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Rencontre } from '../model/rencontre';
 import { Match } from '../model/match';
+import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-rencontres',
@@ -11,11 +12,19 @@ export class RencontresComponent implements OnInit {
   @Input() rencontres: Rencontre[]
 
   match: Match;
-  
-  constructor() { }
+
+  constructor(private repository: RepositoryService) {
+  }
+
+
 
   ngOnInit(): void {
     this.match = new Match(6);
+
+  }
+
+  onBlurMethod() {
+    this.repository.sauvegarderMath(this.match)
   }
 
   omit_number(score, evt):boolean {
@@ -23,16 +32,16 @@ export class RencontresComponent implements OnInit {
     if (charValid) {
       var separateur = score.indexOf('-')
 
-      
+
       if (evt.key === '-' && separateur !== -1)
         return false // Pas le droit d'avoir plus d'1 occurence de '-'
-      else if (evt.key === '-' && separateur === -1 && score.split('-')[0].length === 0) 
+      else if (evt.key === '-' && separateur === -1 && score.split('-')[0].length === 0)
         return false // impossible de saisir '-' si on a pas au moins 1 nombre sur la partie de gauche
       else if (!isNaN(evt.key)) {
         var partieGaucheValide = score.split('-')[0].length < 2 || separateur !== -1
         var partieDroiteValide = separateur === -1 || score.split('-')[1].length < 2
         return partieGaucheValide && partieDroiteValide
-      } 
+      }
     }
 
     return charValid
