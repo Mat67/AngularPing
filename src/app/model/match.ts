@@ -180,9 +180,9 @@ export abstract class Match {
   }
 
   public toString() {
-    return `${this.equipeReceveuse.nomEquipe} vs ${
+    return `${this.equipeReceveuse.nomEquipe} contre ${
       this.equipeVisiteuse.nomEquipe
-    } : ${this.scoreEquipeReceveuse()} vs ${this.scoreEquipeVisiteuse()}`;
+    } : ${this.scoreEquipeReceveuse()} - ${this.scoreEquipeVisiteuse()}`;
   }
 }
 

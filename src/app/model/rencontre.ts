@@ -26,7 +26,7 @@ export class Rencontre {
         rencontre = new RencontreDouble(data.formule)
 
       data.manches.forEach(m => {
-        rencontre.manches.push(Manche.fabrique(m))
+        rencontre.manches.push(Manche.fabrique(m.score))
       })
 
       return rencontre
