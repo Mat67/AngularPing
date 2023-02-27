@@ -2210,6 +2210,7 @@ class RepositoryService {
       tmpMatchs = JSON.parse(localStorage.getItem('eps-matchs'));
     } catch (error) {
       console.error(error);
+      tmpMatchs = [];
     }
     tmpMatchs.forEach(match => {
       matchsResult.push(this.chargeMatch(match.id));
