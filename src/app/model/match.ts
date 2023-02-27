@@ -160,7 +160,7 @@ export abstract class Match {
           this[key] = []
           match[key].forEach(r => {
             var data = {
-              joueurEquipeReceveuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeReceveuse?.position),
+              joueurEquipeReceveuse: this.equipeReceveuse.getJoueurByPosition(r?.joueurEquipeReceveuse?.position),
               joueurEquipeVisiteuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeVisiteuse?.position),
               formules: r?.formule,
               manches: r?.manches

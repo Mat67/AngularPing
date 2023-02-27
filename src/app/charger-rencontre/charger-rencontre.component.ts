@@ -25,4 +25,9 @@ export class ChargerRencontreComponent {
     }, (reason) => {
     });
   }
+
+  public onClick(match:Match) {
+    this.app.match = match
+    this.modalService.dismissAll()
+  }
 }

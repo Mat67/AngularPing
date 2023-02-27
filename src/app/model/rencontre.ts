@@ -25,6 +25,7 @@ export class Rencontre {
       else
         rencontre = new RencontreDouble(data.formule)
 
+      rencontre.manches = []
       data.manches.forEach(m => {
         rencontre.manches.push(Manche.fabrique(m.score))
       })
