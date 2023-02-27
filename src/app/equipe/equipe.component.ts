@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LanguageServiceMode } from 'typescript';
 import { Equipe } from '../model/equipe';
-import { Joueur } from '../model/joueur';
 
 @Component({
   selector: 'app-equipe',

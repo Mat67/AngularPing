@@ -10,5 +10,11 @@ export class Manche {
         return parseInt(scoreSplite[0]) - parseInt(scoreSplite[1]);
     }
 
+    public static fabrique(score: string) {
+      var manche = new Manche()
+      manche.score = score
+      return manche
+    }
+
     score:string = '';
 }

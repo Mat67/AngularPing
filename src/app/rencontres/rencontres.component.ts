@@ -11,7 +11,7 @@ import { RepositoryService } from '../services/repository.service';
 export class RencontresComponent implements OnInit {
   @Input() rencontres: Rencontre[]
 
-  match: Match;
+  @Input() match: Match;
 
   constructor(private repository: RepositoryService) {
   }
@@ -19,7 +19,7 @@ export class RencontresComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.match = new Match6();
+    //this.match = new Match6();
 
   }
 

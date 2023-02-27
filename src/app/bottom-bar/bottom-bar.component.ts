@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Match } from '../model/match';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RandomService } from '../services/random.service';
-import { RencontreDouble } from '../model/rencontre-double';
+import { RencontreDouble } from '../model/rencontre';
 
 @Component({
   selector: 'app-bottom-bar',

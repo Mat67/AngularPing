@@ -1,16 +1,14 @@
 import { Equipe } from "./equipe";
-import { Rencontre } from "./rencontre";
+import { Rencontre, RencontreDouble, RencontreSimple } from "./rencontre";
 import { FormuleService } from "../services/formule.service";
-import { RencontreSimple } from "./rencontre-simple";
-import { RencontreDouble } from "./rencontre-double";
 import { Timestamp } from "rxjs";
 import { Time } from "@angular/common";
 
 export abstract class Match {
   constructor(tailleEquipe:number) {
     this.id = new Date().getTime();
-    this.equipeReceveuse = new Equipe(tailleEquipe, "A");
-    this.equipeVisiteuse = new Equipe(tailleEquipe, "U");
+    this.equipeReceveuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "A");
+    this.equipeVisiteuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "U");
     this.rencontres = new Array();
 
     var formule = new FormuleService().getFormule();
@@ -141,13 +139,42 @@ export abstract class Match {
   }
 
   public getStatus() {
+    if (this.matchEstTermine())
+      return "TERMINE"
+    else if (this.matchEstBrouillon())
+      return 'BROUILLON'
     return "ENCOURS";
   }
+  public matchEstBrouillon() {
+    return !this.equipeReceveuse.nomEquipe || this.equipeReceveuse.nomEquipe.trim() === ''
+      || !this.equipeVisiteuse.nomEquipe || this.equipeVisiteuse.nomEquipe.trim() === ''
+  }
 
-  public chargerMath(match:Match) {
+  public chargerMath(match) {
     for (const key in match) {
       if (Object.prototype.hasOwnProperty.call(match, key)) {
-        this[key] = match[key]
+
+        if ([ 'equipeReceveuse', 'equipeVisiteuse' ].indexOf(key) !== -1)
+          this[key] = Equipe.fabrique(match[key].nomEquipe, match[key].joueurs)
+        else if (key === 'rencontres') {
+          this[key] = []
+          match[key].forEach(r => {
+            var data = {
+              joueurEquipeReceveuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeReceveuse?.position),
+              joueurEquipeVisiteuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeVisiteuse?.position),
+              formules: r?.formule,
+              manches: r?.manches
+            }
+
+            var rencontre = Rencontre.fabriqueRencontre(data)
+            this[key].push(rencontre)
+
+            // if (r.joueurEquipeReceveuse && r.joueurEquipeVisiteuse)
+            //   Rencontre.fabriqueDouble(r)
+          })
+        }
+        else
+          this[key] = match[key]
       }
     }
   }
