@@ -1,5 +1,6 @@
 <app-navigation [app]="app" />
 
+
 <div *ngIf="!afficher()">
   <span class="align-middle">
     <h1 class="text-center align-middle">BIENVENUE</h1>
@@ -24,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match"></app-rencontres>
+        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()"></app-rencontres>
       </div>
     </div>
   </div>

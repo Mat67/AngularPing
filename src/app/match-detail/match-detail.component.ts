@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { App } from '../model/app';
+import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -9,7 +10,7 @@ import { App } from '../model/app';
 export class MatchDetailComponent implements OnInit {
   app: App;
 
-  constructor() {
+  constructor(private repository: RepositoryService) {
     this.app = new App()
    }
 
@@ -17,7 +18,9 @@ export class MatchDetailComponent implements OnInit {
 
   }
 
-
+  onBlurMethod() {
+    this.repository.sauvegarderMath(this.app.match)
+  }
 
   afficher() {
     return this.app.match

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Rencontre } from '../model/rencontre';
 import { Match, Match6 } from '../model/match';
 import { RepositoryService } from '../services/repository.service';
@@ -12,20 +12,26 @@ export class RencontresComponent implements OnInit {
   @Input() rencontres: Rencontre[]
 
   @Input() match: Match;
+  //@Input() BlurMethod;
+  @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor(private repository: RepositoryService) {
   }
 
 
 
+
+
   ngOnInit(): void {
     //this.match = new Match6();
 
+    var  a = ''
   }
 
   onBlurMethod() {
-    this.repository.sauvegarderMath(this.match)
+    this.BlurMethod.emit()
   }
+
 
   omit_number(score, evt):boolean {
     var charValid =  (evt.key === '-' || !isNaN(evt.key))
