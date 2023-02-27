@@ -28,12 +28,18 @@ export class RepositoryService {
   }
 
   listeMatchsSauvegardes() {
+    var tmpMatchs = []
+    var matchsResult = []
     try {
-      return JSON.parse(localStorage.getItem('eps-matchs'))
+      tmpMatchs = JSON.parse(localStorage.getItem('eps-matchs'))
     } catch (error) {
       console.error(error)
     }
 
-    return []
+    tmpMatchs.forEach(match => {
+      matchsResult.push(this.chargeMatch(match.id))
+    });
+
+    return matchsResult
   }
 }
