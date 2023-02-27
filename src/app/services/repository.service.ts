@@ -9,14 +9,12 @@ export class RepositoryService {
 
 
   sauvegarderMath(match:Match) {
-    var matchs = this.listeMatchsSauvegardes()
-    if (!matchs) {
-      matchs = []
-    }
+    let matchsIds = this.getListeMatchesId()
 
-    if (!matchs.find(x => x === match.id)){
-      matchs.push(match.id)
-      localStorage.setItem('eps-matchs', JSON.stringify(matchs))
+    var matchTrouve = matchsIds.indexOf(match.id) !== -1;
+    if (!matchTrouve){
+      matchsIds.push(match.id);
+      localStorage.setItem('eps-matchs', JSON.stringify(matchsIds));
 
   }
 
@@ -27,19 +25,28 @@ export class RepositoryService {
     return JSON.parse(localStorage.getItem('eps-match-' + id))
   }
 
-  listeMatchsSauvegardes() {
+  getListeMatchesId() {
+    var strMatches = localStorage.getItem('eps-matchs')
+    if (!strMatches)
+      return []
+
+    return JSON.parse(strMatches)
+  }
+
+  listeMatchsSauvegardes() : Match[]  {
     var tmpMatchs = []
     var matchsResult = []
     try {
-      tmpMatchs = JSON.parse(localStorage.getItem('eps-matchs'))
+      tmpMatchs = this.getListeMatchesId()
+
+      if (tmpMatchs)
+        tmpMatchs.forEach(match => {
+          matchsResult.push(this.chargeMatch(match))
+        });
     } catch (error) {
       console.error(error)
       tmpMatchs = []
     }
-
-    tmpMatchs.forEach(match => {
-      matchsResult.push(this.chargeMatch(match.id))
-    });
 
     return matchsResult
   }

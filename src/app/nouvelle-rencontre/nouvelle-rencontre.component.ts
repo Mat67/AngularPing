@@ -15,7 +15,8 @@ export class NouvelleRencontreComponent {
 
   openNouvelleRencontre(content) {
     this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
-      this.app.creerNouvelleRencontre(+result)
+      if (!isNaN(result))
+        this.app.creerNouvelleRencontre(+result)
     }, (reason) => {
       ///this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
