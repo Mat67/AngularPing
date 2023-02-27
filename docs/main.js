@@ -269,17 +269,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function ChargerRencontreComponent_ng_template_0_div_1_span_1_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Primary");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+  }
+}
 function ChargerRencontreComponent_ng_template_0_div_1_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, " modalChargerRencontre ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ChargerRencontreComponent_ng_template_0_div_1_span_1_Template, 2, 0, "span", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "modalChargerRencontre");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+  }
+  if (rf & 2) {
+    const i_r5 = ctx.index;
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r3.matchs[i_r5].getStatus() === "ENCOURS");
   }
 }
 function ChargerRencontreComponent_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ChargerRencontreComponent_ng_template_0_div_1_Template, 2, 0, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ChargerRencontreComponent_ng_template_0_div_1_Template, 4, 1, "div", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
@@ -312,14 +327,14 @@ ChargerRencontreComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_M
   },
   decls: 4,
   vars: 0,
-  consts: [["id", "modalChargerRencontre"], ["contentChargerRencontre", ""], ["href", "#", 1, "nav-link", 3, "click"], [1, "container"], ["class", "row", 4, "ngFor", "ngForOf"], [1, "row"]],
+  consts: [["id", "modalChargerRencontre"], ["contentChargerRencontre", ""], ["href", "#", 1, "nav-link", 3, "click"], [1, "container"], ["class", "row", 4, "ngFor", "ngForOf"], [1, "row"], ["class", "badge text-bg-primary", 4, "ngIf"], [1, "badge", "text-bg-primary"]],
   template: function ChargerRencontreComponent_Template(rf, ctx) {
     if (rf & 1) {
-      const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+      const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, ChargerRencontreComponent_ng_template_0_Template, 2, 1, "ng-template", 0, 1, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "a", 2);
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ChargerRencontreComponent_Template_a_click_2_listener() {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r7);
         const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](1);
         return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx.openChargerRencontre(_r0));
       });
@@ -327,7 +342,7 @@ ChargerRencontreComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_M
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf],
   styles: ["\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
@@ -924,31 +939,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "App": () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2378);
 /* harmony import */ var _match__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./match */ 2576);
-
 
 class App {
   constructor() {}
   creerNouvelleRencontre(nombreJoueur) {
-    this.match = new _match__WEBPACK_IMPORTED_MODULE_0__.Match(nombreJoueur);
-    const locations = new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
-      let watchId;
-      // When the consumer unsubscribes, clean up data ready for next subscription.
-      return {
-        unsubscribe() {
-          navigator.geolocation.clearWatch(watchId);
-        }
-      };
-    });
-    const locationsSubscription = locations.subscribe({
-      next(position) {
-        console.log('Current Position: ', position);
-      },
-      error(msg) {
-        console.log('Error Getting Location: ', msg);
-      }
-    });
+    this.match = _match__WEBPACK_IMPORTED_MODULE_0__.Match.fabriqueMatch(nombreJoueur);
   }
 }
 
@@ -1037,7 +1033,10 @@ class Manche {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Match": () => (/* binding */ Match)
+/* harmony export */   "Match": () => (/* binding */ Match),
+/* harmony export */   "Match3": () => (/* binding */ Match3),
+/* harmony export */   "Match4": () => (/* binding */ Match4),
+/* harmony export */   "Match6": () => (/* binding */ Match6)
 /* harmony export */ });
 /* harmony import */ var _equipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./equipe */ 216);
 /* harmony import */ var _services_formule_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/formule.service */ 6109);
@@ -1072,6 +1071,32 @@ class Match {
       }
       this.rencontres.push(rencontre);
     });
+  }
+  static fabriqueMatch(obj) {
+    var match;
+    var switchValue;
+    if (isNaN(obj)) {
+      switchValue = obj?.equipeReceveuse?.joueurs?.length;
+    } else {
+      switchValue = obj;
+    }
+    switch (switchValue) {
+      case 6:
+        match = new Match6();
+        break;
+      case 4:
+        match = new Match4();
+        break;
+      case 4:
+        match = new Match3();
+        break;
+      default:
+        break;
+    }
+    if (isNaN(obj)) {
+      match.chargerMath(obj);
+    }
+    return match;
   }
   getSaison() {
     var aujourdhui = new Date();
@@ -1114,8 +1139,30 @@ class Match {
   getStatus() {
     return "ENCOURS";
   }
+  chargerMath(match) {
+    for (const key in match) {
+      if (Object.prototype.hasOwnProperty.call(match, key)) {
+        this[key] = match[key];
+      }
+    }
+  }
   toString() {
     return `${this.equipeReceveuse.nomEquipe} vs ${this.equipeVisiteuse.nomEquipe} : ${this.scoreEquipeReceveuse()} vs ${this.scoreEquipeVisiteuse()}`;
+  }
+}
+class Match6 extends Match {
+  constructor() {
+    super(6);
+  }
+}
+class Match4 extends Match {
+  constructor() {
+    super(4);
+  }
+}
+class Match3 extends Match {
+  constructor() {
+    super(3);
   }
 }
 
@@ -1411,7 +1458,7 @@ class NouvelleRencontreComponent {
       size: 'md',
       centered: true
     }).result.then(result => {
-      this.app.creerNouvelleRencontre(+result);
+      if (!isNaN(result)) this.app.creerNouvelleRencontre(+result);
     }, reason => {
       ///this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -2025,7 +2072,7 @@ class RencontresComponent {
     this.repository = repository;
   }
   ngOnInit() {
-    this.match = new _model_match__WEBPACK_IMPORTED_MODULE_0__.Match(6);
+    this.match = new _model_match__WEBPACK_IMPORTED_MODULE_0__.Match6();
   }
   onBlurMethod() {
     this.repository.sauvegarderMath(this.match);
@@ -2185,43 +2232,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RepositoryService": () => (/* binding */ RepositoryService)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _model_match__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/match */ 2576);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
+
 
 class RepositoryService {
   constructor() {}
   sauvegarderMath(match) {
-    var matchs = this.listeMatchsSauvegardes();
-    if (!matchs) {
-      matchs = [];
-    }
-    if (!matchs.find(x => x === match.id)) {
-      matchs.push(match.id);
-      localStorage.setItem('eps-matchs', JSON.stringify(matchs));
+    let matchsIds = this.getListeMatchesId();
+    var matchTrouve = matchsIds.indexOf(match.id) !== -1;
+    if (!matchTrouve) {
+      matchsIds.push(match.id);
+      localStorage.setItem('eps-matchs', JSON.stringify(matchsIds));
     }
     localStorage.setItem('eps-match-' + match.id, JSON.stringify(match));
   }
   chargeMatch(id) {
-    return JSON.parse(localStorage.getItem('eps-match-' + id));
+    var obj = JSON.parse(localStorage.getItem('eps-match-' + id));
+    return _model_match__WEBPACK_IMPORTED_MODULE_0__.Match.fabriqueMatch(obj);
+  }
+  getListeMatchesId() {
+    var strMatches = localStorage.getItem('eps-matchs');
+    if (!strMatches) return [];
+    return JSON.parse(strMatches);
   }
   listeMatchsSauvegardes() {
     var tmpMatchs = [];
     var matchsResult = [];
     try {
-      tmpMatchs = JSON.parse(localStorage.getItem('eps-matchs'));
+      tmpMatchs = this.getListeMatchesId();
+      if (tmpMatchs) tmpMatchs.forEach(match => {
+        matchsResult.push(this.chargeMatch(match));
+      });
     } catch (error) {
       console.error(error);
       tmpMatchs = [];
     }
-    tmpMatchs.forEach(match => {
-      matchsResult.push(this.chargeMatch(match.id));
-    });
     return matchsResult;
   }
 }
 RepositoryService.ɵfac = function RepositoryService_Factory(t) {
   return new (t || RepositoryService)();
 };
-RepositoryService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+RepositoryService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: RepositoryService,
   factory: RepositoryService.ɵfac,
   providedIn: 'root'
