@@ -6,8 +6,8 @@ import { RencontreDouble } from "./rencontre-double";
 import { Timestamp } from "rxjs";
 import { Time } from "@angular/common";
 
-export class Match {
-  constructor(tailleEquipe: number) {
+export abstract class Match {
+  constructor(tailleEquipe:number) {
     this.id = new Date().getTime();
     this.equipeReceveuse = new Equipe(tailleEquipe, "A");
     this.equipeVisiteuse = new Equipe(tailleEquipe, "U");
@@ -34,7 +34,7 @@ export class Match {
       }
 
       this.rencontres.push(rencontre);
-    });
+    })
   }
 
   equipeReceveuse: Equipe;
@@ -53,6 +53,43 @@ export class Match {
   signatureEquipeVisiteuse = undefined;
 
   rencontres: Rencontre[];
+
+
+
+
+  public static fabriqueMatch(obj) : Match {
+    var match: Match
+
+    var switchValue
+
+    if (isNaN(obj)) {
+      switchValue = obj?.equipeReceveuse?.joueurs?.length
+    } else {
+      switchValue = obj
+    }
+
+    switch (switchValue) {
+      case 6:
+        match = new Match6()
+        break
+      case 4:
+        match = new Match4()
+        break
+      case 4:
+        match = new Match3()
+        break
+
+      default:
+        break;
+    }
+
+    if (isNaN(obj)) {
+      match.chargerMath(obj)
+
+    }
+
+    return match
+  }
 
   public getSaison(): string {
     var aujourdhui = new Date();
@@ -107,9 +144,37 @@ export class Match {
     return "ENCOURS";
   }
 
+  public chargerMath(match:Match) {
+    for (const key in match) {
+      if (Object.prototype.hasOwnProperty.call(match, key)) {
+        this[key] = match[key]
+      }
+    }
+  }
+
   public toString() {
     return `${this.equipeReceveuse.nomEquipe} vs ${
       this.equipeVisiteuse.nomEquipe
     } : ${this.scoreEquipeReceveuse()} vs ${this.scoreEquipeVisiteuse()}`;
+  }
+}
+
+
+export class Match6 extends Match {
+  constructor() {
+    super(6)
+  }
+}
+
+export class Match4 extends Match {
+  constructor() {
+    super(4)
+  }
+}
+
+
+export class Match3 extends Match {
+  constructor() {
+    super(3)
   }
 }

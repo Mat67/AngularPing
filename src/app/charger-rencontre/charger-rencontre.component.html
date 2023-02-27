@@ -1,8 +1,9 @@
 
 <ng-template #contentChargerRencontre let-modal  id="modalChargerRencontre">
   <div class="container">
-    <div class="row"   *ngFor="let match of matchs; index as i">
-      modalChargerRencontre
+    <div class="row" *ngFor="let match of matchs; index as i">
+      <span *ngIf="matchs[i].getStatus() === 'ENCOURS'" class="badge text-bg-primary">Primary</span>
+      <div>modalChargerRencontre</div>
     </div>
   </div>
 </ng-template>

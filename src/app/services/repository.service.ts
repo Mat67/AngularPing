@@ -22,7 +22,8 @@ export class RepositoryService {
   }
 
   chargeMatch(id:string) {
-    return JSON.parse(localStorage.getItem('eps-match-' + id))
+    var obj = JSON.parse(localStorage.getItem('eps-match-' + id))
+    return Match.fabriqueMatch(obj)
   }
 
   getListeMatchesId() {

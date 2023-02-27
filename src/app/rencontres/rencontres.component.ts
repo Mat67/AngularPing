@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Rencontre } from '../model/rencontre';
-import { Match } from '../model/match';
+import { Match, Match6 } from '../model/match';
 import { RepositoryService } from '../services/repository.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class RencontresComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.match = new Match(6);
+    this.match = new Match6();
 
   }
 

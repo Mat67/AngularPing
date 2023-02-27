@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RencontresComponent } from './rencontres.component';
 import { Rencontre } from '../model/rencontre';
 import { Joueur } from '../model/joueur';
-import { Match } from '../model/match';
+import { Match, Match6 } from '../model/match';
 import { RencontreSimple } from '../model/rencontre-simple';
 
 describe('RencontresComponent', () => {
@@ -22,7 +22,8 @@ describe('RencontresComponent', () => {
     component = fixture.componentInstance;
     var rencontres = [];
     rencontres.push(new RencontreSimple(new Joueur('A'), new Joueur('U')));
-    component.match = new Match(6);
+    component.match = new Match6();
+
     component.rencontres = component.match.rencontres;
     fixture.detectChanges();
   });
