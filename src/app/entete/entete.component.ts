@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Match } from '../model/match';
 
 @Component({
@@ -8,9 +8,14 @@ import { Match } from '../model/match';
 })
 export class EnteteComponent implements OnInit {
   @Input() match: Match;
+  @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onBlurMethod() {
+    this.BlurMethod.emit()
   }
 }

@@ -11,16 +11,16 @@
 
 
     </div>
-    
-    
+
+
     <div class="row">
-       
+
 
         <div class="col-4 form-group">
             <label for="DateHeure">Date / Heure</label>
             <div class="row">
                 <div class="col-6">
-                    <input class="form-control" placeholder="jj/mm/aaaa" name="dp"  ngbDatepicker #d="ngbDatepicker">
+                    <input class="form-control" placeholder="jj/mm/aaaa" name="dp"  ngbDatepicker #d="ngbDatepicker" (blur)="onBlurMethod()">
                 </div>
 
                 <div class="col-6">
@@ -28,11 +28,11 @@
                 </div>
             </div>
         </div>
-       
+
 
         <div class="col-2 form-group">
             <label for="categorie">Catégorie</label>
-            <select class="form-control form-control-sm custom-select" id="categorie" [(ngModel)]="match.categorie">
+            <select class="form-control form-control-sm custom-select" id="categorie" [(ngModel)]="match.categorie" (blur)="onBlurMethod()">
                 <option>Messieurs</option>
                 <option>Dames</option>
             </select>
@@ -40,33 +40,33 @@
 
         <div class="col-3 form-group">
             <label for="epreuve">Epreuve</label>
-            <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve">
+            <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve" (blur)="onBlurMethod()">
                 <option>Championnat par équipe</option>
             </select>
         </div>
 
-      
+
         <div class="col-1 form-group">
             <label for="journee">Journée</label>
-            <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee"/>
+            <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee" (blur)="onBlurMethod()"/>
         </div>
 
         <div class="col-2 form-group">
             <label for="division">Division</label>
-            <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division">
+            <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division" (blur)="onBlurMethod()">
                 <option>Excellence</option>
             </select>
         </div>
-        
+
     </div>
 
     <!-- <div class="row">
 
-      
+
         <div class="col-3 form-group">
             <label for="Lieu">Lieu</label>
                 <input type="text" class="form-control form-control-sm text-uppercase" [(ngModel)]="match.lieu"/>
         </div>
-       
+
     </div> -->
-</div> 
+</div>

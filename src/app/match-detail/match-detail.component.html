@@ -12,15 +12,15 @@
 <div *ngIf="afficher()">
   <app-print-page [match]="app.match"></app-print-page>
 
-  <app-entete [match]="app.match"></app-entete>
+  <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"></app-entete>
 
   <div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
     <div class="row">
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeReceveuse"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()"></app-equipe>
       </div>
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeVisiteuse"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()"></app-equipe>
       </div>
     </div>
     <div class="row">

@@ -19,15 +19,15 @@
           <td scope="row" class="td-position">{{ joueur.position }}</td>
           <td class="form-group">
             <input type="search" class="form-control transparent" id="{{ 'nom' +  i  }}" required
-              [(ngModel)]="equipe.joueurs[i].nom" name="nom"  >
+              [(ngModel)]="equipe.joueurs[i].nom" name="nom"  (blur)="onBlurMethod()">
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'classement' + i  }}" required
-              [(ngModel)]="equipe.joueurs[i].classement" name="classement">
+              [(ngModel)]="equipe.joueurs[i].classement" name="classement" (blur)="onBlurMethod()">
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'numeroLicence' + i }}" required
-              [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence">
+              [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence" (blur)="onBlurMethod()">
           </td>
         </tr>
       </tbody>

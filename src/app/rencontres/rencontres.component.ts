@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Rencontre } from '../model/rencontre';
 import { Match, Match6 } from '../model/match';
-import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-rencontres',
@@ -15,7 +14,7 @@ export class RencontresComponent implements OnInit {
   //@Input() BlurMethod;
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
-  constructor(private repository: RepositoryService) {
+  constructor() {
   }
 
 

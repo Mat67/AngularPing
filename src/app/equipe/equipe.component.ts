@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Equipe } from '../model/equipe';
 
 @Component({
@@ -8,11 +8,16 @@ import { Equipe } from '../model/equipe';
 })
 export class EquipeComponent implements OnInit {
   @Input() equipe: Equipe;
+  @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  onBlurMethod() {
+    this.BlurMethod.emit()
   }
 
   setCaptain(joueurChoisit): void{
@@ -26,5 +31,7 @@ export class EquipeComponent implements OnInit {
         joueur.isCapitaine = false;
       }
     });
+
+    this.onBlurMethod()
   }
 }
