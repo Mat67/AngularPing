@@ -31,7 +31,7 @@ app-print-page {
     ng-signature-pad{
         display: none;
     }
-    
+
     app-bottom-bar {
         display: none;
     }

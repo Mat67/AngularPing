@@ -1,57 +1,55 @@
 <table class="table table-striped table-sm">
   <thead>
-  <tr class="text-center">
-    <th scope="col" style="width: 7%;">#</th>
-    <th scope="col" style="width: 24%;">Joueur 1</th>
-    <th scope="col" style="width: 24%;">Joueur 2</th>
-    <th scope="col" style="width: 7%;">1</th>
-    <th scope="col" style="width: 7%;">2</th>
-    <th scope="col" style="width: 7%;">3</th>
-    <th scope="col" style="width: 7%;">4</th>
-    <th scope="col" style="width: 7%;">5</th>
-    <th scope="col" class="score" style="width: 10%;" class="text-center">Score</th>
-  </tr>
+    <tr class="text-center">
+      <th scope="col" style="width: 7%;">#</th>
+      <th scope="col" style="width: 24%;">Joueur 1</th>
+      <th scope="col" style="width: 24%;">Joueur 2</th>
+      <th scope="col" style="width: 7%;">1</th>
+      <th scope="col" style="width: 7%;">2</th>
+      <th scope="col" style="width: 7%;">3</th>
+      <th scope="col" style="width: 7%;">4</th>
+      <th scope="col" style="width: 7%;">5</th>
+      <th scope="col" class="score" style="width: 5%;" class="text-center">A-F</th>
+      <th scope="col" class="score" style="width: 5%;" class="text-center">U-Z</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let rencontre of match.rencontres; index as i">
-    <td scope="row" style="text-align: center; font-weight: bold;">{{ rencontres[i].getFormule() }}</td>
-    <td>
+    <tr *ngFor="let rencontre of match.rencontres; index as i">
+      <td scope="row" style="text-align: center; font-weight: bold;">{{ rencontres[i].getFormule() }}</td>
+      <td>
         <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
           <div id="{{ i }} d">{{ rencontres[i].getNomJoueurEquipeReceveuse() }}</div>
         </ng-template>
         <ng-template #elseBlock>
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
-          [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}" (blur)="onBlurMethod()">
+            [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
+            (blur)="onBlurMethod()">
         </ng-template>
-    </td>
-    <td>
-      <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
-      <ng-template #thenBlock2>
-        <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
-      </ng-template>
-      <ng-template #elseBlock2>
-        <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
-        [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}" (blur)="onBlurMethod()">
-      </ng-template>
-    </td>
-    <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
-      <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required (keypress)="omit_number(rencontres[i].manches[y].score, $event)"
-      [(ngModel)]="rencontres[i].manches[y].score" name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()"/>
-    </td>
+      </td>
+      <td>
+        <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
+        <ng-template #thenBlock2>
+          <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
+        </ng-template>
+        <ng-template #elseBlock2>
+          <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
+            [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
+            (blur)="onBlurMethod()">
+        </ng-template>
+      </td>
+      <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
+        <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required
+          (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
+          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" />
+      </td>
 
-    <td class="score">
-      <div class="row text-center m-1">
-        <div class="col-6">
-          {{ rencontres[i].getPointEquipeReveuse() }}
-
-        </div>
-        <div class="col-6">
-          {{ rencontres[i].getPointEquipeVisiteuse() }}
-
-        </div>
-      </div>
-    </td>
-  </tr>
+      <td class="score">
+        {{ rencontres[i].getPointEquipeReveuse() }}
+      </td>
+      <td class="score">
+        {{ rencontres[i].getPointEquipeVisiteuse() }}
+      </td>
+    </tr>
   </tbody>
 </table>

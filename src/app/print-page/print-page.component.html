@@ -47,50 +47,44 @@
         </tr>
       </tbody>
     </table>
+  </div>
 
-
-    <div class="container mt-1">
-      <div class="row">
-
-        <div class="col-5 border">
-          <div class="row">
-            <div class="col-4">
-              Lieu :
-            </div>
-            <div class="col-6">
-              SCHLEITHAL
-            </div>
+  <div class="container mt-1">
+    <div class="row p-3">
+      <div class="col-5 border">
+        <div class="row">
+          <div class="col-4">
+            Lieu :
           </div>
-          <div class="row">
-            <div class="col-4">
-              Date :
-            </div>
-            <div class="col-6">
-              {{ match.Date }} 15:00
-            </div>
+          <div class="col-6">
+            SCHLEITHAL
           </div>
-
-          <div class="row">
-            <div class="col-4">
-              Juge-Arbitre :
-            </div>
-            <div class="col-6">
-
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            Date :
+          </div>
+          <div class="col-6">
+            {{ match.Date }} 15:00
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-4">
+            Juge-Arbitre :
+          </div>
+          <div class="col-6">
 
-
-        <div class="col-1">
-
-        </div>
-        <div class="col-6 border">
-          <div>
-            Avant le début de la rencontre,
-            l'attribution des lettres ABCDEF et UVWXYZ ( 6 joueurs ) est faite par tirage au sort
           </div>
         </div>
+      </div>
+
+      <div class="col-1">
+
+      </div>
+      <div class="col-6 border">
+        Avant le début de la rencontre,
+        l'attribution des lettres ABCDEF et UVWXYZ ( 6 joueurs ) est faite par tirage au sort
       </div>
     </div>
   </div>
@@ -178,7 +172,8 @@
               <th scope="col" class="td-center">3</th>
               <th scope="col" class="td-center">4</th>
               <th scope="col" class="td-center">5</th>
-              <th scope="col" class="td-center">Points</th>
+              <th scope="col" class="td-center">A-F</th>
+              <th scope="col" class="td-center">U-Z</th>
             </tr>
           </thead>
           <tbody>
@@ -212,8 +207,13 @@
                 <div>{{ match.rencontres[i].manches[y].score }}</div>
               </td>
 
-              <td class="manche td-center">
-                {{ match.rencontres[i].getVainqueur() }}
+
+
+              <td class="af-uz">
+                {{ match.rencontres[i].getPointEquipeReveuse() }}
+              </td>
+              <td class="af-uz">
+                {{ match.rencontres[i].getPointEquipeVisiteuse() }}
               </td>
             </tr>
           </tbody>
@@ -221,7 +221,8 @@
           <tfoot>
             <tr>
               <td colspan="8"></td>
-              <td class="td-center">{{ match.scoreEquipeReceveuse() }} - {{ match.scoreEquipeVisiteuse() }}</td>
+              <td class="td-center">{{ match.scoreEquipeReceveuse() }} </td>
+              <td class="td-center">{{ match.scoreEquipeVisiteuse() }}</td>
             </tr>
           </tfoot>
         </table>
