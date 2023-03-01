@@ -15,6 +15,7 @@ export class Joueur {
       joueur.nom = data.nom
       joueur.classement = data.classement
       joueur.numeroLicence = data.numeroLicence
+      joueur.estCapitaine = data.estCapitaine
       return joueur
     }
 }
