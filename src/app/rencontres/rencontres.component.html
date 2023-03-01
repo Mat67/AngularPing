@@ -9,7 +9,7 @@
     <th scope="col" style="width: 7%;">3</th>
     <th scope="col" style="width: 7%;">4</th>
     <th scope="col" style="width: 7%;">5</th>
-    <th scope="col" style="width: 10%;">Points</th>
+    <th scope="col" class="score" style="width: 10%;" class="text-center">Score</th>
   </tr>
   </thead>
   <tbody>
@@ -40,8 +40,17 @@
       [(ngModel)]="rencontres[i].manches[y].score" name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()"/>
     </td>
 
-    <td class="manche">
-      {{ rencontres[i].getVainqueur() }}
+    <td class="score">
+      <div class="row text-center m-1">
+        <div class="col-6">
+          {{ rencontres[i].getPointEquipeReveuse() }}
+
+        </div>
+        <div class="col-6">
+          {{ rencontres[i].getPointEquipeVisiteuse() }}
+
+        </div>
+      </div>
     </td>
   </tr>
   </tbody>

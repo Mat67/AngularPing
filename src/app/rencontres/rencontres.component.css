@@ -2,3 +2,8 @@
     max-width: 200px;
     text-align: center;
 }
+
+.score {
+  max-width: 100px;
+  text-align: center;
+}

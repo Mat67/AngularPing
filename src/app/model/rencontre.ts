@@ -1,174 +1,193 @@
-import { Joueur } from './joueur';
-import { Manche } from './manche';
+import { Joueur } from "./joueur";
+import { Manche } from "./manche";
 
 export class Rencontre {
-    constructor() {
-        this.manches = new Array();
+  constructor() {
+    this.manches = new Array();
 
-        for (let index = 0; index < 5; index++) {
-            this.manches.push(new Manche());
-        }
+    for (let index = 0; index < 5; index++) {
+      this.manches.push(new Manche());
+    }
+  }
+
+  manches: Manche[] = new Array();
+
+  public getFormule(): string {
+    return "";
+  }
+
+  public str() {
+    return JSON.stringify(this)
+  }
+
+  static fabriqueRencontre(data) {
+    var rencontre;
+
+    if (data.joueurEquipeReceveuse && data.joueurEquipeVisiteuse)
+      rencontre = new RencontreSimple(
+        data.joueurEquipeReceveuse,
+        data.joueurEquipeVisiteuse
+      );
+    else {
+      rencontre = new RencontreDouble(data.formule);
+      rencontre.doubleEquipeReceveuse = data.doubleEquipeReceveuse;
+      rencontre.doubleEquipeVisiteuse = data.doubleEquipeVisiteuse;
     }
 
-    manches: Manche[] = new Array
+    rencontre.manches = [];
+    data.manches.forEach((m) => {
+      rencontre.manches.push(Manche.fabrique(m.score));
+    });
 
-    public getFormule() : string{
-        return '';
-    }
+    return rencontre;
+  }
 
-
-    static fabriqueRencontre(data) {
-      var rencontre
-
-      if (data.joueurEquipeReceveuse && data.joueurEquipeVisiteuse)
-        rencontre = new RencontreSimple(data.joueurEquipeReceveuse, data.joueurEquipeVisiteuse)
-      else {
-        rencontre = new RencontreDouble(data.formule)
-        rencontre.doubleEquipeReceveuse = data.doubleEquipeReceveuse
-        rencontre.doubleEquipeVisiteuse = data.doubleEquipeVisiteuse
-
+  public getResultat(): number {
+    var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
+    var score = 0;
+    var maxManchesGagnees = 0;
+    this.manches.forEach((manche) => {
+      if (manche.getResultat() < 0) {
+        score--;
+      } else if (manche.getResultat() > 0) {
+        score++;
       }
+    });
 
-      rencontre.manches = []
-      data.manches.forEach(m => {
-        rencontre.manches.push(Manche.fabrique(m.score))
-      })
+    maxManchesGagnees = this.manches.filter(function (m) {
+      return m.getResultat() < 0;
+    }).length;
+    var tmp = this.manches.filter(function (m) {
+      return m.getResultat() > 0;
+    }).length;
 
-      return rencontre
-    }
+    if (tmp > maxManchesGagnees) maxManchesGagnees = tmp;
 
+    if (maxManchesGagnees < nbManchesAGagner) return 0;
 
-    public getResultat() : number {
-        var nbManchesAGagner = Math.trunc(this.manches.length / 2) + 1;
-        var score = 0;
-        var maxManchesGagnees = 0;
-        this.manches.forEach(manche => {
-            if (manche.getResultat() < 0) {
-                score--;
-            }
-            else if (manche.getResultat() > 0) {
-                score++;
-            }
-        });
-
-        maxManchesGagnees = this.manches.filter(function (m) { return m.getResultat() < 0 }).length;
-        var tmp = this.manches.filter(function (m) { return m.getResultat() > 0 }).length;
-
-        if (tmp > maxManchesGagnees)
-            maxManchesGagnees = tmp;
-
-        if (maxManchesGagnees < nbManchesAGagner)
-            return 0;
-
-        return score;
-    }
-
-    public getVainqueur():string {
-        var score = this.getResultat();
-
-        if (score > 0)
-            return this.getPositionJoueurEquipeReceveuse();
-        else if (score < 0)
-            return this.getPositionJoueurEquipeVisiteuse();
-        else
-            return '';
-    }
-
-
-    getPositionJoueurEquipeReceveuse():string {
-        // override par RencontreSimple et RencontreDouble
-        return '';
-    }
-
-    getPositionJoueurEquipeVisiteuse():string {
-        // override par RencontreSimple et RencontreDouble
-        return '';
-    }
-
-    getNomJoueurEquipeReceveuse():string {
-        // override par RencontreSimple et RencontreDouble
-        return '';
-    }
-
-    getNomJoueurEquipeVisiteuse():string {
-        // override par RencontreSimple et RencontreDouble
-        return '';
-    }
-
-    getTypeRencontre():string {
-        return '';
-    }
-}
-
-
-export class RencontreDouble extends Rencontre{
-  constructor(formule:string) {
-      super();
-      this.formule = formule;
+    return score;
   }
 
-  private formule:string;
-  doubleEquipeReceveuse:string;
-  doubleEquipeVisiteuse:string;
+  public getVainqueur(): string {
+    var score = this.getResultat();
 
-  getFormule():string {
-      return this.formule;
+    if (score > 0) return this.getPositionJoueurEquipeReceveuse();
+    else if (score < 0) return this.getPositionJoueurEquipeVisiteuse();
+    else return "";
   }
 
-  getNomJoueurEquipeReceveuse():string {
-      return this.doubleEquipeReceveuse;
+  getPositionJoueurEquipeReceveuse(): string {
+    // override par RencontreSimple et RencontreDouble
+    return "";
   }
 
-  getNomJoueurEquipeVisiteuse():string {
-      return this.doubleEquipeVisiteuse;
+  getPositionJoueurEquipeVisiteuse(): string {
+    // override par RencontreSimple et RencontreDouble
+    return "";
   }
 
-  getPositionJoueurEquipeReceveuse():string {
-      return this.doubleEquipeReceveuse;
+  getNomJoueurEquipeReceveuse(): string {
+    // override par RencontreSimple et RencontreDouble
+    return "";
   }
 
-  getPositionJoueurEquipeVisiteuse():string {
-      // override par RencontreSimple et RencontreDouble
-      return this.doubleEquipeVisiteuse;
+  getNomJoueurEquipeVisiteuse(): string {
+    // override par RencontreSimple et RencontreDouble
+    return "";
   }
 
-  getTypeRencontre():string {
-      return 'RencontreDouble';
+  getTypeRencontre(): string {
+    return "";
+  }
+
+  getPointEquipeReveuse(): string {
+    var score = this.getResultat();
+
+    if (score > 0) return "1";
+    else if (score < 0) return "0";
+    else return "";
+  }
+
+  getPointEquipeVisiteuse(): string {
+    var score = this.getResultat();
+
+    if (score > 0) return "0";
+    else if (score < 0) return "1";
+    else return "";
   }
 }
 
-
-export class RencontreSimple extends Rencontre{
-  constructor(joueurEquipeReceveuse:Joueur, joueurEquipeVisiteuse:Joueur) {
-      super();
-      this.joueurEquipeReceveuse = joueurEquipeReceveuse;
-      this.joueurEquipeVisiteuse = joueurEquipeVisiteuse;
+export class RencontreDouble extends Rencontre {
+  constructor(formule: string) {
+    super();
+    this.formule = formule;
   }
 
-  joueurEquipeReceveuse:Joueur;
-  joueurEquipeVisiteuse:Joueur;
+  private formule: string;
+  doubleEquipeReceveuse: string;
+  doubleEquipeVisiteuse: string;
 
-  getFormule():string {
-      return this.getPositionJoueurEquipeReceveuse() + '-' + this.getPositionJoueurEquipeVisiteuse();
+  getFormule(): string {
+    return this.formule;
   }
 
-  getPositionJoueurEquipeReceveuse():string {
-      return this.joueurEquipeReceveuse.position;
+  getNomJoueurEquipeReceveuse(): string {
+    return this.doubleEquipeReceveuse;
   }
 
-  getNomJoueurEquipeReceveuse():string {
-      return this.joueurEquipeReceveuse.nom;
+  getNomJoueurEquipeVisiteuse(): string {
+    return this.doubleEquipeVisiteuse;
   }
 
-  getPositionJoueurEquipeVisiteuse():string {
-      return this.joueurEquipeVisiteuse.position;
+  getPositionJoueurEquipeReceveuse(): string {
+    return this.doubleEquipeReceveuse;
   }
 
-  getNomJoueurEquipeVisiteuse():string {
-      return this.joueurEquipeVisiteuse.nom;
+  getPositionJoueurEquipeVisiteuse(): string {
+    // override par RencontreSimple et RencontreDouble
+    return this.doubleEquipeVisiteuse;
   }
 
-  getTypeRencontre():string {
-      return 'RencontreSimple';
+  getTypeRencontre(): string {
+    return "RencontreDouble";
+  }
+}
+
+export class RencontreSimple extends Rencontre {
+  constructor(joueurEquipeReceveuse: Joueur, joueurEquipeVisiteuse: Joueur) {
+    super();
+    this.joueurEquipeReceveuse = joueurEquipeReceveuse;
+    this.joueurEquipeVisiteuse = joueurEquipeVisiteuse;
+  }
+
+  joueurEquipeReceveuse: Joueur;
+  joueurEquipeVisiteuse: Joueur;
+
+  getFormule(): string {
+    return (
+      this.getPositionJoueurEquipeReceveuse() +
+      "-" +
+      this.getPositionJoueurEquipeVisiteuse()
+    );
+  }
+
+  getPositionJoueurEquipeReceveuse(): string {
+    return this.joueurEquipeReceveuse.position;
+  }
+
+  getNomJoueurEquipeReceveuse(): string {
+    return this.joueurEquipeReceveuse.nom;
+  }
+
+  getPositionJoueurEquipeVisiteuse(): string {
+    return this.joueurEquipeVisiteuse.position;
+  }
+
+  getNomJoueurEquipeVisiteuse(): string {
+    return this.joueurEquipeVisiteuse.nom;
+  }
+
+  getTypeRencontre(): string {
+    return "RencontreSimple";
   }
 }
