@@ -7,16 +7,16 @@
       </div>
       <div class="col-6 text-center">
         <h1>FEUILLE DE MATCH</h1>
-       
+
       </div>
 
       <div class="col-3">
-        
+
       </div>
     </div>
   </div>
 
-  <div class="container mt-3">
+  <div class="container mt-1">
     <table class="table table-sm table-bordered">
       <thead>
         <tr>
@@ -48,7 +48,7 @@
       </tbody>
     </table>
   </div>
-  
+
 
   <div class="container mt-2">
     <div class="row">
@@ -109,7 +109,7 @@
         </table>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col">
         <table class="table table-sm table-bordered">
@@ -129,7 +129,7 @@
           <tbody>
             <tr *ngFor="let rencontre of match.rencontres; index as i">
               <th scope="row" class="td-center">{{ match.rencontres[i].getFormule() }}</th>
-      
+
               <td>
                 <div *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock">
                 </div>
@@ -150,11 +150,11 @@
                   <div>{{ match.rencontres[i].doubleEquipeVisiteuse }}</div>
                 </ng-template>
               </td>
-      
+
               <td class="td-center" *ngFor="let manche of match.rencontres[i].manches; index as y">
                 <div>{{ match.rencontres[i].manches[y].score }}</div>
               </td>
-      
+
               <td class="manche td-center">
                 {{ match.rencontres[i].getVainqueur() }}
               </td>
@@ -169,7 +169,7 @@
         </tfoot>
         </table>
       </div>
-      
+
     </div>
   </div>
 
@@ -182,40 +182,40 @@
         <div class="col-5 text-uppercase">
           {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}
         </div>
-       
+
         <div class="col-2 text-center text-uppercase">{{ match.scoreEquipeReceveuse() }} à {{ match.scoreEquipeVisiteuse() }}</div>
       </div>
     </div>
   </div>
 
 
-  <div class="container mt-3">
+  <div class="container mt-1">
     <div class="row p-3" >
       <div class="col-5 border">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à faire, s'il y a lieu, au verso.</div>
 
       <div class="col-2">
-        
+
       </div>
 
       <div class="col-3 border align-self-center p-3">
         HOMOLOGATION
       </div>
 
-      
+
       <div class="col-2 border">
         <div class="row pl-2 pt-1">
-          P.V. N° : 
+          P.V. N° :
         </div>
         <div class="row pl-2">
           Date :
         </div>
-        
-       
+
+
       </div>
     </div>
   </div>
 
-  <div class="container mt-3">
+  <div class="container mt-1">
     <div class="row">
       <div class="col-6">
         <table class="table-sm table-bordered  d-block d-md-table">
@@ -245,7 +245,7 @@
         </table>
       </div>
 
-      
+
       <div class="col-6 ">
         <table class="table-sm table-bordered table-responsive  d-block d-md-table">
           <tr >
@@ -264,7 +264,7 @@
           </tr>
         </table>
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -11,7 +11,6 @@ export class RencontresComponent implements OnInit {
   @Input() rencontres: Rencontre[]
 
   @Input() match: Match;
-  //@Input() BlurMethod;
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() {
@@ -22,13 +21,15 @@ export class RencontresComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //this.match = new Match6();
 
-    var  a = ''
   }
 
   onBlurMethod() {
     this.BlurMethod.emit()
+  }
+
+  test(aaaa) {
+    var a = ""
   }
 
 

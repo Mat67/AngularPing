@@ -22,8 +22,12 @@ export class Rencontre {
 
       if (data.joueurEquipeReceveuse && data.joueurEquipeVisiteuse)
         rencontre = new RencontreSimple(data.joueurEquipeReceveuse, data.joueurEquipeVisiteuse)
-      else
+      else {
         rencontre = new RencontreDouble(data.formule)
+        rencontre.doubleEquipeReceveuse = data.doubleEquipeReceveuse
+        rencontre.doubleEquipeVisiteuse = data.doubleEquipeVisiteuse
+
+      }
 
       rencontre.manches = []
       data.manches.forEach(m => {

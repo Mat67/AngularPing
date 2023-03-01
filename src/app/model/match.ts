@@ -162,7 +162,9 @@ export abstract class Match {
             var data = {
               joueurEquipeReceveuse: this.equipeReceveuse.getJoueurByPosition(r?.joueurEquipeReceveuse?.position),
               joueurEquipeVisiteuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeVisiteuse?.position),
-              formules: r?.formule,
+              doubleEquipeReceveuse : r?.doubleEquipeReceveuse,
+              doubleEquipeVisiteuse : r?.doubleEquipeVisiteuse,
+              formule: r?.formule,
               manches: r?.manches
             }
 
