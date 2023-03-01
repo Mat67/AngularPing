@@ -70,13 +70,13 @@
             <tr *ngFor="let joueur of match.equipeReceveuse.joueurs; index as i">
               <th scope="row" class="td-center">{{ match.equipeReceveuse.joueurs[i].position }}</th>
               <td class="form-group">
-                <div>{{ match.equipeReceveuse.joueurs[i].nom }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].nom }}</div>
               </td>
               <td class="td-center">
-                <div>{{ match.equipeReceveuse.joueurs[i].classement }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div>{{ match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
@@ -96,13 +96,14 @@
             <tr *ngFor="let joueur of match.equipeVisiteuse.joueurs; index as i">
               <th scope="row" class="td-center">{{ match.equipeVisiteuse.joueurs[i].position }}</th>
               <td class="form-group">
-                <div>{{ match.equipeVisiteuse.joueurs[i].nom }}</div>
+
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].nom }} </div>
               </td>
               <td class="td-center">
-                <div>{{ match.equipeVisiteuse.joueurs[i].classement }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div>{{ match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
