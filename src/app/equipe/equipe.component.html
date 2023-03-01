@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let joueur of equipe.joueurs; index as i" (dblclick)="setCaptain(joueur)" [ngClass]="joueur.isCapitaine ? 'table-info': ''">
+        <tr *ngFor="let joueur of equipe.joueurs; index as i" (dblclick)="setCaptain(joueur)" [ngClass]="joueur.estCapitaine ? 'table-info': ''">
           <td scope="row" class="td-position">{{ joueur.position }}</td>
           <td class="form-group">
             <input type="search" class="form-control transparent" id="{{ 'nom' +  i  }}" required

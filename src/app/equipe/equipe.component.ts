@@ -24,11 +24,11 @@ export class EquipeComponent implements OnInit {
     this.equipe.joueurs.forEach(joueur => {
       if(joueur.position == joueurChoisit.position)
       {
-        joueur.isCapitaine = !joueur.isCapitaine;
+        joueur.estCapitaine = !joueur.estCapitaine;
       }
       else
       {
-        joueur.isCapitaine = false;
+        joueur.estCapitaine = false;
       }
     });
 

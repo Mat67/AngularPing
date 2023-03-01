@@ -3,7 +3,7 @@ export class Joueur {
     nom: string;
     classement: string;
     numeroLicence: string;
-    isCapitaine: boolean;
+    estCapitaine: boolean;
 
 
     constructor (position:string) {

@@ -5,8 +5,8 @@
         <h6>F.S.C.F</h6>
         <h6>AVANT-GARDE-DU RHIN</h6>
       </div>
-      <div class="col-6 text-center">
-        <h1>FEUILLE DE MATCH</h1>
+      <div class="col-6 text-center large-text font-weight-bold">
+        FEUILLE DE MATCH
 
       </div>
 
@@ -47,10 +47,58 @@
         </tr>
       </tbody>
     </table>
+
+
+    <div class="container mt-1">
+      <div class="row">
+
+        <div class="col-5 border">
+          <div class="row">
+            <div class="col-4">
+              Lieu :
+            </div>
+            <div class="col-6">
+              SCHLEITHAL
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              Date :
+            </div>
+            <div class="col-6">
+              {{ match.Date }} 15:00
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              Juge-Arbitre :
+            </div>
+            <div class="col-6">
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-1">
+
+        </div>
+        <div class="col-6 border">
+          <div>
+            Avant le début de la rencontre,
+            l'attribution des lettres ABCDEF et UVWXYZ ( 6 joueurs ) est faite par tirage au sort
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
-  <div class="container mt-2">
+
+
+  <div class="container mt-1">
     <div class="row">
       <div class="col-6 text-center text-uppercase">{{ match.equipeReceveuse.nomEquipe }}</div>
       <div class="col-6 text-center text-uppercase">{{ match.equipeVisiteuse.nomEquipe }}</div>
@@ -70,13 +118,16 @@
             <tr *ngFor="let joueur of match.equipeReceveuse.joueurs; index as i">
               <th scope="row" class="td-center">{{ match.equipeReceveuse.joueurs[i].position }}</th>
               <td class="form-group">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].nom }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                  match.equipeReceveuse.joueurs[i].nom }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].classement }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                  match.equipeReceveuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                  match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
@@ -97,13 +148,16 @@
               <th scope="row" class="td-center">{{ match.equipeVisiteuse.joueurs[i].position }}</th>
               <td class="form-group">
 
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].nom }} </div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                  match.equipeVisiteuse.joueurs[i].nom }} </div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].classement }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                  match.equipeVisiteuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].isCapitaine }">{{ match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
+                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                  match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
           </tbody>
@@ -132,7 +186,8 @@
               <th scope="row" class="td-center">{{ match.rencontres[i].getFormule() }}</th>
 
               <td>
-                <div *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock">
+                <div
+                  *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock">
                 </div>
                 <ng-template #thenBlock>
                   <div>{{ match.rencontres[i].joueurEquipeReceveuse.nom }}</div>
@@ -142,7 +197,8 @@
                 </ng-template>
               </td>
               <td>
-                <div *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2">
+                <div
+                  *ngIf="match.rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2">
                 </div>
                 <ng-template #thenBlock2>
                   <div>{{ match.rencontres[i].joueurEquipeVisiteuse.nom }}</div>
@@ -167,7 +223,7 @@
               <td colspan="8"></td>
               <td class="td-center">{{ match.scoreEquipeReceveuse() }} - {{ match.scoreEquipeVisiteuse() }}</td>
             </tr>
-        </tfoot>
+          </tfoot>
         </table>
       </div>
 
@@ -178,7 +234,7 @@
   <div class="container mt-1">
     <div class="border">
       <div class="row p-1">
-        <div class="col-5 text-uppercase">Résultat</div>
+        <div class="col-5 text-uppercase font-weight-bold">Résultat</div>
 
         <div class="col-5 text-uppercase">
           {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}
@@ -190,8 +246,9 @@
   </div>
 
   <div class="container mt-1">
-    <div class="row p-3" >
-      <div class="col-5 border">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à faire, s'il y a lieu, au verso.</div>
+    <div class="row p-3">
+      <div class="col-5 border">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à faire,
+        s'il y a lieu, au verso.</div>
 
       <div class="col-2">
 
@@ -203,10 +260,10 @@
 
 
       <div class="col-2 border">
-        <div class="row pl-2 pt-1">
+        <div class="row pl-1 pt-1">
           P.V. N° :
         </div>
-        <div class="row pl-2">
+        <div class="row pl-1">
           Date :
         </div>
 
@@ -216,7 +273,9 @@
   </div>
 
   <div class="container mt-1 very-small-text ">
-    La feuille de match dûment remplie et signée est à renvoyer au responsable chargé du contrôle de la compétition dans un délai de 24 heures par l'équipe recevante. Toute infraction sera pénalisée d'une amende. Pour les rencontres en salle neutre l'obligation incombe à l'équipe gagnante qui en cas de non-observation, encourt la même sanction.
+    La feuille de match dûment remplie et signée est à renvoyer au responsable chargé du contrôle de la compétition dans
+    un délai de 24 heures par l'équipe recevante. Toute infraction sera pénalisée d'une amende. Pour les rencontres en
+    salle neutre l'obligation incombe à l'équipe gagnante qui en cas de non-observation, encourt la même sanction.
   </div>
 
 
@@ -230,7 +289,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr >
+            <tr>
               <td class="td-center">
                 <div class="small-text">Le Capitaine de l'équipe gagnante</div>
               </td>
@@ -253,14 +312,14 @@
 
       <div class="col-6 ">
         <table class="table-sm table-bordered table-responsive  d-block d-md-table">
-          <tr >
+          <tr>
             <td class="td-center" rowspan="2">
               Points math acquis
             </td>
 
             <td class="td-center">
               Equipe recevante : {{ match.getPointEquipeReceveuse() }}
-             </td>
+            </td>
           </tr>
           <tr>
             <td class="td-center">
@@ -273,4 +332,3 @@
     </div>
   </div>
 </div>
-

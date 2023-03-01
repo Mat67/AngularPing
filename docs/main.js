@@ -643,7 +643,7 @@ function EquipeComponent_tr_17_Template(rf, ctx) {
     const joueur_r1 = ctx.$implicit;
     const i_r2 = ctx.index;
     const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", joueur_r1.isCapitaine ? "table-info" : "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", joueur_r1.estCapitaine ? "table-info" : "");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](joueur_r1.position);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -668,9 +668,9 @@ class EquipeComponent {
   setCaptain(joueurChoisit) {
     this.equipe.joueurs.forEach(joueur => {
       if (joueur.position == joueurChoisit.position) {
-        joueur.isCapitaine = !joueur.isCapitaine;
+        joueur.estCapitaine = !joueur.estCapitaine;
       } else {
-        joueur.isCapitaine = false;
+        joueur.estCapitaine = false;
       }
     });
     this.onBlurMethod();
