@@ -175,20 +175,19 @@
   </div>
 
 
-  <div class="container mt-2">
+  <div class="container mt-1">
     <div class="border">
-      <div class="row p-2">
+      <div class="row p-1">
         <div class="col-5 text-uppercase">Résultat</div>
 
         <div class="col-5 text-uppercase">
           {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}
         </div>
 
-        <div class="col-2 text-center text-uppercase">{{ match.scoreEquipeReceveuse() }} à {{ match.scoreEquipeVisiteuse() }}</div>
+        <div class="col-2 text-center">{{ match.scoreEquipeReceveuse() }} à {{ match.scoreEquipeVisiteuse() }}</div>
       </div>
     </div>
   </div>
-
 
   <div class="container mt-1">
     <div class="row p-3" >
@@ -215,6 +214,11 @@
       </div>
     </div>
   </div>
+
+  <div class="container mt-1 very-small-text ">
+    La feuille de match dûment remplie et signée est à renvoyer au responsable chargé du contrôle de la compétition dans un délai de 24 heures par l'équipe recevante. Toute infraction sera pénalisée d'une amende. Pour les rencontres en salle neutre l'obligation incombe à l'équipe gagnante qui en cas de non-observation, encourt la même sanction.
+  </div>
+
 
   <div class="container mt-1">
     <div class="row">
