@@ -14,7 +14,11 @@ export class NavigationComponent {
   constructor(private modalService: NgbModal) { }
 
 
+  navbarOpen = false;
 
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 
   openChargerRencontre(content) {
     this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
