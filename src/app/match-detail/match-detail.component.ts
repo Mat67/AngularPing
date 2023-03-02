@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { App } from '../model/app';
 import { RepositoryService } from '../services/repository.service';
 import * as _ from 'underscore';
+import { Match } from '../model/match';
 
 @Component({
   selector: 'app-match-detail',
@@ -18,6 +19,11 @@ export class MatchDetailComponent implements OnInit {
       console.log("sauvegarde")
       this.repository.sauvegarderMath(this.app.match)
     }, 2000)
+
+
+    this.repository.onMatchUpdate = (match:Match) => {
+      this.app.match = match
+    }
    }
 
   ngOnInit(): void {

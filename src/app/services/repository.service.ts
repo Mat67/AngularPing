@@ -19,6 +19,7 @@ export class RepositoryService {
   private ws: WebSocketSubject<unknown>
 
   getMatchsResolver: (value: unknown) => void;
+  onMatchUpdate: (match: Match) => void;
 
   constructor() {
     this.ws = webSocket('ws://localhost:8999');
@@ -33,9 +34,9 @@ export class RepositoryService {
 
           this.getMatchsResolver(matchs)
         }
-
-
-
+      }
+      else if (d.message === 'sauvegarderMatch') {
+        this.onMatchUpdate(Match.fabriqueMatch(d.data))
       }
       console.log('recu du serveur ' + d)
     })
