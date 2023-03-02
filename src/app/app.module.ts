@@ -17,6 +17,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { NouvelleRencontreComponent } from './nouvelle-rencontre/nouvelle-rencontre.component';
 import { PrintPageComponent } from './print-page/print-page.component';
 import { RencontresComponent } from './rencontres/rencontres.component';
+import { ToastsContainer } from './toasts-container/toasts-container.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RencontresComponent } from './rencontres/rencontres.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ToastsContainer
     //SignaturePadModule
   ],
   providers: [],
