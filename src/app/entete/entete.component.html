@@ -20,7 +20,18 @@
             <label for="DateHeure">Date / Heure</label>
             <div class="row">
                 <div class="col-6">
-                    <input class="form-control" placeholder="jj/mm/aaaa" name="dp"  ngbDatepicker #d="ngbDatepicker" [(ngModel)]="match.Date" (blur)="onBlurMethod()">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      placeholder="dd-mm-yyyy"
+                      name="dp"
+                      [(ngModel)]="match.Date"
+                      (blur)="onBlurMethod()"
+                      ngbDatepicker
+                      #d="ngbDatepicker"
+                    />
+                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                </div>
                 </div>
 
                 <div class="col-6">

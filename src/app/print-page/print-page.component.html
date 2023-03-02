@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="container mt-1">
+  <div class="container">
     <table class="table table-sm table-bordered">
       <thead>
         <tr>
@@ -49,50 +49,55 @@
     </table>
   </div>
 
-  <div class="container mt-1">
-    <div class="row p-3">
-      <div class="col-5 border">
-        <div class="row">
-          <div class="col-4">
-            Lieu :
+  <div class="container">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-5 border">
+          <div class="row">
+            <div class="col-4">
+              Lieu :
+            </div>
+            <div class="col-6">
+              SCHLEITHAL
+            </div>
           </div>
-          <div class="col-6">
-            SCHLEITHAL
+          <div class="row">
+            <div class="col-4">
+              Date :
+            </div>
+            <div class="col-6">
+              {{ match.Date }} 15:00
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              Juge-Arbitre :
+            </div>
+            <div class="col-6">
+
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-4">
-            Date :
-          </div>
-          <div class="col-6">
-            {{ match.Date }} 15:00
-          </div>
+
+        <div class="col-1">
+
         </div>
-
-        <div class="row">
-          <div class="col-4">
-            Juge-Arbitre :
-          </div>
-          <div class="col-6">
-
-          </div>
+        <div class="col-6 border">
+          Avant le début de la rencontre,
+          l'attribution des lettres ABCDEF et UVWXYZ ( 6 joueurs ) est faite par tirage au sort
         </div>
-      </div>
-
-      <div class="col-1">
-
-      </div>
-      <div class="col-6 border">
-        Avant le début de la rencontre,
-        l'attribution des lettres ABCDEF et UVWXYZ ( 6 joueurs ) est faite par tirage au sort
       </div>
     </div>
+
+
   </div>
 
 
 
 
-  <div class="container mt-1">
+  <div class="container">
     <div class="row">
       <div class="col-6 text-center text-uppercase">{{ match.equipeReceveuse.nomEquipe }}</div>
       <div class="col-6 text-center text-uppercase">{{ match.equipeVisiteuse.nomEquipe }}</div>
@@ -232,9 +237,9 @@
   </div>
 
 
-  <div class="container mt-1">
+  <div class="container">
     <div class="border">
-      <div class="row p-1">
+      <div class="row">
         <div class="col-5 text-uppercase font-weight-bold">Résultat</div>
 
         <div class="col-5 text-uppercase">
@@ -246,32 +251,47 @@
     </div>
   </div>
 
-  <div class="container mt-1">
-    <div class="row p-3">
-      <div class="col-5 border">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à faire,
-        s'il y a lieu, au verso.</div>
 
-      <div class="col-2">
-
-      </div>
-
-      <div class="col-3 border align-self-center p-3">
-        HOMOLOGATION
-      </div>
-
-
-      <div class="col-2 border">
-        <div class="row pl-1 pt-1">
-          P.V. N° :
-        </div>
-        <div class="row pl-1">
-          Date :
+  <div class="container mt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-5 border">
+          <div class="row">
+            <div class="col-12">Les réseves (avant la rencontre) et les réclamations (pendant ou après) sont à
+              faire,
+              s'il y a lieu, au verso.
+            </div>
+          </div>
         </div>
 
 
+        <div class="col-2" ></div>
+
+        <div class="col-3 border ">
+          <div class="container">
+            <span class="align-self-center align-middle">
+              HOMOLOGATION
+            </span>
+          </div>
+        </div>
+
+
+        <div class="col-2 border">
+          <div class="row pl-1 pt-1">
+            P.V. N° :
+          </div>
+          <div class="row pl-1">
+            Date :
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
+
+
+
 
   <div class="container mt-1 very-small-text ">
     La feuille de match dûment remplie et signée est à renvoyer au responsable chargé du contrôle de la compétition dans
@@ -310,26 +330,36 @@
         </table>
       </div>
 
+      <div class="col-1">
 
-      <div class="col-6 ">
-        <table class="table-sm table-bordered table-responsive  d-block d-md-table">
-          <tr>
-            <td class="td-center" rowspan="2">
-              Points math acquis
-            </td>
-
-            <td class="td-center">
-              Equipe recevante : {{ match.getPointEquipeReceveuse() }}
-            </td>
-          </tr>
-          <tr>
-            <td class="td-center">
-              Equipe visiteuse : {{ match.getPointEquipeVisiteuse() }}
-            </td>
-          </tr>
-        </table>
       </div>
 
+      <div class="col-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 border ">
+              <div class="container">
+                <span class="align-self-center align-middle">
+                  Points math acquis
+                </span>
+              </div>
+
+            </div>
+
+
+            <div class="col-6 border">
+              <div class="row pl-1 pt-1 ">
+                <span class="align-middle align-self-center">Equipe recevante : {{ match.getPointEquipeReceveuse() }}</span>
+
+              </div>
+              <div class="row pl-1">
+                <span class="align-middle align-self-center">Equipe recevante : {{ match.getPointEquipeVisiteuse() }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
