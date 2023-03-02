@@ -15,7 +15,9 @@ export class ChargerRencontreComponent {
   @Input() app: App;
   matchs: Match[];
 
-  constructor(private modalService: NgbModal, private repository: RepositoryService) { }
+  constructor(private modalService: NgbModal, private repository: RepositoryService) {
+
+  }
 
 
 

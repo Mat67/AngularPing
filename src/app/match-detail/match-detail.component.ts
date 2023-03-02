@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { App } from '../model/app';
 import { RepositoryService } from '../services/repository.service';
 import * as _ from 'underscore';
@@ -13,6 +13,7 @@ import { ToastService } from '../services/toast-service';
 export class MatchDetailComponent implements OnInit {
   app: App;
   onBlurMethod: any;
+  @ViewChild('dangerTpl') public templateref: TemplateRef<any>;
 
   constructor(private repository: RepositoryService, public toastService: ToastService) {
     this.app = new App();
@@ -24,6 +25,12 @@ export class MatchDetailComponent implements OnInit {
     this.repository.onMatchUpdate = (match: Match) => {
       this.app.match = match;
     };
+
+
+    this.repository.onError = (error) => {
+      console.warn(`Error WS : ${ error }`)
+      this.showDanger(this.templateref)
+    }
 
   }
 
@@ -45,7 +52,7 @@ export class MatchDetailComponent implements OnInit {
 	}
 
 	showDanger(dangerTpl) {
-		this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 15000 });
+		this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 5000 });
 	}
 
 	ngOnDestroy(): void {

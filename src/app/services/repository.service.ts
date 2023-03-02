@@ -1,97 +1,127 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { delay, Observable, retryWhen, Subject, tap } from 'rxjs';
 import { Match } from '../model/match';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
-const CHAT_URL = "ws://localhost:8999/";
+const CHAT_URL = 'ws://localhost:8999/';
 
 export interface Message {
   author: string;
   message: string;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RepositoryService {
   public messages: Subject<Message>;
-  private ws: WebSocketSubject<unknown>
 
   getMatchsResolver: (value: unknown) => void;
   onMatchUpdate: (match: Match) => void;
+  onError: (data) => void;
+  ws: Observable<unknown>;
 
   constructor() {
-    this.ws = webSocket('ws://localhost:8999');
-    this.ws.subscribe((d:any) => {
-      if (d.message === 'getMatchs') {
-        if (this.getMatchsResolver) {
-          var matchs = []
+    const createWebSocket = (uri) => {
+      return new Observable((observer) => {
+        try {
+          const subject = webSocket(uri);
 
-          d.data.forEach(m => {
-            matchs.push(Match.fabriqueMatch(m))
-          })
+          const subscription = subject.asObservable().subscribe((d: any) => {
+            if (d.message === 'getMatchs') {
+              if (this.getMatchsResolver) {
+                var matchs = [];
 
-          this.getMatchsResolver(matchs)
+                d.data.forEach((m) => {
+                  matchs.push(Match.fabriqueMatch(m));
+                });
+
+                this.getMatchsResolver(matchs);
+              }
+            } else if (d.message === 'sauvegarderMatch') {
+              this.onMatchUpdate(Match.fabriqueMatch(d.data));
+            }
+
+            console.log('recu du serveur ' + d)
+          },
+          (error) =>
+            observer.error(error),
+
+          () =>
+            observer.complete());
+
+          return () => {
+            if (!subscription.closed) {
+              subscription.unsubscribe();
+            }
+          };
+        } catch (error) {
+
+          observer.error(error);
+          this.onError(error)
         }
-      }
-      else if (d.message === 'sauvegarderMatch') {
-        this.onMatchUpdate(Match.fabriqueMatch(d.data))
-      }
-      console.log('recu du serveur ' + d)
-    })
+      });
+    };
+
+    createWebSocket('ws://localhost:8999') .pipe(
+      retryWhen(errors =>
+        errors.pipe(
+          tap(err => {
+            this.onError(err)
+          }),
+          delay(5000)
+        )
+      )
+    )
+    .subscribe(data => console.log(data), err => console.error(err));
+
+    // this.ws.subscribe((d: any) => {
+
+    // },
+    // error => this.onError(error));
   }
 
+  sauvegarderMath(match: Match) {
+    //this.ws.next({ message: 'sauvegarderMatch', data: match });
 
-  sauvegarderMath(match:Match) {
-    this.ws.next({ message: 'sauvegarderMatch', data: match })
+    //   let matchsIds = this.getListeMatchesId()
 
+    //   var matchTrouve = matchsIds.indexOf(match.id) !== -1;
+    //   if (!matchTrouve){
+    //     matchsIds.push(match.id);
+    //     localStorage.setItem('eps-matchs', JSON.stringify(matchsIds));
 
-  //   let matchsIds = this.getListeMatchesId()
+    // }
 
-  //   var matchTrouve = matchsIds.indexOf(match.id) !== -1;
-  //   if (!matchTrouve){
-  //     matchsIds.push(match.id);
-  //     localStorage.setItem('eps-matchs', JSON.stringify(matchsIds));
-
-  // }
-
-
-  //   localStorage.setItem('eps-match-' + match.id, JSON.stringify(match))
+    //   localStorage.setItem('eps-match-' + match.id, JSON.stringify(match))
   }
 
-  chargeMatch(id:string) {
-    this.ws.next({ message: 'getMatch', data: id })
-
+  chargeMatch(id: string) {
+    //this.ws.next({ message: 'getMatch', data: id });
 
     //var obj = JSON.parse(localStorage.getItem('eps-match-' + id))
     //return Match.fabriqueMatch(obj)
   }
 
-  supprimerMatch(id:string) {
-    this.ws.next({ message: 'getMatch', data: id })
+  supprimerMatch(id: string) {
+    //this.ws.next({ message: 'getMatch', data: id });
   }
 
   getListeMatchesId() {
-    var strMatches = localStorage.getItem('eps-matchs')
-    if (!strMatches)
-      return []
+    var strMatches = localStorage.getItem('eps-matchs');
+    if (!strMatches) return [];
 
-    return JSON.parse(strMatches)
+    return JSON.parse(strMatches);
   }
 
-  async listeMatchsSauvegardes() : Promise<Match[]>   {
-    this.ws.next({ message: 'getMatchs' })
-
+  async listeMatchsSauvegardes(): Promise<Match[]> {
+    //this.ws.next({ message: 'getMatchs' });
 
     return await new Promise((resolve, reject) => {
-      this.getMatchsResolver = resolve
+      this.getMatchsResolver = resolve;
 
-      setTimeout(() => reject('timeout'), 5000)
-    })
-
-
-
+      setTimeout(() => reject('timeout'), 5000);
+    });
 
     // var tmpMatchs = []
     // var matchsResult = []
