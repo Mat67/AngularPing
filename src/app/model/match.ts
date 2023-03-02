@@ -6,7 +6,7 @@ import { Time } from "@angular/common";
 
 export abstract class Match {
   constructor(tailleEquipe:number) {
-    this.id
+    this.id = new Date().getTime()
     this.equipeReceveuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "A");
     this.equipeVisiteuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "U");
     this.rencontres = new Array();
