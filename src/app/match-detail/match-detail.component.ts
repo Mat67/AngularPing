@@ -23,7 +23,8 @@ export class MatchDetailComponent implements OnInit {
     }, 2000);
 
     this.repository.onMatchUpdate = (match: Match) => {
-      this.app.match = match;
+      if (this.app.match.id == match.id)
+        this.app.match = match;
     };
 
 
