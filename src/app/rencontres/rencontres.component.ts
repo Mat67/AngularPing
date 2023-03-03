@@ -17,9 +17,6 @@ export class RencontresComponent implements OnInit {
   }
 
 
-
-
-
   ngOnInit(): void {
 
   }

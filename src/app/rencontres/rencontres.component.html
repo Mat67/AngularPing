@@ -1,3 +1,4 @@
+<form class="row g-3 needs-validation" novalidate></form>
 <table class="table table-striped table-sm">
   <thead>
     <tr class="text-center">
@@ -22,9 +23,9 @@
           <div id="{{ i }} d">{{ rencontres[i].getNomJoueurEquipeReceveuse() }}</div>
         </ng-template>
         <ng-template #elseBlock>
-          <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
+          <input type="text" class="form-control form-control-sm valid" id="{{ 'doubleEquipeReceveuse' + i }} "
             [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
-            (blur)="onBlurMethod()" autocomplete="off">
+            (blur)="onBlurMethod()" autocomplete="off" appScoreValidation="bob" >
         </ng-template>
       </td>
       <td>
@@ -33,15 +34,15 @@
           <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
         </ng-template>
         <ng-template #elseBlock2>
-          <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
+          <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} "
             [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
             (blur)="onBlurMethod()" autocomplete="off">
         </ng-template>
       </td>
       <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
-        <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required
+        <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
           (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
-          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off"/>
+          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off" />
       </td>
 
       <td class="score">

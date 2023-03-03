@@ -18,6 +18,7 @@ import { NouvelleRencontreComponent } from './nouvelle-rencontre/nouvelle-rencon
 import { PrintPageComponent } from './print-page/print-page.component';
 import { RencontresComponent } from './rencontres/rencontres.component';
 import { ToastsContainer } from './toasts-container/toasts-container.component';
+import { ScoreValidationDirective } from './score-validation.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ToastsContainer } from './toasts-container/toasts-container.component';
     ChoixAccueilComponent,
     NavigationComponent,
     NouvelleRencontreComponent,
-    ChargerRencontreComponent
+    ChargerRencontreComponent,
+    ScoreValidationDirective
   ],
   imports: [
     BrowserModule,
