@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 
-export function forbiddenNameValidator(): ValidatorFn {
+export function scoreValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value || control.value === '')
       return null
@@ -9,8 +9,12 @@ export function forbiddenNameValidator(): ValidatorFn {
 
     var scores = control.value.split('-')
 
-    if (scores.length !== 2 || (scores[0] < 11 && scores[1] < 11))
-      return {forbiddenName: {value: control.value}}
+    if (scores.length !== 2
+      || (scores[0] < 11 && scores[1] < 11) // Aucun gagant
+
+      || (Math.abs(scores[1] - scores[0]) < 2) // Différence de 2 min points non respectée
+      || ((scores[0] > 11 || scores[1] > 11) && Math.abs(scores[1] - scores[0]) !== 2)) // différence de 2 points obligatoire si score > 11
+        return {value: control.value}
     else
       return null
 
@@ -28,7 +32,7 @@ export class ScoreValidationDirective implements Validator {
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return forbiddenNameValidator()(control)
+    return scoreValidator()(control)
   }
 
 }
