@@ -24,7 +24,7 @@
         <ng-template #elseBlock>
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeReceveuse' + i }} " required
             [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
-            (blur)="onBlurMethod()">
+            (blur)="onBlurMethod()" autocomplete="off">
         </ng-template>
       </td>
       <td>
@@ -35,13 +35,13 @@
         <ng-template #elseBlock2>
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} " required
             [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
-            (blur)="onBlurMethod()">
+            (blur)="onBlurMethod()" autocomplete="off">
         </ng-template>
       </td>
       <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
         <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}" required
           (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
-          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" />
+          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off"/>
       </td>
 
       <td class="score">
