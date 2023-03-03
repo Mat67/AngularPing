@@ -1,5 +1,6 @@
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import { Manche } from './model/manche';
 
 export function scoreValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -27,8 +28,6 @@ export function scoreValidator(): ValidatorFn {
   providers: [{provide: NG_VALIDATORS, useExisting: ScoreValidationDirective, multi: true}]
 })
 export class ScoreValidationDirective implements Validator {
-
-
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {

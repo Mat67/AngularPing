@@ -42,7 +42,7 @@
       <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
         <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
           (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
-          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off" appScoreValidation />
+          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off" appScoreValidation="rencontres[i].manches[y]" />
       </td>
 
       <td class="score">
