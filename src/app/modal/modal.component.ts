@@ -2,6 +2,7 @@ import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angula
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Match } from '../model/match';
+import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-modal',
@@ -11,9 +12,28 @@ import { Match } from '../model/match';
 export class ModalComponent implements OnInit {
   @Input() match: Match;
 
+  signatureEquipeReceveuse:string
+  signatureEquipeVisiteuse:string
+
   closeResult: string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private repository: RepositoryService) {
+    repository.onSignatureUpdate = (data) => {
+      if (this.match.id === data.matchId) {
+        if (data.equipeId === '0')
+          this.signatureEquipeReceveuse = data.signature
+        else if (data.equipeId === '1')
+          this.signatureEquipeVisiteuse = data.signature
+      }
+    }
+  }
+
+  signatureEquipeReceveuseMiseAJour() {
+
+  }
+  signatureEquipeVisiteuseMiseAJour() {
+
+  }
 
   @ViewChild('signature') public signaturePad: SignaturePadComponent;
 
@@ -24,6 +44,7 @@ export class ModalComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit() {
@@ -33,6 +54,11 @@ export class ModalComponent implements OnInit {
   }
 
   open(content) {
+    this.repository.GetSignatures(this.match.id).then((s) => {
+      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+    })
+
     this.modalService.open(content, { size: 'xl', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -43,15 +69,20 @@ export class ModalComponent implements OnInit {
 
 
   saveImageEquipeReceveuse(base64data) {
-    this.match.signatureEquipeReceveuse = base64data
+    this.repository.ModifierSignature(this.match.id, '0', base64data)
   }
 
   saveImageEquipeVisiteuse (base64data) {
-    this.match.signatureEquipeVisiteuse = base64data
+    this.repository.ModifierSignature(this.match.id, '1', base64data)
   }
 
   isButtonImprimerActif() {
     return this.match.signatureEquipeReceveuse && this.match.signatureEquipeVisiteuse
+  }
+
+  getSignatureUrlEquipeReceveuse() {
+    //return 'http://serveur-mat.synology.me:8999/matchs/' + this.match.id + '/equipes/0'
+    return 'http://localhost:4200/matchs/' + this.match.id + '/equipes/0/signature'
   }
 
   Imprimer() {

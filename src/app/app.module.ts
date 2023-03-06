@@ -21,7 +21,8 @@ import { ToastsContainer } from './toasts-container/toasts-container.component';
 import { ScoreValidationDirective } from './score-validation.directive';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { ChampSignatureComponent } from './champ-signature/champ-signature.component';
-import { ChampSignature2Component } from './champ-signature2/champ-signature2.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SignatureMobileComponent } from './signature-mobile/signature-mobile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { ChampSignature2Component } from './champ-signature2/champ-signature2.co
     ChargerRencontreComponent,
     ScoreValidationDirective,
     ChampSignatureComponent,
-    ChampSignature2Component
+    SignatureMobileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,8 @@ import { ChampSignature2Component } from './champ-signature2/champ-signature2.co
     FormsModule,
     ToastsContainer,
     ReactiveFormsModule,
-    AngularSignaturePadModule
+    AngularSignaturePadModule,
+    QRCodeModule
     //SignaturePadModule
   ],
   providers: [],

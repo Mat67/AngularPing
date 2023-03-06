@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
+import { SignatureMobileComponent } from './signature-mobile/signature-mobile.component';
 
 const routes: Routes = [
   { path: '', component: MatchDetailComponent },
-  { path: '', component: MatchDetailComponent },
+  { path: 'matchs/:matchId/equipes/:equipeId/signature', component: SignatureMobileComponent },
 ];
 
 @NgModule({

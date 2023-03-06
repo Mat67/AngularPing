@@ -3,8 +3,8 @@ import { delay, Observable, retryWhen, Subject, tap } from 'rxjs';
 import { Match } from '../model/match';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
-const WS_URL = 'ws://serveur-mat.synology.me:8999';
-//const WS_URL = 'ws://localhost:8999';
+//const WS_URL = 'ws://serveur-mat.synology.me:8999';
+const WS_URL = 'ws://localhost:8999';
 
 export interface Message {
   author: string;
@@ -15,10 +15,13 @@ export interface Message {
   providedIn: 'root',
 })
 export class RepositoryService {
+
   public messages: Subject<Message>;
 
   getMatchsResolver: (value: unknown) => void;
   onMatchUpdate: (match: Match) => void;
+  onSignatureUpdate: (signature: any) => void;
+  getSignaturesResolver: (signatures: any) => void;
   onError: (data) => void;
   ws: WebSocketSubject<unknown>;
 
@@ -41,6 +44,16 @@ export class RepositoryService {
                 }
               } else if (d.message === 'sauvegarderMatchResultat') {
                 this.onMatchUpdate(Match.fabriqueMatch(d.data));
+              } else if (d.message === 'ModifierSignatureResultat') {
+                var signature = {
+                  matchId:d.data.matchId,
+                  equipeId:d.data.equipeId,
+                  signature: d.data.signature,
+                }
+                this.onSignatureUpdate(signature);
+              }
+              else if (d.message === 'getSignaturesResultat') {
+                this.getSignaturesResolver(d.data);
               }
 
               console.log('recu du serveur ' + d);
@@ -111,6 +124,26 @@ export class RepositoryService {
 
     return await new Promise((resolve, reject) => {
       this.getMatchsResolver = resolve;
+
+      setTimeout(() => reject('timeout'), 5000);
+    });
+  }
+
+  ModifierSignature( matchId: string, equipeId: string, signature: any) {
+    var data = {
+      matchId: matchId,
+      equipeId: equipeId,
+      signature: signature
+    }
+
+    this.ws.next({ message: 'ModifierSignature', data: data });
+  }
+
+  async GetSignatures( matchId: string): Promise<any>  {
+    this.ws.next({ message: 'getSignatures', data: matchId });
+
+    return await new Promise((resolve, reject) => {
+      this.getSignaturesResolver = resolve;
 
       setTimeout(() => reject('timeout'), 5000);
     });

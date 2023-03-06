@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angular-signature-pad';
 import { Match } from '../model/match';
 
@@ -14,7 +14,15 @@ export class ChampSignatureComponent implements AfterViewInit {
 
   @Input() signature: string;
 
+  ngOnChanges(changes: SimpleChanges) {
 
+    if (changes?.signature?.currentValue)
+      this.signaturePad.fromDataURL(changes.signature.currentValue)
+    //this.doSomething(changes.categoryId.currentValue);
+    // You can also use categoryId.previousValue and
+    // categoryId.firstChange for comparing old and new values
+
+}
   @Output() onSignatureChanged: EventEmitter<String> = new EventEmitter<string>();
 
 
@@ -36,6 +44,8 @@ export class ChampSignatureComponent implements AfterViewInit {
     this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
     this.signaturePad.fromDataURL(this.signature)
+
+
   }
 
   drawComplete(event: MouseEvent | Touch) {
