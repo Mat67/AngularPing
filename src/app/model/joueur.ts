@@ -18,4 +18,8 @@ export class Joueur {
       joueur.estCapitaine = data.estCapitaine
       return joueur
     }
+
+    public toString() {
+      return `${ this.nom}`
+    }
 }

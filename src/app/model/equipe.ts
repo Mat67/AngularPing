@@ -44,4 +44,9 @@ export class Equipe {
     private getLettreAlphabet(lettre:string, position:number) {
         return String.fromCharCode(lettre.charCodeAt(0) + position);
     }
+
+
+    public getCapitaine() {
+      return this.joueurs.find(j => j.estCapitaine)
+    }
 }

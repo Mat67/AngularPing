@@ -11,24 +11,22 @@
             [colorLight]="'#ffffffff'"
             [elementType]="'canvas'"
             [errorCorrectionLevel]="'M'"
-            [imageSrc]="'./assets/angular-logo.png'"
             [imageHeight]="75"
             [imageWidth]="75"
             [margin]="4"
             [scale]="1"
-            [title]="'A custom title attribute'"
-            [width]="200"
-            [height]="200"
+            [width]="150"
+            [height]="150"
           ></qrcode>
         </div>
       </div>
       <div class="row">
         <div class="col-6">
-          <label>Capitaine {{ match.equipeReceveuse.nomEquipe }}</label>
+          <label>Capitaine {{ match.equipeReceveuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine().toString() }} </label>
           <app-champ-signature [signature]="signatureEquipeReceveuse" (onSignatureChanged)="saveImageEquipeReceveuse($event)"></app-champ-signature>
         </div>
         <div class="col-6">
-          <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }}</label>
+          <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine().toString() }} </label>
           <app-champ-signature [signature]="signatureEquipeVisiteuse"  (onSignatureChanged)="saveImageEquipeVisiteuse($event)"></app-champ-signature>
         </div>
       </div>
