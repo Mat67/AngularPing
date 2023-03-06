@@ -83,7 +83,6 @@ export abstract class Match {
 
     if (isNaN(obj)) {
       match.chargerMath(obj)
-
     }
 
     return match
@@ -156,6 +155,11 @@ export abstract class Match {
 
         if ([ 'equipeReceveuse', 'equipeVisiteuse' ].indexOf(key) !== -1)
           this[key] = Equipe.fabrique(match[key].nomEquipe, match[key].joueurs)
+        // else if (key === 'Date')
+        //   this[key] = new Date(match[key]?.year, match[key]?.month, match[key]?.Date?.Day)
+        // else if (key === 'Heure')
+        //   this[key]
+
         else if (key === 'rencontres') {
           this[key] = []
           match[key].forEach(r => {

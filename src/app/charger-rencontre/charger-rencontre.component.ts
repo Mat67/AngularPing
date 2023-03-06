@@ -45,10 +45,25 @@ export class ChargerRencontreComponent {
     this.matchs = await this.repository.listeMatchsSauvegardes()
   }
 
-  public afficheDateDepuis(date) {
+  public afficheDateDepuis(match:Match) {
 
-    if (date) {
-      var d = moment(new Date(date?.year, date?.month - 1, date?.day))
+    if (match && match.Date) {
+      var tmpDate
+
+
+      tmpDate = match.Date
+      var tmpHeure =
+      tmpHeure = match.Heure
+
+
+      if (tmpHeure)
+        var d = moment(new Date(tmpDate.year, tmpDate.month - 1, tmpDate.day, tmpHeure?.hour, tmpHeure?.minute))
+      else
+        var d = moment(new Date(tmpDate.year, tmpDate.month - 1, tmpDate.day))
+
+
+
+      var d = moment(new Date(tmpDate.year, tmpDate.month - 1, tmpDate.day, tmpHeure?.hour, tmpHeure?.minute))
       return d.locale('fr').fromNow();
     } else
       return ''

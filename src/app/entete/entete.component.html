@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="col-6">
-                    <ngb-timepicker [spinners]="false"></ngb-timepicker>
+                    <ngb-timepicker [spinners]="false" [(ngModel)]="match.Heure" (blur)="onBlurMethod()"></ngb-timepicker>
                 </div>
             </div>
         </div>

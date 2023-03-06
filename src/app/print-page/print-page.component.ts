@@ -14,4 +14,16 @@ export class PrintPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDate() {
+    // var date = this.match?.Date
+
+    // return date.year
+
+    return null;
+  }
+
+  getHeure() {
+
+  }
+
 }

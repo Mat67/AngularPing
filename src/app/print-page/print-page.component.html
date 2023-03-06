@@ -67,7 +67,7 @@
               Date :
             </div>
             <div class="col-6">
-              {{ match.Date }} 15:00
+              {{ $any(match.Date).day | number:'2.0' }}/{{ $any(match.Date).month | number:'2.0' }}/{{ $any(match.Date).year }} {{ $any(match.Heure).hour | number:'2.0' }} : {{ $any(match.Heure).minute | number:'2.0' }}
             </div>
           </div>
 
