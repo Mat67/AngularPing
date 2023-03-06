@@ -19,6 +19,9 @@ import { PrintPageComponent } from './print-page/print-page.component';
 import { RencontresComponent } from './rencontres/rencontres.component';
 import { ToastsContainer } from './toasts-container/toasts-container.component';
 import { ScoreValidationDirective } from './score-validation.directive';
+import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
+import { ChampSignatureComponent } from './champ-signature/champ-signature.component';
+import { ChampSignature2Component } from './champ-signature2/champ-signature2.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { ScoreValidationDirective } from './score-validation.directive';
     NavigationComponent,
     NouvelleRencontreComponent,
     ChargerRencontreComponent,
-    ScoreValidationDirective
+    ScoreValidationDirective,
+    ChampSignatureComponent,
+    ChampSignature2Component
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { ScoreValidationDirective } from './score-validation.directive';
     NgbModule,
     FormsModule,
     ToastsContainer,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularSignaturePadModule
     //SignaturePadModule
   ],
   providers: [],

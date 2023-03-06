@@ -3,11 +3,11 @@
       <div class="row">
         <div class="col-6">
           <label>Capitaine {{ match.equipeReceveuse.nomEquipe }}</label>
-          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false" (done)="saveImageEquipeReceveuse($event)" [emitOnDragEnd]="true"></ng-signature-pad>
+          <app-champ-signature [signature]="match.signatureEquipeReceveuse" (onSignatureChanged)="saveImageEquipeReceveuse($event)"></app-champ-signature>
         </div>
         <div class="col-6">
           <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }}</label>
-          <ng-signature-pad [responsive]="true" [showClearButton]="true" [showDoneButton]="false" (done)="saveImageEquipeVisiteuse($event)" [emitOnDragEnd]="true"></ng-signature-pad>
+          <app-champ-signature [signature]="match.signatureEquipeVisiteuse"  (onSignatureChanged)="saveImageEquipeVisiteuse($event)"></app-champ-signature>
         </div>
       </div>
       <div class="row">
