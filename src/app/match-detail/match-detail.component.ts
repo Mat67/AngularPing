@@ -4,6 +4,7 @@ import { RepositoryService } from '../services/repository.service';
 import * as _ from 'underscore';
 import { Match } from '../model/match';
 import { ToastService } from '../services/toast-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-match-detail',
@@ -14,8 +15,9 @@ export class MatchDetailComponent implements OnInit {
   app: App;
   onBlurMethod: any;
   @ViewChild('dangerTpl') public templateref: TemplateRef<any>;
+  matchId: any;
 
-  constructor(private repository: RepositoryService, public toastService: ToastService) {
+  constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
     this.app = new App();
     this.onBlurMethod = _.debounce(() => {
       console.log('sauvegarde');
@@ -35,7 +37,11 @@ export class MatchDetailComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.matchId = this.route.snapshot.paramMap.get('matchId');
+
+    this.repository.getMatch(this.matchId)
+  }
 
   afficher() {
     return this.app.match;
