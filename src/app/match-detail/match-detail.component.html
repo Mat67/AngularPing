@@ -22,8 +22,8 @@
 </div>
 
 
-<div *ngIf="afficher()">
-  <app-print-page [match]="app.match"></app-print-page>
+<div *ngIf="afficher()" style="padding-top: 20px; padding-bottom: 20px;">
+  <app-print-page [match]="app.match" ></app-print-page>
 
   <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"></app-entete>
 

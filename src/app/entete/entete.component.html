@@ -28,6 +28,7 @@
                       [(ngModel)]="match.Date"
                       (blur)="onBlurMethod()"
                       ngbDatepicker
+                      required
                       #d="ngbDatepicker"
                     />
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
@@ -35,7 +36,11 @@
                 </div>
 
                 <div class="col-6">
-                    <ngb-timepicker [spinners]="false" [(ngModel)]="match.Heure" (blur)="onBlurMethod()"></ngb-timepicker>
+                  <div class="input-group">
+                    <ngb-timepicker  [spinners]="false" [(ngModel)]="match.Heure" (blur)="onBlurMethod()"  required></ngb-timepicker>
+
+                  </div>
+
                 </div>
             </div>
         </div>
@@ -43,7 +48,7 @@
 
         <div class="col-2 form-group">
             <label for="categorie">Catégorie</label>
-            <select class="form-control form-control-sm custom-select" id="categorie" [(ngModel)]="match.categorie" (blur)="onBlurMethod()">
+            <select class="form-control form-control custom-select" id="categorie" [(ngModel)]="match.categorie" (blur)="onBlurMethod()">
                 <option>Messieurs</option>
                 <option>Dames</option>
             </select>
@@ -51,7 +56,7 @@
 
         <div class="col-3 form-group">
             <label for="epreuve">Epreuve</label>
-            <select class="form-control form-control-sm custom-select" id="epreuve" [(ngModel)]="match.epreuve" (blur)="onBlurMethod()">
+            <select class="form-control form-control custom-select" id="epreuve" [(ngModel)]="match.epreuve" (blur)="onBlurMethod()">
                 <option>Championnat par équipe</option>
             </select>
         </div>
@@ -59,12 +64,12 @@
 
         <div class="col-1 form-group">
             <label for="journee">Journée</label>
-            <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16" [(ngModel)]="match.journee" (blur)="onBlurMethod()"/>
+            <input type="number" placeholder="#" class="form-control form-control" min="1" max="16" [(ngModel)]="match.journee" (blur)="onBlurMethod()"/>
         </div>
 
         <div class="col-2 form-group">
             <label for="division">Division</label>
-            <select class="form-control form-control-sm custom-select" id="division" [(ngModel)]="match.division" (blur)="onBlurMethod()">
+            <select class="form-control form-control custom-select" id="division" [(ngModel)]="match.division" (blur)="onBlurMethod()">
                 <option>Excellence</option>
             </select>
         </div>
