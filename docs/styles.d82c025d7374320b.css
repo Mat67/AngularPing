@@ -1,0 +1,1 @@
+.transparent{border:0;background:transparent}.ng-invalid:not(form){border-left:5px solid #a94442}app-print-page{display:none}@media print{.noprint{display:none}app-print-page{display:block}app-entete{display:none}app-modal{display:none}ng-signature-pad{display:none}app-bottom-bar{display:none}app-rencontres{display:none}app-equipe{display:none}app-navigation{display:none}}

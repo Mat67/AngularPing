@@ -81,17 +81,15 @@ export class ModalComponent implements OnInit {
   }
 
   getQRCodeSignatureUrlEquipeReceveuse() {
-    //return 'http://serveur-mat.synology.me:8999/matchs/' + this.match.id + '/equipes/0'
     return this.getQRCodeUrlSignature('0')
   }
 
   private getQRCodeUrlSignature(equipeId) {
-    //return 'http://serveur-mat.synology.me:8999/matchs/' + this.match.id + '/equipes/0'
-    return 'http://localhost:4200/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
+    return 'http://serveur-mat.synology.me/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
+    //return 'http://localhost:4200/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
   }
 
   getQRCodeSignatureUrlEquipeVisiteuse() {
-    //return 'http://serveur-mat.synology.me:8999/matchs/' + this.match.id + '/equipes/0'
     return this.getQRCodeUrlSignature('1')
   }
 
