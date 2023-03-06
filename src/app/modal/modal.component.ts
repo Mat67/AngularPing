@@ -85,7 +85,7 @@ export class ModalComponent implements OnInit {
   }
 
   private getQRCodeUrlSignature(equipeId) {
-    return 'http://serveur-mat.synology.me/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
+    return 'http://serveur-mat.synology.me/#/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
     //return 'http://localhost:4200/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
   }
 

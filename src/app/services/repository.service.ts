@@ -25,6 +25,7 @@ export class RepositoryService {
   onError: (data) => void;
   ws: WebSocketSubject<unknown>;
   getMatchResolver: (match: Match) => void;
+  sauvegarderMatchResolver: (value: unknown) => void;
 
   constructor() {
     const createWebSocket = (uri) => {
@@ -51,6 +52,11 @@ export class RepositoryService {
                   this.getMatchResolver(m);
                 }
               } else if (d.message === 'sauvegarderMatchResultat') {
+                if (this.sauvegarderMatchResolver) {
+                  this.sauvegarderMatchResolver(d.data)
+                  this.sauvegarderMatchResolver = undefined
+
+                }
                 this.onMatchUpdate(Match.fabriqueMatch(d.data));
               } else if (d.message === 'ModifierSignatureResultat') {
                 var signature = {
@@ -64,7 +70,7 @@ export class RepositoryService {
                 this.getSignaturesResolver(d.data);
               }
 
-              console.log('recu du serveur ' + d);
+              console.log('recu du serveur ' + d.message);
             },
             (error) => observer.error(error),
             () => observer.complete()
@@ -99,8 +105,17 @@ export class RepositoryService {
       );
   }
 
-  sauvegarderMath(match: Match) {
+  async sauvegarderMath(match: Match) {
     this.ws.next({ message: 'sauvegarderMatch', data: match });
+
+
+    return await new Promise((resolve, reject) => {
+      this.sauvegarderMatchResolver = resolve;
+
+      setTimeout(() => reject('timeout'), 50000);
+    });
+
+
     //   let matchsIds = this.getListeMatchesId()
     //   var matchTrouve = matchsIds.indexOf(match.id) !== -1;
     //   if (!matchTrouve){

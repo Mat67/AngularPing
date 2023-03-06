@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Match } from '../model/match';
+import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-print-page',
@@ -8,10 +9,20 @@ import { Match } from '../model/match';
 })
 export class PrintPageComponent implements OnInit {
   @Input() match: Match;
+  signatureEquipeReceveuse: any;
+  signatureEquipeVisiteuse: any;
 
-  constructor() { }
+  constructor(private repository: RepositoryService) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit() {
+    this.repository.GetSignatures(this.match.id).then((s) => {
+      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+    })
   }
 
   getDate() {

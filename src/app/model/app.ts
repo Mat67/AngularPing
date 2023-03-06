@@ -8,8 +8,5 @@ export class App {
   match: Match
 
 
-  public creerNouvelleRencontre(nombreJoueur) {
-    this.match = Match.fabriqueMatch(nombreJoueur)
 
-  }
 }

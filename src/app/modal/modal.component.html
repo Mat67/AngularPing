@@ -21,13 +21,13 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <label>Capitaine {{ match.equipeReceveuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine().toString() }}
+        <label>Capitaine {{ match.equipeReceveuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine()?.toString() }}
         </label>
         <app-champ-signature [signature]="signatureEquipeReceveuse"
           (onSignatureChanged)="saveImageEquipeReceveuse($event)"></app-champ-signature>
       </div>
       <div class="col-6">
-        <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine().toString() }}
+        <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine()?.toString() }}
         </label>
         <app-champ-signature [signature]="signatureEquipeVisiteuse"
           (onSignatureChanged)="saveImageEquipeVisiteuse($event)"></app-champ-signature>
