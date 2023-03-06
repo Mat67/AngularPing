@@ -1,42 +1,49 @@
 <ng-template #contentChargerRencontre let-modal id="modalChargerRencontre">
   <div class="container">
     <div class="row">
+
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Sélectionnez une rencontre pour l'afficher</h5>
         </div>
         <div class="modal-body">
           <div class="row" *ngFor="let match of matchs; index as i">
-            <div class="col-10">
-              <div class="card mb-3">
-                <div class="card-body cursor-pointer" (click)="onClick(matchs[i])">
-                  <div class="row">
-                    <div class="col-10">
-                      <span *ngIf="matchs[i].getStatus() === 'ENCOURS'" class="badge text-bg-warning">En Cours</span>
-                      <span *ngIf="matchs[i].getStatus() === 'BROUILLON'" class="badge text-bg-secondary">Brouillon</span>
-                      <span *ngIf="matchs[i].getStatus() === 'TERMINE'" class="badge text-bg-success">Termine</span>
-                    </div>
-                   <div class="col-2 text-center">
-                    <button type="button" class="btn btn-danger btn-sm" (click)="supprimer(matchs[i])">X</button>
+            <div routerLink="/matchs/{{ match.id }}" routerLinkActive="active" ariaCurrentWhenActive="page" style="cursor:pointer;">
+              <div class="col-10">
+                <div class="card mb-3">
+                  <div class="card-body cursor-pointer" (click)="onClick(matchs[i])">
+                    <div class="row">
+                      <div class="col-10">
+                        <span *ngIf="matchs[i].getStatus() === 'ENCOURS'" class="badge text-bg-warning">En Cours</span>
+                        <span *ngIf="matchs[i].getStatus() === 'BROUILLON'"
+                          class="badge text-bg-secondary">Brouillon</span>
+                        <span *ngIf="matchs[i].getStatus() === 'TERMINE'" class="badge text-bg-success">Termine</span>
+                      </div>
+                      <div class="col-2 text-center">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="supprimer(matchs[i])">X</button>
 
-                   </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      {{ matchs[i].toString() }}
+                    </div>
                   </div>
-                  <div class="row">
-                    {{ matchs[i].toString() }}
+                  <div class="card-footer text-muted">
+                    {{ afficheDateDepuis(matchs[i]) }}
                   </div>
-                </div>
-                <div class="card-footer text-muted">
-                  {{ afficheDateDepuis(matchs[i]) }}
                 </div>
               </div>
             </div>
+
+
           </div>
 
         </div>
 
       </div>
+
     </div>
   </div>
 </ng-template>
 
-<a class="nav-link" href="#" (click)="openChargerRencontre(contentChargerRencontre)">Charger une rencontre</a>
+<div class="nav-link" (click)="openChargerRencontre(contentChargerRencontre)" style="cursor:pointer;">Charger une rencontre</div>

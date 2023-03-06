@@ -14,20 +14,6 @@ export class SignatureMobileComponent {
 
   constructor(private route: ActivatedRoute, private repository: RepositoryService,) {
 
-
-    // _activatedRoute.paramMap.pipe(
-    //   switchMap((params) => {
-    //     this.matchId = params.get('matchId')
-    //     return this.matchId
-    //   })
-    // );
-
-    // _activatedRoute.paramMap.pipe(
-    //   switchMap((params) => {
-    //     this.equipeId = params.get('equipeId')
-    //     return this.equipeId
-    //   })
-    // );
   }
 
   ngOnInit() {

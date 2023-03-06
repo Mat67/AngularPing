@@ -40,7 +40,9 @@ export class MatchDetailComponent implements OnInit {
   ngOnInit() {
     this.matchId = this.route.snapshot.paramMap.get('matchId');
 
-    this.repository.getMatch(this.matchId)
+    this.repository.getMatch(this.matchId).then(m =>
+      this.app.match = m
+      )
   }
 
   afficher() {

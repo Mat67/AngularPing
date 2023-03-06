@@ -24,6 +24,7 @@ export class RepositoryService {
   getSignaturesResolver: (signatures: any) => void;
   onError: (data) => void;
   ws: WebSocketSubject<unknown>;
+  getMatchResolver: (match: Match) => void;
 
   constructor() {
     const createWebSocket = (uri) => {
@@ -32,7 +33,7 @@ export class RepositoryService {
           this.ws = webSocket(uri);
           const subscription = this.ws.asObservable().subscribe(
             (d: any) => {
-              if (d.message === 'getMatchs') {
+              if (d.message === 'getMatchsResult') {
                 if (this.getMatchsResolver) {
                   var matchs = [];
 
@@ -41,6 +42,13 @@ export class RepositoryService {
                   });
 
                   this.getMatchsResolver(matchs);
+                }
+
+              } else if (d.message === 'getMatchResult') {
+                if (this.getMatchResolver) {
+                  var m = Match.fabriqueMatch(d.data)
+
+                  this.getMatchResolver(m);
                 }
               } else if (d.message === 'sauvegarderMatchResultat') {
                 this.onMatchUpdate(Match.fabriqueMatch(d.data));
@@ -102,10 +110,14 @@ export class RepositoryService {
     //   localStorage.setItem('eps-match-' + match.id, JSON.stringify(match))
   }
 
-  chargeMatch(id: string) {
-    //this.ws.next({ message: 'getMatch', data: id });
-    //var obj = JSON.parse(localStorage.getItem('eps-match-' + id))
-    //return Match.fabriqueMatch(obj)
+  async getMatch(id: string) : Promise<Match> {
+    this.ws.next({ message: 'getMatch', data : id });
+
+    return await new Promise((resolve, reject) => {
+      this.getMatchResolver = resolve;
+
+      setTimeout(() => reject('timeout'), 5000);
+    });
   }
 
   supprimerMatch(id: string) {

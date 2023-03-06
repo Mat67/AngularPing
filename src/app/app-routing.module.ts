@@ -5,6 +5,7 @@ import { SignatureMobileComponent } from './signature-mobile/signature-mobile.co
 
 const routes: Routes = [
   { path: '', component: MatchDetailComponent },
+  { path: 'matchs/:matchId', component: MatchDetailComponent },
   { path: 'matchs/:matchId/equipes/:equipeId/signature', component: SignatureMobileComponent },
 ];
 
