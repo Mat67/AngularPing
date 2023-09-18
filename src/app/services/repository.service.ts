@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { delay, Observable, retryWhen, Subject, tap } from 'rxjs';
 import { Match } from '../model/match';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { Joueur } from '../model/joueur';
 
-const WS_URL = 'ws://serveur-mat.synology.me:8999';
-//const WS_URL = 'ws://localhost:8999';
+//const WS_URL = 'ws://serveur-mat.synology.me:8999';
+const WS_URL = 'ws://localhost:8999';
 
 export interface Message {
   author: string;
@@ -26,6 +27,7 @@ export class RepositoryService {
   ws: WebSocketSubject<unknown>;
   getMatchResolver: (match: Match) => void;
   sauvegarderMatchResolver: (value: unknown) => void;
+  getAllJoueurResolver: (value: Joueur[]) => void;
 
   constructor() {
     const createWebSocket = (uri) => {
@@ -68,6 +70,9 @@ export class RepositoryService {
               }
               else if (d.message === 'getSignaturesResultat') {
                 this.getSignaturesResolver(d.data);
+              }
+              else if (d.message === 'getAllJoueursResult') {
+                this.getAllJoueurResolver(d.data);
               }
 
               console.log('recu du serveur ' + d.message);
@@ -171,6 +176,16 @@ export class RepositoryService {
 
     return await new Promise((resolve, reject) => {
       this.getSignaturesResolver = resolve;
+
+      setTimeout(() => reject('timeout'), 5000);
+    });
+  }
+
+  async getAllJoueurs() : Promise<Joueur[]> {
+    this.ws.next({ message: 'getAllJoueurs' });
+
+    return await new Promise((resolve, reject) => {
+      this.getAllJoueurResolver = resolve;
 
       setTimeout(() => reject('timeout'), 5000);
     });

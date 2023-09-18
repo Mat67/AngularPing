@@ -5,6 +5,7 @@ import * as _ from 'underscore';
 import { Match } from '../model/match';
 import { ToastService } from '../services/toast-service';
 import { ActivatedRoute } from '@angular/router';
+import { Joueur } from '../model/joueur';
 
 @Component({
   selector: 'app-match-detail',
@@ -16,6 +17,7 @@ export class MatchDetailComponent implements OnInit {
   onBlurMethod: any;
   @ViewChild('dangerTpl') public templateref: TemplateRef<any>;
   matchId: any;
+  joueurs: Joueur[]
 
   constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
     this.app = new App();
@@ -24,10 +26,16 @@ export class MatchDetailComponent implements OnInit {
       this.repository.sauvegarderMath(this.app.match);
     }, 2000);
 
+
+
     this.repository.onMatchUpdate = (match: Match) => {
       if (this.app.match.id == match.id)
         this.app.match = match;
     };
+
+    this.repository.getAllJoueurs().then(j => {
+      this.joueurs = j
+    })
 
 
     this.repository.onError = (error) => {

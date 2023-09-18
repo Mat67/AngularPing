@@ -3,6 +3,7 @@ import { Match } from '../model/match';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RandomService } from '../services/random.service';
 import { RencontreDouble } from '../model/rencontre';
+import { RepositoryService } from '../services/repository.service';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -12,13 +13,18 @@ import { RencontreDouble } from '../model/rencontre';
 export class BottomBarComponent implements OnInit {
   @Input() match: Match;
 
-  constructor() { }
+  constructor(private repository: RepositoryService) { }
 
   ngOnInit(): void {
   }
 
   public imprimer() {
-    window.print();
+    this.repository.GetSignatures(this.match.id).then((s) => {
+      this.match.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+      this.match.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+    }).then(() => {
+      window.print();
+    })
   }
 
   public random() {

@@ -70,10 +70,12 @@ export class ModalComponent implements OnInit {
 
   saveImageEquipeReceveuse(base64data) {
     this.repository.ModifierSignature(this.match.id, '0', base64data)
+    this.match.signatureEquipeReceveuse = base64data
   }
 
   saveImageEquipeVisiteuse (base64data) {
     this.repository.ModifierSignature(this.match.id, '1', base64data)
+    this.match.signatureEquipeVisiteuse = base64data
   }
 
   isButtonImprimerActif() {
@@ -94,6 +96,12 @@ export class ModalComponent implements OnInit {
   }
 
   Imprimer() {
+    this.repository.GetSignatures(this.match.id).then((s) => {
+      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+    })
+
+
     this.modalService.dismissAll()
     window.print()
   }

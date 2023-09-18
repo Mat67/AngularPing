@@ -19,10 +19,7 @@ export class PrintPageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.repository.GetSignatures(this.match.id).then((s) => {
-      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
-      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
-    })
+    
   }
 
   getDate() {
