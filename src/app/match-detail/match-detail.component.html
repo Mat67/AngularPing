@@ -20,10 +20,10 @@
   <div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
     <div class="row">
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"></app-equipe>
       </div>
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"></app-equipe>
       </div>
     </div>
     <div class="row">

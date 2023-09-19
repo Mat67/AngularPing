@@ -72,7 +72,14 @@ export class RepositoryService {
                 this.getSignaturesResolver(d.data);
               }
               else if (d.message === 'getAllJoueursResult') {
-                this.getAllJoueurResolver(d.data);
+                var joueurs = [];
+
+                  d.data.forEach((j) => {
+                    joueurs.push(Joueur.fabrique(j));
+                  });
+
+                
+                this.getAllJoueurResolver(joueurs);
               }
 
               console.log('recu du serveur ' + d.message);

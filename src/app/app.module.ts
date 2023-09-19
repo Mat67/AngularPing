@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +51,8 @@ import { SignatureMobileComponent } from './signature-mobile/signature-mobile.co
     ToastsContainer,
     ReactiveFormsModule,
     AngularSignaturePadModule,
-    QRCodeModule
+    QRCodeModule,
+    NgbTypeaheadModule
     //SignaturePadModule
   ],
   providers: [],
