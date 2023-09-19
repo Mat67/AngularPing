@@ -32,6 +32,15 @@ export class MatchDetailComponent implements OnInit {
         this.app.match = match;
     };
 
+    this.repository.onSignatureUpdate = (data) => {
+      if (this.app.match.id === data.matchId) {
+        if (data.equipeId === '0')
+          this.app.match.signatureEquipeReceveuse = data.signature
+        else if (data.equipeId === '1')
+          this.app.match.signatureEquipeVisiteuse = data.signature
+      }
+    }
+
     this.repository.getAllJoueurs().then(j => {
       this.joueurs = j
     })
@@ -48,6 +57,11 @@ export class MatchDetailComponent implements OnInit {
     this.route.data.subscribe(
       ({match}) => {
         this.app.match = match
+
+        this.repository.GetSignatures(this.app.match.id).then((s) => {
+          this.app.match.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+          this.app.match.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+        })
       });
 
     // this.matchId = this.route.snapshot.paramMap.get('matchId');

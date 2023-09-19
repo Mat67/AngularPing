@@ -19,12 +19,9 @@ export class BottomBarComponent implements OnInit {
   }
 
   public imprimer() {
-    this.repository.GetSignatures(this.match.id).then((s) => {
-      this.match.signatureEquipeReceveuse = s.signatureEquipeReceveuse
-      this.match.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
-    }).then(() => {
-      window.print();
-    })
+    window.print();
+
+    
   }
 
   public random() {

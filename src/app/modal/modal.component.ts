@@ -18,14 +18,7 @@ export class ModalComponent implements OnInit {
   closeResult: string;
 
   constructor(private modalService: NgbModal, private repository: RepositoryService) {
-    repository.onSignatureUpdate = (data) => {
-      if (this.match.id === data.matchId) {
-        if (data.equipeId === '0')
-          this.signatureEquipeReceveuse = data.signature
-        else if (data.equipeId === '1')
-          this.signatureEquipeVisiteuse = data.signature
-      }
-    }
+   
   }
 
   signatureEquipeReceveuseMiseAJour() {
@@ -54,11 +47,6 @@ export class ModalComponent implements OnInit {
   }
 
   open(content) {
-    this.repository.GetSignatures(this.match.id).then((s) => {
-      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
-      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
-    })
-
     this.modalService.open(content, { size: 'xl', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
