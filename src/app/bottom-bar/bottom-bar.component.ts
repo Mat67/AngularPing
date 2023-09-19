@@ -24,6 +24,14 @@ export class BottomBarComponent implements OnInit {
     
   }
 
+
+  isButtonImprimerActif() {
+    return this.match.matchEstTermine() 
+    && this.match.signatureEquipeReceveuse != undefined 
+    && this.match.signatureEquipeVisiteuse != undefined
+  }
+
+
   public random() {
     var randomService = new RandomService;
 

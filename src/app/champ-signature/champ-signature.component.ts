@@ -15,7 +15,7 @@ export class ChampSignatureComponent implements AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if (changes?.signature?.currentValue)
+    if (changes?.signature?.currentValue && this.signaturePad)
       this.signaturePad.fromDataURL(changes.signature.currentValue)
     //this.doSomething(changes.categoryId.currentValue);
     // You can also use categoryId.previousValue and

@@ -67,7 +67,10 @@ export class ModalComponent implements OnInit {
   }
 
   isButtonImprimerActif() {
-    return this.match.signatureEquipeReceveuse && this.match.signatureEquipeVisiteuse
+    return (
+      this.match.signatureEquipeReceveuse !== undefined &&
+      this.match.signatureEquipeVisiteuse !== undefined
+    );
   }
 
   getQRCodeSignatureUrlEquipeReceveuse() {

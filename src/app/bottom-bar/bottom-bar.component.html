@@ -9,10 +9,10 @@
                 <app-modal [match]="match"></app-modal>
             </div>
             <div class="col-2">
-                <button class="btn btn-success" (click)="imprimer()">Imprimer</button>
+                <button class="btn btn-success" (click)="imprimer()" [disabled]="!isButtonImprimerActif()">Imprimer</button>
             </div>
             <div class="col-2">
-                <button class="btn btn-outline-primary" (click)="random()">Random</button>
+                <button class="btn btn-outline-primary" (click)="random()" >Random</button>
             </div>
         </div>
     </div>
