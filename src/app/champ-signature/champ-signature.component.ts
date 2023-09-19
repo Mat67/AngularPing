@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angular-signature-pad';
-import { Match } from '../model/match';
 
 @Component({
   selector: 'app-champ-signature',

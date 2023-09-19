@@ -66,7 +66,8 @@ export class RepositoryService {
                   equipeId:d.data.equipeId,
                   signature: d.data.signature,
                 }
-                this.onSignatureUpdate(signature);
+                if (this.onSignatureUpdate)
+                  this.onSignatureUpdate(signature);
               }
               else if (d.message === 'getSignaturesResultat') {
                 this.getSignaturesResolver(d.data);
