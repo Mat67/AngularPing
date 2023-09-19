@@ -17,18 +17,22 @@ export class EquipeComponent implements OnInit {
   constructor() { }
 
 
-  onItemSelected(event: NgbTypeaheadSelectItemEvent<Joueur>, i:string): void {
-    this.equipe.joueurs[i].nom = event.item?.nom
-    this.equipe.joueurs[i].classement = event.item?.classement
-    this.equipe.joueurs[i].numeroLicence = event.item?.numeroLicence
+  onItemSelected(event: NgbTypeaheadSelectItemEvent<string>, i:string): void {
+    var joueurSelectionne = this.joueurs.find(j => j.nom.toLocaleLowerCase() === event.item.toLocaleLowerCase())
+    
+    if (joueurSelectionne) {
+      this.equipe.joueurs[i].nom = joueurSelectionne?.nom
+      this.equipe.joueurs[i].classement = joueurSelectionne?.classement
+      this.equipe.joueurs[i].numeroLicence = joueurSelectionne?.numeroLicence
+    }
   }
 
-  search: OperatorFunction<string, readonly Joueur[]> = (text$: Observable<string>) =>
+  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   text$.pipe(
     debounceTime(200),
     distinctUntilChanged(),
     map((term) =>
-      term.length < 2 ? [] : this.joueurs.filter((v) => v?.nom?.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10),
+      term.length < 2 ? [] : this.joueurs.filter((v) => v?.nom?.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(m => m.nom),
     ),
   );
 

@@ -18,7 +18,7 @@
         <tr *ngFor="let joueur of equipe.joueurs; index as i" (dblclick)="setCaptain(joueur)" [ngClass]="joueur.estCapitaine ? 'table-info': ''">
           <td scope="row" class="td-position">{{ joueur.position }}</td>
           <td class="form-group">
-            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="equipe.joueurs[i].nom" [ngbTypeahead]="search" (blur)="onBlurMethod()" (selectItem)="onItemSelected($event, i)" />
+            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="equipe.joueurs[i].nom" [ngbTypeahead]="search" (blur)="onBlurMethod()" (selectItem)="onItemSelected($event, i)"/>
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'classement' + i  }}" required
