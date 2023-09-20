@@ -56,7 +56,7 @@ export class ChargerRencontreComponent {
       tmpHeure = match.Heure
 
 
-      var d = moment(new Date(tmpDate.getFullYear(), tmpDate.getMonth() - 1, tmpDate.getDate(), tmpHeure ? tmpHeure.hour : 0, tmpHeure ? tmpHeure.minute : 0))
+      var d = moment(new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpHeure ? tmpHeure.hour : 0, tmpHeure ? tmpHeure.minute : 0))
       return d.locale('fr').fromNow();
     } else
       return ''

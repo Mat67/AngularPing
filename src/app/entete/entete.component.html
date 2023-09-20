@@ -23,7 +23,7 @@
                         <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="match.Date"
                             (blur)="onBlurMethod()" ngbDatepicker required #d="ngbDatepicker"
                             [readonly]="lectureSeule" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button" [disabled]="lectureSeule">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-calendar-date" viewBox="0 0 16 16">
                                 <path

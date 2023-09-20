@@ -13,7 +13,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
 		
 		return {
 			day: new Date(value).getDate(),
-			month: new Date(value).getMonth(),
+			month: new Date(value).getMonth() +1,
 			year: new Date(value).getFullYear()
 		};
 		
@@ -23,7 +23,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
 
 	toModel(date: NgbDateStruct | null): string | null {
 		if (date)
-			return new Date(date.year, date.month, date.day).toISOString()
+			return new Date(date.year, date.month -1, date.day).toISOString()
 
 		return null
 		
