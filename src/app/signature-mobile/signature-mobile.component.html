@@ -1,1 +1,21 @@
-<app-champ-signature [signature]="signature" (onSignatureChanged)="sauvegardeSignature($event)"></app-champ-signature>
+<div class="container">
+    <div class="row">
+        <label>{{ resultat }}</label>
+    </div>
+    <div class="row">
+        <label>Signature Capitaine de l'équipe {{ nomEquipe }}</label>
+    </div>
+    <div class="row">
+        <app-champ-signature [signature]="signature" (onSignatureChanged)="signatureChanged($event)" />
+
+    </div>
+    <div class="row">
+        <div class="col-6"  style="text-align: center; font-weight: bold;">
+            <button class="btn btn-danger" [disabled]="false" (click)="effacerSignature()">Effacer</button>
+        </div>
+        <div class="col-6"  style="text-align: center; font-weight: bold;">
+            <button class="btn btn-success" [disabled]="false"  (click)="validerSignature()">Valider</button>
+        </div>
+    </div>
+</div>
+

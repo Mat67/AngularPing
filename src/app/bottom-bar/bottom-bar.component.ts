@@ -20,8 +20,6 @@ export class BottomBarComponent implements OnInit {
 
   public imprimer() {
     window.print();
-
-    
   }
 
 

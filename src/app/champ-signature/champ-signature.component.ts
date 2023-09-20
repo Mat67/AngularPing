@@ -3,7 +3,7 @@ import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angula
 
 @Component({
   selector: 'app-champ-signature',
-  template: '<signature-pad #signature [options]="signaturePadOptions" (drawEnd)="drawComplete($event)"></signature-pad>'
+  template: '<signature-pad #signature [options]="signaturePadOptions" (drawEnd)="drawComplete($event)" ></signature-pad>'
 })
 
 export class ChampSignatureComponent implements AfterViewInit {
@@ -15,8 +15,13 @@ export class ChampSignatureComponent implements AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if (changes?.signature?.currentValue && this.signaturePad)
-      this.signaturePad.fromDataURL(changes.signature.currentValue)
+    if (this.signaturePad) {
+      if (!changes?.signature?.currentValue)
+        this.signaturePad.clear()
+      else 
+        this.signaturePad.fromDataURL(changes.signature.currentValue)
+    }
+      
     //this.doSomething(changes.categoryId.currentValue);
     // You can also use categoryId.previousValue and
     // categoryId.firstChange for comparing old and new values
@@ -30,6 +35,7 @@ export class ChampSignatureComponent implements AfterViewInit {
     canvasWidth: 500,
     canvasHeight: 300
   };
+
 
   constructor() {
     // no-op
