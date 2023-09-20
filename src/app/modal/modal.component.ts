@@ -97,6 +97,12 @@ export class ModalComponent implements OnInit {
     window.print()
   }
 
+
+  peutSigner() {
+    return this.match.matchEstTermine() && this.signatureEquipeReceveuse != undefined && this.signatureEquipeVisiteuse != undefined
+  }
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
