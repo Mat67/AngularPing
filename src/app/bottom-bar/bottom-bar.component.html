@@ -9,7 +9,7 @@
                 <app-modal [match]="match" [godeMode]="godeMode"></app-modal>
             </div>
             <div class="col-2">
-                <button class="btn btn-success" (click)="imprimer()" [disabled]="!isButtonImprimerActif()">Imprimer</button>
+                <button class="btn btn-success" (click)="imprimer()" [disabled]="!isButtonImprimerActif() && !godeMode">Imprimer</button>
             </div>
             <div class="col-2">
                 <button class="btn btn-outline-primary" (click)="random()" *ngIf="godeMode">Random</button>
