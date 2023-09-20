@@ -11,6 +11,7 @@ export class RencontresComponent implements OnInit {
   @Input() rencontres: Rencontre[]
 
   @Input() match: Match;
+  @Input() lectureSeule: boolean
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() {

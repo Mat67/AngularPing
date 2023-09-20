@@ -58,6 +58,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 })
 export class EnteteComponent implements OnInit {
   @Input() match: Match;
+  @Input() lectureSeule: boolean
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

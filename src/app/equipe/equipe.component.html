@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12"></div>
     <input class="form-control form-control-sm transparent text-center text-uppercase" placeholder="Nom Equipe"
-      id="nomEquipe" required [(ngModel)]="equipe.nomEquipe" name="nomEquipe" />
+      id="nomEquipe" required [(ngModel)]="equipe.nomEquipe" name="nomEquipe" [readonly]="lectureSeule"/>
   </div>
   <div class="row">
     <table class="table table-striped table-sm">
@@ -18,15 +18,15 @@
         <tr *ngFor="let joueur of equipe.joueurs; index as i" (dblclick)="setCaptain(joueur)" [ngClass]="joueur.estCapitaine ? 'table-info': ''">
           <td scope="row" class="td-position">{{ joueur.position }}</td>
           <td class="form-group">
-            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="equipe.joueurs[i].nom" [ngbTypeahead]="search" (blur)="onBlurMethod()" (selectItem)="onItemSelected($event, i)"/>
+            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="equipe.joueurs[i].nom" [ngbTypeahead]="search" (blur)="onBlurMethod()" (selectItem)="onItemSelected($event, i)" [readonly]="lectureSeule"/>
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'classement' + i  }}" required
-              [(ngModel)]="equipe.joueurs[i].classement" name="classement" (blur)="onBlurMethod()">
+              [(ngModel)]="equipe.joueurs[i].classement" name="classement" (blur)="onBlurMethod()" [readonly]="lectureSeule">
           </td>
           <td>
             <input type="search" class="form-control transparent text-center" id="{{ 'numeroLicence' + i }}" required
-              [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence" (blur)="onBlurMethod()">
+              [(ngModel)]="equipe.joueurs[i].numeroLicence" name="numeroLicence" (blur)="onBlurMethod()" [readonly]="lectureSeule">
           </td>
         </tr>
       </tbody>

@@ -12,6 +12,7 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 export class EquipeComponent implements OnInit {
   @Input() equipe: Equipe;
   @Input() joueurs: Joueur[];
+  @Input() lectureSeule: boolean
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
