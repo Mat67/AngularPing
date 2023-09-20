@@ -78,7 +78,7 @@ export class MatchDetailComponent implements OnInit {
 
 
   estEnLectureSeule() {
-    return (this.app.match.signatureEquipeReceveuse !== undefined || this.app.match.signatureEquipeVisiteuse !== undefined) && !this.godeMode
+    return (this.app.match.matchEstTermine() && (this.app.match.signatureEquipeReceveuse !== undefined || this.app.match.signatureEquipeVisiteuse !== undefined)) && !this.godeMode
   }
 
 	showStandard() {

@@ -1,25 +1,33 @@
 import { Component, OnInit, Input, EventEmitter, Output, Injectable } from '@angular/core';
 import { Match } from '../model/match';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 @Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
 	readonly DELIMITER = '-';
 
 	fromModel(value: string | null): NgbDateStruct | null {
-		if (value) {
-			const date = value.split(this.DELIMITER);
-			return {
-				day: parseInt(date[0], 10),
-				month: parseInt(date[1], 10),
-				year: parseInt(date[2], 10),
-			};
-		}
+		if (!value)
+			return null
+		
+		return {
+			day: new Date(value).getDate(),
+			month: new Date(value).getMonth(),
+			year: new Date(value).getFullYear()
+		};
+		
+		
 		return null;
 	}
 
 	toModel(date: NgbDateStruct | null): string | null {
-		return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+		if (date)
+			return new Date(date.year, date.month, date.day).toISOString()
+
+		return null
+		
+		//return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
 	}
 }
 
