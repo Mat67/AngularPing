@@ -1,55 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
 .transparent {
-  border: 0;
-  background: transparent;
+    border: 0;
+    background: transparent;
 }
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
 }
 
 
 app-print-page {
-  /* hide the printing component from @media screen */
-  display:none;
-}
-
-@media print {
-/* invert the display (show/hide) properties of the main */
-/* aplication component and the printing component       */
-  .noprint{
-      display:none;
-  }
-
-  app-print-page {
-      display: block;
-  }
-
-  app-entete {
-      display: none;
-  }
-
-  app-modal {
-      display: none;
-  }
-
-  ng-signature-pad{
-      display: none;
-  }
-
-  app-bottom-bar {
-      display: none;
-  }
-
-  app-rencontres {
-      display: none;
-  }
-
-  app-equipe {
-      display: none;
-  }
-
-  app-navigation {
+    /* hide the printing component from @media screen */
     display: none;
 }
+
+
+
+
+@media print {
+
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+    .noprint {
+        display: none;
+    }
+
+    app-print-page {
+        display: block;
+    }
+
+    app-entete {
+        display: none;
+    }
+
+    app-modal {
+        display: none;
+    }
+
+    ng-signature-pad {
+        display: none;
+    }
+
+    app-bottom-bar {
+        display: none;
+    }
+
+    app-rencontres {
+        display: none;
+    }
+
+    app-equipe {
+        display: none;
+    }
+
+    app-navigation {
+        display: none;
+    }
+
+     /* Appliquer des marges minimales */
+     body {
+        margin: 0;
+      }
+      
+      /* Supprimer les entêtes et pieds de page */
+      @page {
+        margin: 0;
+        size: auto;
+      }
 }
