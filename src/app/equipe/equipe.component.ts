@@ -47,17 +47,19 @@ export class EquipeComponent implements OnInit {
   }
 
   setCaptain(joueurChoisit): void{
-    this.equipe.joueurs.forEach(joueur => {
-      if(joueur.position == joueurChoisit.position)
-      {
-        joueur.estCapitaine = !joueur.estCapitaine;
-      }
-      else
-      {
-        joueur.estCapitaine = false;
-      }
-    });
-
-    this.onBlurMethod()
+    if (this.lectureSeule !== true) {
+      this.equipe.joueurs.forEach(joueur => {
+        if(joueur.position == joueurChoisit.position)
+        {
+          joueur.estCapitaine = !joueur.estCapitaine;
+        }
+        else
+        {
+          joueur.estCapitaine = false;
+        }
+      });
+  
+      this.onBlurMethod()
+    }
   }
 }

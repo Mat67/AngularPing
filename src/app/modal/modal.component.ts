@@ -11,6 +11,7 @@ import { RepositoryService } from '../services/repository.service';
 })
 export class ModalComponent implements OnInit {
   @Input() match: Match;
+  @Input() godeMode: boolean
 
   signatureEquipeReceveuse:string
   signatureEquipeVisiteuse:string
@@ -73,6 +74,16 @@ export class ModalComponent implements OnInit {
     );
   }
 
+  supprimerSignatureEquipeReceveuse() {
+    this.match.signatureEquipeReceveuse = undefined
+    this.repository.ModifierSignature(this.match.id, '1', this.match.signatureEquipeReceveuse )
+  }
+
+  supprimerSignatureEquipeVisiteuse() {
+    this.match.signatureEquipeVisiteuse = undefined
+    this.repository.ModifierSignature(this.match.id, '1', this.match.signatureEquipeVisiteuse)
+  }
+
   getQRCodeSignatureUrlEquipeReceveuse() {
     return this.getQRCodeUrlSignature('0')
   }
@@ -99,7 +110,7 @@ export class ModalComponent implements OnInit {
 
 
   peutSigner() {
-    return this.match.matchEstTermine() && this.signatureEquipeReceveuse != undefined && this.signatureEquipeVisiteuse != undefined
+    return this.match.matchEstTermine() && this.match.signatureEquipeReceveuse == undefined && this.match.signatureEquipeVisiteuse == undefined
   }
 
 

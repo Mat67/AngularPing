@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { App } from '../model/app';
 import { RepositoryService } from '../services/repository.service';
 import * as _ from 'underscore';
@@ -18,9 +18,11 @@ export class MatchDetailComponent implements OnInit {
   @ViewChild('dangerTpl') public templateref: TemplateRef<any>;
   matchId: any;
   joueurs: Joueur[]
+  godeMode: boolean
 
   constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
     this.app = new App();
+    this.godeMode = false
     this.onBlurMethod = _.debounce(() => {
       console.log('sauvegarde');
       this.repository.sauvegarderMath(this.app.match);
@@ -57,6 +59,7 @@ export class MatchDetailComponent implements OnInit {
     this.route.data.subscribe(
       ({match}) => {
         this.app.match = match
+        this.desactiverGodeMode()
 
         this.repository.GetSignatures(this.app.match.id).then((s) => {
           this.app.match.signatureEquipeReceveuse = s.signatureEquipeReceveuse
@@ -74,21 +77,54 @@ export class MatchDetailComponent implements OnInit {
   }
 
 
-
+  estEnLectureSeule() {
+    return (this.app.match.signatureEquipeReceveuse !== undefined || this.app.match.signatureEquipeVisiteuse !== undefined) && !this.godeMode
+  }
 
 	showStandard() {
 		this.toastService.show('I am a standard toast');
 	}
 
-	showSuccess() {
-		this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });
+	showSuccess(texte) {
+		this.toastService.show(texte, { classname: 'bg-success text-light', delay: 2000 });
 	}
 
 	showDanger(dangerTpl) {
-		this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 5000 });
+		this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 2000 });
 	}
+
+  showWarning(texte) {
+		this.toastService.show(texte, { classname: 'bg-warning text-light', delay: 2000 });
+	}
+  
 
 	ngOnDestroy(): void {
 		this.toastService.clear();
 	}
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    // Vérifiez si les touches Ctrl, Alt et V sont enfoncées en même temps
+    if (event.ctrlKey && event.altKey && event.key === 'l') {
+      if (this.godeMode === true)
+        this.desactiverGodeMode()
+      else if (this.godeMode === false)
+        this.activerGodeMode()
+    }
+  }
+
+
+  desactiverGodeMode() {
+    if (this.godeMode === true) {
+      this.godeMode = false
+      this.showSuccess("Gode Mode désactivé !")
+    }
+  }
+
+  activerGodeMode() {
+    if (this.godeMode === false) {
+      this.godeMode = true
+      this.showWarning("Gode Mode activé !")
+    }
+  }
 }

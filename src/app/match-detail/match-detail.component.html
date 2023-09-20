@@ -15,26 +15,26 @@
 <div style="padding-top: 20px; padding-bottom: 20px;" *ngIf="afficher()">
   <app-print-page [match]="app.match" ></app-print-page>
 
-  <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"  [lectureSeule]="app.match.matchEstTermine()"></app-entete>
+  <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"  [lectureSeule]="estEnLectureSeule()"></app-entete>
 
   <div class="container" style="display : table; width: 100%; margin-bottom: 20px;">
     <div class="row">
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"  [lectureSeule]="app.match.matchEstTermine()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"  [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"  [lectureSeule]="app.match.matchEstTermine()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs"  [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" [lectureSeule]="app.match.matchEstTermine()"></app-rencontres>
+        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" [lectureSeule]="estEnLectureSeule()"></app-rencontres>
       </div>
     </div>
   </div>
 
   <div style="display : table-row; height: 100%;" *ngIf="afficher()">
-    <app-bottom-bar [match]="app.match"></app-bottom-bar>
+    <app-bottom-bar [match]="app.match" [lectureSeule]="estEnLectureSeule()" [godeMode]="godeMode"></app-bottom-bar>
   </div>
 </div>
 

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <div class="qrcodeImage">
+        <div class="qrcodeImage" style="text-align: center;">
           <qrcode [qrdata]="getQRCodeSignatureUrlEquipeReceveuse()" [allowEmptyString]="true"
             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'" [colorDark]="'#000000ff'"
             [colorLight]="'#ffffffff'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-6">
-        <div class="qrcodeImage">
+        <div class="qrcodeImage" style="text-align: center;">
           <qrcode [qrdata]="getQRCodeSignatureUrlEquipeVisiteuse()" [allowEmptyString]="true"
             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'" [colorDark]="'#000000ff'"
             [colorLight]="'#ffffffff'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
@@ -23,16 +23,21 @@
       <div class="col-6">
         <label>Capitaine {{ match.equipeReceveuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine()?.toString() }}
         </label>
+        <button class="btn btn-danger" [disabled]="false" (click)="supprimerSignatureEquipeReceveuse()" style="text-align: right;">Effacer</button>
+        
         <app-champ-signature [signature]="match.signatureEquipeReceveuse"
           (onSignatureChanged)="saveImageEquipeReceveuse($event)"></app-champ-signature>
       </div>
       <div class="col-6">
         <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine()?.toString() }}
         </label>
+        <button class="btn btn-danger" [disabled]="false" (click)="supprimerSignatureEquipeVisiteuse()">Effacer</button>
+
         <app-champ-signature [signature]="match.signatureEquipeVisiteuse"
           (onSignatureChanged)="saveImageEquipeVisiteuse($event)"></app-champ-signature>
       </div>
     </div>
+ 
     <div class="row">
       <button [disabled]="!isButtonImprimerActif()" class="btn btn-lg btn-outline-primary"
         (click)="Imprimer(event)">Imprimer</button>
@@ -40,5 +45,5 @@
   </div>
 </ng-template>
 
-<button type="button" class="btn btn-success" [disabled]="!peutSigner()"
+<button type="button" class="btn btn-success" [disabled]="!peutSigner() && !godeMode"
   (click)="open(content)">Signer</button>

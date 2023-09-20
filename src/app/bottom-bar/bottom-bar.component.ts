@@ -12,6 +12,8 @@ import { RepositoryService } from '../services/repository.service';
 })
 export class BottomBarComponent implements OnInit {
   @Input() match: Match;
+  @Input() lectureSeule: boolean;
+  @Input() godeMode: boolean;
 
   constructor(private repository: RepositoryService) { }
 
