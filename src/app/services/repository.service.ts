@@ -27,7 +27,8 @@ export class RepositoryService {
   ws: WebSocketSubject<unknown>;
   getMatchResolver: (match: Match) => void;
   sauvegarderMatchResolver: (value: unknown) => void;
-  getAllJoueurResolver: (value: Joueur[]) => void;
+  getAllJoueursResolver: (value: Joueur[]) => void;
+  getAllEquipesResolver: (value: string[]) => void;
 
   constructor() {
     const createWebSocket = (uri) => {
@@ -80,7 +81,11 @@ export class RepositoryService {
                   });
 
                 
-                this.getAllJoueurResolver(joueurs);
+                this.getAllJoueursResolver(joueurs);
+              }
+              else if (d.message === 'getAllEquipesResult') {
+                var equipes = d.data;                
+                this.getAllEquipesResolver(equipes.map(e => e.nomEquipe));
               }
 
               console.log('recu du serveur ' + d.message);
@@ -193,7 +198,17 @@ export class RepositoryService {
     this.ws.next({ message: 'getAllJoueurs' });
 
     return await new Promise((resolve, reject) => {
-      this.getAllJoueurResolver = resolve;
+      this.getAllJoueursResolver = resolve;
+
+      setTimeout(() => reject('timeout'), 5000);
+    });
+  }
+
+  async getAllEquipes() : Promise<string[]> {
+    this.ws.next({ message: 'getAllEquipes' });
+
+    return await new Promise((resolve, reject) => {
+      this.getAllEquipesResolver = resolve;
 
       setTimeout(() => reject('timeout'), 5000);
     });

@@ -18,6 +18,7 @@ export class MatchDetailComponent implements OnInit {
   @ViewChild('dangerTpl') public templateref: TemplateRef<any>;
   matchId: any;
   joueurs: Joueur[]
+  equipes: string[]
   godeMode: boolean
 
   constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
@@ -46,6 +47,11 @@ export class MatchDetailComponent implements OnInit {
     this.repository.getAllJoueurs().then(j => {
       this.joueurs = j
     })
+
+    this.repository.getAllEquipes().then(e => {
+      this.equipes = e
+    })
+
 
 
     this.repository.onError = (error) => {

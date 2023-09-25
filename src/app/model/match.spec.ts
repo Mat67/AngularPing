@@ -1,8 +1,5 @@
-import { Match } from './match';
-import { RencontreSimple } from './rencontre-simple';
-import { Rencontre } from './rencontre';
-import { RencontreDouble } from './rencontre-double';
-import { Match6 } from './match6';
+import { Match, Match6 } from './match';
+import { Rencontre, RencontreDouble, RencontreSimple } from './rencontre';
 
 describe('Match', () => {
   it('should create an instance', () => {
@@ -34,8 +31,11 @@ describe('Match', () => {
     expect(match.matchEstTermine()).toBe(true);
   });
 
-  it('Saison 2019/2020', () => {
+  it('Saison 20xx/20xx', () => {
     var match =  new Match6();
-    expect(match.getSaison()).toBe('2019/2020');
+    
+    var expectedSaison = new Date().getFullYear() + "/" + (new Date().getFullYear() + 1) 
+    
+    expect(match.getSaison()).toBe(expectedSaison);
   });
 });

@@ -5,12 +5,25 @@ import { Timestamp } from "rxjs";
 import { Time } from "@angular/common";
 
 export abstract class Match {
-  constructor(tailleEquipe:number) {
+  constructor(tailleEquipe: number) {
     this.id = new Date().getTime().toString()
     this.equipeReceveuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "A");
     this.equipeVisiteuse = Equipe.fabriqueNouvelleEquipe(tailleEquipe, "U");
     this.rencontres = new Array();
 
+    this.Date = new Date()
+
+    var heure = 20
+    if (this.Date.getDay() === 6) {
+      heure = 15
+    }
+
+    this.Heure = {
+      hour: heure,
+      minute: 0,
+      second: 0
+    }
+    
     var formule = new FormuleService().getFormule();
 
     formule.forEach((element) => {
@@ -41,7 +54,7 @@ export abstract class Match {
   journee: number = 1;
   saison: string;
   Date: Date;
-  Heure: Time;
+  Heure: any;
   categorie: string = "Messieurs";
   epreuve: string = "Championnat par équipe";
   division: string = "Excellence";
@@ -55,7 +68,7 @@ export abstract class Match {
 
 
 
-  public static fabriqueMatch(obj) : Match {
+  public static fabriqueMatch(obj): Match {
     var match: Match
 
     var switchValue
@@ -153,7 +166,7 @@ export abstract class Match {
     for (const key in match) {
       if (Object.prototype.hasOwnProperty.call(match, key)) {
 
-        if ([ 'equipeReceveuse', 'equipeVisiteuse' ].indexOf(key) !== -1)
+        if (['equipeReceveuse', 'equipeVisiteuse'].indexOf(key) !== -1)
           this[key] = Equipe.fabrique(match[key].nomEquipe, match[key].joueurs)
         // else if (key === 'Date')
         //   this[key] = new Date(match[key]?.year, match[key]?.month, match[key]?.Date?.Day)
@@ -166,8 +179,8 @@ export abstract class Match {
             var data = {
               joueurEquipeReceveuse: this.equipeReceveuse.getJoueurByPosition(r?.joueurEquipeReceveuse?.position),
               joueurEquipeVisiteuse: this.equipeVisiteuse.getJoueurByPosition(r?.joueurEquipeVisiteuse?.position),
-              doubleEquipeReceveuse : r?.doubleEquipeReceveuse,
-              doubleEquipeVisiteuse : r?.doubleEquipeVisiteuse,
+              doubleEquipeReceveuse: r?.doubleEquipeReceveuse,
+              doubleEquipeVisiteuse: r?.doubleEquipeVisiteuse,
               formule: r?.formule,
               manches: r?.manches
             }
@@ -186,9 +199,8 @@ export abstract class Match {
   }
 
   public toString() {
-    return `${this.equipeReceveuse.nomEquipe} contre ${
-      this.equipeVisiteuse.nomEquipe
-    } : ${this.scoreEquipeReceveuse()} - ${this.scoreEquipeVisiteuse()}`;
+    return `${this.equipeReceveuse.nomEquipe} contre ${this.equipeVisiteuse.nomEquipe
+      } : ${this.scoreEquipeReceveuse()} - ${this.scoreEquipeVisiteuse()}`;
   }
 }
 
