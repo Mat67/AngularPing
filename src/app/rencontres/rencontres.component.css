@@ -9,3 +9,8 @@
   max-width: 60px;
   text-align: center;
 }
+
+.separation {
+  height: 40px; /* Ajustez la valeur en pixels selon vos besoins */
+  background-color: #ccc; /* Ajoutez une couleur de fond pour mieux visualiser la séparation */
+}

@@ -23,6 +23,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { ChampSignatureComponent } from './champ-signature/champ-signature.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SignatureMobileComponent } from './signature-mobile/signature-mobile.component';
+import { RencontreRowComponent } from './rencontre-row/rencontre-row.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SignatureMobileComponent } from './signature-mobile/signature-mobile.co
     ChargerRencontreComponent,
     ScoreValidationDirective,
     ChampSignatureComponent,
-    SignatureMobileComponent
+    SignatureMobileComponent,
+    RencontreRowComponent
   ],
   imports: [
     BrowserModule,
