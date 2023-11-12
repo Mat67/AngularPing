@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let rencontre of match.rencontres; let i = index">
-      <tr *ngIf="i < (match.rencontres?.length || 0) / 2">
+      <tr *ngIf="i < (match.rencontres?.length || 0) / 2" [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
         <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre }"></ng-container>
       </tr>
 

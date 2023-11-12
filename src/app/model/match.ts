@@ -162,6 +162,13 @@ export abstract class Match {
       || !this.equipeVisiteuse.nomEquipe || this.equipeVisiteuse.nomEquipe.trim() === ''
   }
 
+  public getRencontresSuivantes(): Rencontre[] {
+    var rencontres = []
+    rencontres.push(this.rencontres.find(r => r.getResultat() === 0))
+
+    return rencontres
+  }
+
   public chargerMath(match) {
     for (const key in match) {
       if (Object.prototype.hasOwnProperty.call(match, key)) {
