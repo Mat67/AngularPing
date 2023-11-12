@@ -20,6 +20,7 @@ export class MatchDetailComponent implements OnInit {
   joueurs: Joueur[]
   equipes: string[]
   godeMode: boolean
+  cacherComposition: boolean
 
   constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
     this.app = new App();
@@ -107,6 +108,14 @@ export class MatchDetailComponent implements OnInit {
 	ngOnDestroy(): void {
 		this.toastService.clear();
 	}
+
+  onCacherCompositionEquipeReceveuse(cacherComposition) {
+    this.cacherComposition = cacherComposition
+  }
+
+  onCacherCompositionEquipeVisiteuse(cacherComposition) {
+
+  }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {

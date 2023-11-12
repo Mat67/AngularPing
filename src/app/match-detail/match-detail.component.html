@@ -20,15 +20,17 @@
   <div class="container" style="display : table; width: 100%; margin-bottom: 20px; margin-top: 60px;">
     <div class="row">
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs" [equipes]="equipes" [lectureSeule]="estEnLectureSeule()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" (cacherCompositionMethod)="onCacherCompositionEquipeReceveuse($event)" [joueurs]="joueurs" [equipes]="equipes" [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
       <div class="col-6">
-        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()" [joueurs]="joueurs" [equipes]="equipes" [lectureSeule]="estEnLectureSeule()"></app-equipe>
+        <app-equipe [equipe]="app.match.equipeVisiteuse" (BlurMethod)="onBlurMethod()" (cacherCompositionMethod)="onCacherCompositionEquipeVisiteuse($event)" [joueurs]="joueurs" [equipes]="equipes" [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
     </div>
     <div class="row" style="margin-top: 60px;">
       <div class="col-12">
-        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" [lectureSeule]="estEnLectureSeule()"></app-rencontres>
+        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" 
+        [lectureSeule]="estEnLectureSeule()" 
+        [cacherCompositionEquipeReceveuse]="cacherComposition"/>
       </div>
     </div>
   </div>

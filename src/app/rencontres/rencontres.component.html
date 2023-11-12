@@ -43,10 +43,11 @@
       <td>
         <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-          <div id="{{ i }} d">{{ rencontre.getNomJoueurEquipeReceveuse() }}</div>
+          <div *ngIf="!cacherCompositionEquipeReceveuse" id="{{ i }} d">{{ rencontre.getNomJoueurEquipeReceveuse() }}</div>
         </ng-template>
         <ng-template #elseBlock>
           <input type="text" class="form-control form-control-sm valid" id="{{ 'doubleEquipeReceveuse' + i }} "
+            *ngIf="!cacherCompositionEquipeReceveuse"
             [(ngModel)]="rencontre.doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
             (blur)="onBlurMethod()" autocomplete="off" [readonly]="lectureSeule">
         </ng-template>

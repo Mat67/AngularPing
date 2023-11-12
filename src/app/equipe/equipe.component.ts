@@ -16,9 +16,17 @@ export class EquipeComponent implements OnInit {
   @Input() equipes: string[];
   @Input() lectureSeule: boolean
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
+  @Output() cacherCompositionMethod: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
+  showButton: boolean = false;
+  cacherComposition: boolean = false;
+
+  toggleButton() {
+    this.cacherComposition = !this.cacherComposition;
+    this.cacherCompositionMethod.emit(this.cacherComposition)
+  }
 
   onItemSelected(event: NgbTypeaheadSelectItemEvent<string>, i: string): void {
     var joueurSelectionne = this.joueurs.find(j => j.nom.toLocaleLowerCase() === event.item.toLocaleLowerCase())

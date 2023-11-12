@@ -1,7 +1,32 @@
-.td-position{
+.td-position {
     font-weight: bold;
 }
 
 .nomEquipe {
     font-size: xxx-large;
 }
+
+.input-container {
+    position: relative;
+    display: flex;
+}
+
+
+.hidden-content {
+    color: transparent;
+}
+
+.visible-content {
+    color: initial;
+}
+
+
+  
+  .hidden-text {
+    position: absolute;
+  
+    transform: translate(100%, 40%);
+    color: black; /* ou la couleur que vous préférez pour les étoiles */
+    z-index: 1;
+  }
+  
