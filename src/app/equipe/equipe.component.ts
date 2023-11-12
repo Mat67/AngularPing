@@ -39,6 +39,9 @@ export class EquipeComponent implements OnInit {
       ),
     );
 
+    convertirEnMajuscules() {
+      this.equipe.nomEquipe = this.equipe.nomEquipe.toUpperCase();
+    }
 
   searchEquipe: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(

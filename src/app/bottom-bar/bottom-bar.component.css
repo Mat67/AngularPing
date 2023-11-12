@@ -1,0 +1,19 @@
+.score-counter {
+    display: flex;
+    align-items: center;
+  }
+  
+  .digit {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 5px;
+    padding: 5px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .separator {
+    font-size: 24px;
+    margin: 0 5px;
+  }

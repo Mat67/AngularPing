@@ -28,9 +28,8 @@ export class RencontresComponent implements OnInit {
 
 
   getBackgroundColor(rencontre: any): string {
-    // Remplacez la condition par la logique appropriée
-    if (this.match.getRencontresSuivantes().filter(r => r.getFormule() === rencontre.getFormule()).length > 0) {
-      return 'lightgreen'; // Changez la couleur selon vos besoins
+    if (this.match.getRencontresSuivantes().filter(r => r?.getFormule() === rencontre?.getFormule()).length > 0) {
+      return '#CCE5FF'; // Changez la couleur selon vos besoins
     } else {
       return ''; // Laissez une chaîne vide pour la couleur par défaut
     }

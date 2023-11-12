@@ -1,10 +1,18 @@
 <footer class="page-footer p-1 fixed-bottom bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-6 text-center" style="font-weight: bold;">
-                {{ match.equipeReceveuse.nomEquipe }} : {{ match.scoreEquipeReceveuse() }}
-                - {{ match.scoreEquipeVisiteuse() }} : {{ match.equipeVisiteuse.nomEquipe }}
-            </div>
+            <div class="col-2"  ></div>
+            <div class="score-counter col-4 text-center"  >
+                <span style="font-weight: bold;">
+                    {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}  
+                </span>
+                <div style="width: 30px;"></div>
+              
+                <div class="digit" id="digit1">{{ match.scoreEquipeReceveuse()}}</div>
+                <span class="separator">-</span>
+                <div class="digit" id="digit3">{{ match.scoreEquipeVisiteuse() }}</div>
+              </div>
+              
             <div class="col-2">
                 <app-modal [match]="match" [godeMode]="godeMode"></app-modal>
             </div>

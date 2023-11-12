@@ -165,6 +165,7 @@ export abstract class Match {
   public getRencontresSuivantes(): Rencontre[] {
     var rencontres = []
     rencontres.push(this.rencontres.find(r => r.getResultat() === 0))
+    rencontres = rencontres.filter(r => r)
 
     return rencontres
   }
