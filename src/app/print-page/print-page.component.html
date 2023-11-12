@@ -117,15 +117,15 @@
             <tr *ngFor="let joueur of match.equipeReceveuse.joueurs; index as i">
               <th scope="row" class="td-center">{{ match.equipeReceveuse.joueurs[i].position }}</th>
               <td class="form-group">
-                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                <div [ngClass]="{'capitaine': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
                   match.equipeReceveuse.joueurs[i].nom }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                <div >{{
                   match.equipeReceveuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeReceveuse.joueurs[i].estCapitaine }">{{
+                <div >{{
                   match.equipeReceveuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>
@@ -147,15 +147,15 @@
               <th scope="row" class="td-center">{{ match.equipeVisiteuse.joueurs[i].position }}</th>
               <td class="form-group">
 
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                <div [ngClass]="{'capitaine': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
                   match.equipeVisiteuse.joueurs[i].nom }} </div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                <div>{{
                   match.equipeVisiteuse.joueurs[i].classement }}</div>
               </td>
               <td class="td-center">
-                <div [ngClass]="{'font-weight-bold': match.equipeVisiteuse.joueurs[i].estCapitaine }">{{
+                <div >{{
                   match.equipeVisiteuse.joueurs[i].numeroLicence }}</div>
               </td>
             </tr>

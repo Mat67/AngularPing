@@ -36,3 +36,12 @@
   min-width: 20px;
   text-align: center;
 }
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.capitaine {
+  font-weight: bold;
+  text-decoration: underline;
+}
