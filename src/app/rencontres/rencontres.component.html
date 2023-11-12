@@ -16,16 +16,16 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let rencontre of match.rencontres; let i = index">
-      <tr *ngIf="i < (match.rencontres?.length || 0) / 2" [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
+      <tr *ngIf="match.rencontres?.length < 20 || i < (match.rencontres?.length || 0) / 2" [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
         <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre }"></ng-container>
       </tr>
 
       <!-- Ajoutez une ligne de séparation après la première moitié -->
-      <tr *ngIf="i === match.rencontres?.length / 2">
+      <tr *ngIf="match.rencontres?.length === 20 && i === match.rencontres?.length / 2">
         <td colspan="10" class="separation"></td>
       </tr>
 
-      <tr *ngIf="i >= (match.rencontres?.length || 0) / 2">
+      <tr *ngIf="match.rencontres?.length === 20 && i >= (match.rencontres?.length || 0) / 2" [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
         <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre }"></ng-container>
       </tr>
     </ng-container>

@@ -35,18 +35,28 @@ export class BottomBarComponent implements OnInit {
   public random() {
     var randomService = new RandomService;
 
-    this.match.equipeReceveuse.nomEquipe = randomService.getRandomString() + ' ' + randomService.random(1,5);
-    this.match.equipeVisiteuse.nomEquipe = randomService.getRandomString() + ' ' + randomService.random(1,5);
+    if (!this.match.equipeReceveuse.nomEquipe)
+      this.match.equipeReceveuse.nomEquipe = randomService.getRandomString() + ' ' + randomService.random(1,5);
+    if (!this.match.equipeVisiteuse.nomEquipe)
+      this.match.equipeVisiteuse.nomEquipe = randomService.getRandomString() + ' ' + randomService.random(1,5);
+
+    var randomJoueurs = (joueur) => {
+      if (!joueur.nom)
+        joueur.nom = randomService.getRandomString();
+
+      if (!joueur.numeroLicence)
+        joueur.numeroLicence = randomService.random(100000, 999999).toString();
+      
+      if (!joueur.classement)
+        joueur.classement = randomService.random(0, 20).toString();
+    }
 
     this.match.equipeReceveuse.joueurs.forEach(joueur => {
-      joueur.nom = randomService.getRandomString();
-      joueur.numeroLicence = randomService.random(100000, 999999).toString();
-      joueur.classement = randomService.random(0, 20).toString();
+      randomJoueurs(joueur)    
     });
+
     this.match.equipeVisiteuse.joueurs.forEach(joueur => {
-      joueur.nom = randomService.getRandomString();
-      joueur.numeroLicence = randomService.random(100000, 999999).toString();
-      joueur.classement = randomService.random(0, 20).toString();
+      randomJoueurs(joueur)
     });
 
     this.match.rencontres.forEach(rencontre => {

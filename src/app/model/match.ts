@@ -1,6 +1,5 @@
 import { Equipe } from "./equipe";
 import { Rencontre, RencontreDouble, RencontreSimple } from "./rencontre";
-import { FormuleService } from "../services/formule.service";
 import { Timestamp } from "rxjs";
 import { Time } from "@angular/common";
 
@@ -24,9 +23,8 @@ export abstract class Match {
       second: 0
     }
     
-    var formule = new FormuleService().getFormule();
 
-    formule.forEach((element) => {
+    this.getFormule().forEach((element) => {
       var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPosition(
         element[0]
       );
@@ -64,9 +62,10 @@ export abstract class Match {
   signatureEquipeVisiteuse = undefined;
 
   rencontres: Rencontre[];
-
-
-
+  public getFormule() : string[][]
+  {
+    return []
+  }
 
   public static fabriqueMatch(obj): Match {
     var match: Match
@@ -86,7 +85,7 @@ export abstract class Match {
       case 4:
         match = new Match4()
         break
-      case 4:
+      case 3:
         match = new Match3()
         break
 
@@ -163,11 +162,7 @@ export abstract class Match {
   }
 
   public getRencontresSuivantes(): Rencontre[] {
-    var rencontres = []
-    rencontres.push(this.rencontres.find(r => r.getResultat() === 0))
-    rencontres = rencontres.filter(r => r)
-
-    return rencontres
+    return this.rencontres.filter(r => r.getResultat() === 0).slice(2)
   }
 
   public chargerMath(match) {
@@ -217,11 +212,69 @@ export class Match6 extends Match {
   constructor() {
     super(6)
   }
+
+  public getRencontresSuivantes() {
+    var rencontres = []
+    
+    rencontres.push(this.rencontres.slice(0, 10).find(r => r.getResultat() === 0))
+    rencontres.push(this.rencontres.slice(-10).find(r => r.getResultat() === 0))
+
+    return rencontres
+  }
+
+
+  public getFormule(): string[][]
+  {
+    return [['A', 'U'],
+      ['B', 'V'],
+      ['C', 'W'],
+      ['B', 'U'],
+      ['A', 'W'],
+      ['C', 'V'],
+      ['D1', 'D1'],
+      ['B', 'W'],
+      ['C', 'U'],
+      ['A', 'V'],
+      ['D', 'X'],
+      ['E', 'Y'],
+      ['F', 'Z'],
+      ['D2', 'D2'],
+      ['E', 'X'],
+      ['D', 'Z'],
+      ['F', 'Y'],
+      ['E', 'Z'],
+      ['F', 'X'],
+      ['D', 'Y'],
+    ];
+  }
 }
 
 export class Match4 extends Match {
   constructor() {
     super(4)
+  }
+
+  public getFormule(): string[][]
+  {
+    return [['A', 'U'],
+      ['B', 'V'],
+      ['C', 'W'],
+      ['D', 'X'],
+      ['A', 'V'],
+      ['B', 'U'],
+      ['D', 'W'],
+      ['C', 'X'],
+      ['D1', 'D1'],
+      ['D2', 'D2'],
+      ['D', 'U'],
+      ['C', 'V'],
+      ['A', 'X'],
+      ['B', 'W'],
+      ['C', 'U'],
+      ['D', 'V'],
+      ['A', 'W'],
+      ['B', 'X'],
+    ];
   }
 }
 
@@ -229,5 +282,21 @@ export class Match4 extends Match {
 export class Match3 extends Match {
   constructor() {
     super(3)
+  }
+
+
+  public getFormule(): string[][]
+  {
+    return [['A', 'U'],
+      ['B', 'V'],
+      ['C', 'W'],
+      ['B', 'U'],
+      ['D1', 'D1'],
+      ['A', 'W'],
+      ['C', 'V'],
+      ['B', 'W'],
+      ['C', 'U'],
+      ['A', 'V'],
+    ];
   }
 }
