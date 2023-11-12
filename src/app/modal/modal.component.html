@@ -29,7 +29,7 @@
           (onSignatureChanged)="saveImageEquipeReceveuse($event)"></app-champ-signature>
       </div>
       <div class="col-6">
-        <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeReceveuse.getCapitaine()?.toString() }}
+        <label>Capitaine {{ match.equipeVisiteuse.nomEquipe }} : {{ match.equipeVisiteuse.getCapitaine()?.toString() }}
         </label>
         <button class="btn btn-danger" [disabled]="false" (click)="supprimerSignatureEquipeVisiteuse()">Effacer</button>
 

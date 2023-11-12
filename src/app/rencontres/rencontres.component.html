@@ -15,42 +15,56 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let rencontre of match.rencontres; index as i">
-      <td scope="row" style="text-align: center; font-weight: bold;">{{ rencontres[i].getFormule() }}</td>
-      <td>
-        <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock>
-          <div id="{{ i }} d">{{ rencontres[i].getNomJoueurEquipeReceveuse() }}</div>
-        </ng-template>
-        <ng-template #elseBlock>
-          <input type="text" class="form-control form-control-sm valid" id="{{ 'doubleEquipeReceveuse' + i }} "
-            [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
-            (blur)="onBlurMethod()" autocomplete="off" [readonly]="lectureSeule" >
-        </ng-template>
-      </td>
-      <td>
-        <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
-        <ng-template #thenBlock2>
-          <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
-        </ng-template>
-        <ng-template #elseBlock2>
-          <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} "
-            [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
-            (blur)="onBlurMethod()" autocomplete="off" [readonly]="lectureSeule">
-        </ng-template>
-      </td>
-      <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
-        <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
-          (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
-          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off" appScoreValidation="rencontres[i].manches[y]" [readonly]="lectureSeule" />
-      </td>
-
-      <td class="score">
-        {{ rencontres[i].getPointEquipeReveuse() }}
-      </td>
-      <td class="score">
-        {{ rencontres[i].getPointEquipeVisiteuse() }}
-      </td>
-    </tr>
+    <ng-container *ngFor="let rencontre of match.rencontres; let i = index">
+      <tr *ngIf="i < match.rencontres.length / 2">
+        <td scope="row" style="text-align: center; font-weight: bold;">{{ rencontres[i].getFormule() }}</td>
+        <td>
+          <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <div id="{{ i }} d">{{ rencontres[i].getNomJoueurEquipeReceveuse() }}</div>
+          </ng-template>
+          <ng-template #elseBlock>
+            <input type="text" class="form-control form-control-sm valid" id="{{ 'doubleEquipeReceveuse' + i }} "
+              [(ngModel)]="rencontres[i].doubleEquipeReceveuse" name="{{ 'doubleEquipeReceveuse' + i }}"
+              (blur)="onBlurMethod()" autocomplete="off" [readonly]="lectureSeule">
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="rencontres[i].getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
+          <ng-template #thenBlock2>
+            <div>{{ rencontres[i].getNomJoueurEquipeVisiteuse() }}</div>
+          </ng-template>
+          <ng-template #elseBlock2>
+            <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} "
+              [(ngModel)]="rencontres[i].doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
+              (blur)="onBlurMethod()" autocomplete="off" [readonly]="lectureSeule">
+          </ng-template>
+        </td>
+        <td *ngFor="let manche of rencontres[i].manches; index as y" style="text-align: center;">
+          <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
+            (keypress)="omit_number(rencontres[i].manches[y].score, $event)" [(ngModel)]="rencontres[i].manches[y].score"
+            name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off" appScoreValidation="rencontres[i].manches[y]" [readonly]="lectureSeule" />
+        </td>
+  
+        <td class="score">
+          {{ rencontres[i].getPointEquipeReveuse() }}
+        </td>
+        <td class="score">
+          {{ rencontres[i].getPointEquipeVisiteuse() }}
+        </td>
+      </tr>
+  
+      <!-- Ajoutez une ligne de séparation après la première moitié -->
+      <ng-container *ngIf="i === match.rencontres?.length / 2">
+        <tr class="separation">
+          <td colspan="10"></td>
+        </tr>
+      </ng-container>
+  
+      <tr *ngIf="i >= match.rencontres.length / 2">
+        <!-- Continuez avec le reste des rencontres pour la deuxième moitié du tableau si nécessaire -->
+      </tr>
+    </ng-container>
   </tbody>
+  
 </table>

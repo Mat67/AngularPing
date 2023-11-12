@@ -110,8 +110,8 @@ export class MatchDetailComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
-    // Vérifiez si les touches Ctrl, Alt et V sont enfoncées en même temps
-    if (event.ctrlKey && event.altKey && event.key === 'l') {
+    // Vérifiez si les touches Ctrl, Alt et G sont enfoncées en même temps
+    if (event.ctrlKey && event.altKey && event.key === 'g') {
       if (this.godeMode === true)
         this.desactiverGodeMode()
       else if (this.godeMode === false)
