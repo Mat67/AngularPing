@@ -14,6 +14,7 @@ export class EquipeComponent implements OnInit {
   @Input() equipe: Equipe;
   @Input() joueurs: Joueur[];
   @Input() equipes: string[];
+  @Input() nomEquipePlaceHolder: string;
   @Input() lectureSeule: boolean
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
   @Output() cacherCompositionMethod: EventEmitter<boolean> = new EventEmitter();
