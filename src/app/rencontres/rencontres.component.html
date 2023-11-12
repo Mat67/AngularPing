@@ -67,7 +67,9 @@
         <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
           (keypress)="omit_number(rencontre.manches[y].score, $event)" [(ngModel)]="rencontre.manches[y].score"
           name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off"
-          appScoreValidation="rencontre.manches[y]" [readonly]="lectureSeule" />
+          appScoreValidation="rencontre.manches[y]" 
+          [readonly]="lectureSeule"
+          [disabled]="(manche.score === '' && rencontre.getResultat() !== 0) || (y > 0 && rencontre.manches[y-1].score === '') " />
       </td>
 
       <td class="score">
