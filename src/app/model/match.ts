@@ -162,7 +162,7 @@ export abstract class Match {
   }
 
   public getRencontresSuivantes(): Rencontre[] {
-    return this.rencontres.filter(r => r.getResultat() === 0).slice(2)
+    return this.rencontres.filter(r => r.getResultat() === 0).slice(0,2)
   }
 
   public chargerMath(match) {
