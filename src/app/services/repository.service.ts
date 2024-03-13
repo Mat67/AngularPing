@@ -4,7 +4,7 @@ import { Match } from '../model/match';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Joueur } from '../model/joueur';
 
-const WS_URL = 'ws://serveur-mat.synology.me:8999';
+const WS_URL = 'wss://serveur-mat.synology.me:8989';
 //const WS_URL = 'ws://localhost:8999';
 
 export interface Message {

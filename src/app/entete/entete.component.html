@@ -56,7 +56,7 @@
             </select>
         </div>
 
-        <div class="col-3 form-group">
+        <div class="col-2 form-group">
             <label for="epreuve">Epreuve</label>
             <select class="form-control form-control custom-select" id="epreuve" [(ngModel)]="match.epreuve"
                 (blur)="onBlurMethod()" [disabled]="lectureSeule">
@@ -80,6 +80,22 @@
                 <option>Honneur</option>
                 <option>Division 1</option>
                 <option>Division 2</option>
+            </select>
+        </div>
+
+        <div class="col-1 form-group">
+            <label for="poule">Poule</label>
+            <select class="form-control form-control custom-select" id="poule" [(ngModel)]="match.poule"
+                (blur)="onBlurMethod()" [disabled]="lectureSeule">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+                <option>H</option>
+                <option>I</option>
             </select>
         </div>
 

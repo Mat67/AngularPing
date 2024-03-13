@@ -25,6 +25,7 @@
           <th class="td-center" scope="col">Epreuve</th>
           <th class="td-center" scope="col">Journée</th>
           <th class="td-center" scope="col">Division</th>
+          <th class="td-center" scope="col">Poule</th>
         </tr>
       </thead>
       <tbody>
@@ -43,6 +44,9 @@
           </td>
           <td class="td-center">
             <div>{{ match.division}}</div>
+          </td>
+          <td class="td-center">
+            <div>{{ match.poule}}</div>
           </td>
         </tr>
       </tbody>
@@ -215,10 +219,10 @@
 
 
               <td class="af-uz">
-                {{ match.rencontres[i].getPointEquipeReveuse() }}
+                {{ match.rencontres[i].getPointEquipeReveuse() === "1" ? match.rencontres[i].getPositionJoueurEquipeReceveuse() : "" }}
               </td>
               <td class="af-uz">
-                {{ match.rencontres[i].getPointEquipeVisiteuse() }}
+                {{ match.rencontres[i].getPointEquipeVisiteuse() === "1" ? match.rencontres[i].getPositionJoueurEquipeVisiteuse() : "" }}
               </td>
             </tr>
           </tbody>

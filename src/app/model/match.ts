@@ -128,17 +128,7 @@ export abstract class Match {
   }
 
   public getPointFromScore(score): number {
-    if (score >= 16) {
-      return 5;
-    } else if (score <= 4) {
-      return 1;
-    } else if (score == 10) {
-      return 3;
-    } else if (score > 10 && score < 16) {
-      return 4;
-    } else if (score > 4 && score < 10) {
-      return 2;
-    }
+    return -1
   }
 
   public matchEstTermine(): boolean {
@@ -247,6 +237,19 @@ export class Match6 extends Match {
       ['D', 'Y'],
     ];
   }
+
+  public getPointFromScore(score: any): number {
+    if (score <= 4) 
+      return 1
+    else if (score < 10)
+      return 2
+    else if (score === 10)
+      return 3
+    else if (score >= 16)
+      return 5
+    else 
+      return 4
+  }
 }
 
 export class Match4 extends Match {
@@ -276,6 +279,19 @@ export class Match4 extends Match {
       ['B', 'X'],
     ];
   }
+
+  public getPointFromScore(score: any): number {
+    if (score <= 4) 
+      return 1
+    else if (score < 9)
+      return 2
+    else if (score === 9)
+      return 3
+    else if (score >= 14)
+      return 5
+    else 
+      return 4
+  }
 }
 
 
@@ -298,5 +314,18 @@ export class Match3 extends Match {
       ['C', 'U'],
       ['A', 'V'],
     ];
+  }
+
+  public getPointFromScore(score: any): number {
+    if (score <= 2) 
+      return 1
+    else if (score < 5)
+      return 2
+    else if (score === 5)
+      return 3
+    else if (score >= 8)
+      return 5
+    else 
+      return 4
   }
 }
