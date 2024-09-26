@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, HostListener, ViewChild, QueryList, ViewChildren  } from '@angular/core';
 import { Rencontre, RencontreDouble } from '../model/rencontre';
 import { Match, Match6 } from '../model/match';
 import { Equipe } from '../model/equipe';
@@ -23,7 +23,12 @@ export class RencontresComponent implements OnInit {
 
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+
+    // Utilisez ViewChild pour référencer la dropdown via son template
+    @ViewChildren('dropdownMenusReceveur') dropdownMenusReceveur: QueryList<ElementRef>;
+    @ViewChildren('dropdownMenusVisiteur') dropdownMenusVisiteur: QueryList<ElementRef>;
+    
+  constructor(private eRef: ElementRef) {
     this.dropdownEquipeVisiteuseOpen[0] = false
     this.dropdownEquipeVisiteuseOpen[1] = false
 
@@ -40,6 +45,42 @@ export class RencontresComponent implements OnInit {
     this.BlurMethod.emit()
   }
 
+  // Fermer le dropdown si un clic est détecté à l'extérieur
+  @HostListener('document:click', ['$event'])
+  clickout(event: Event) {
+    // Si le clic est à l'extérieur de la dropdown (ni sur le bouton, ni sur la dropdown elle-même)
+    this.dropdownMenusReceveur.forEach((dropdown, index) => {
+      if (dropdown && !dropdown.nativeElement.contains(event.target)) {
+        if (index == 0) {
+          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+        }
+
+        if (index == 1) {
+          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+        }
+      }
+    });
+
+    this.dropdownMenusVisiteur.forEach((dropdown, index) => {
+      if (dropdown && !dropdown.nativeElement.contains(event.target)) {
+        if (index == 0) {
+          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+        }
+
+        if (index == 1) {
+          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+        }
+      }
+    });
+  }
 
   getBackgroundColor(rencontre: any): string {
     if (this.match.getRencontresSuivantes().filter(r => r?.getFormule() === rencontre?.getFormule()).length > 0) {
@@ -49,12 +90,21 @@ export class RencontresComponent implements OnInit {
     }
   }
 
-  toggleDropdownEquipeReceveuse(index) {
+  toggleDropdownEquipeReceveuse(event: Event, index) {
+    event.stopPropagation(); // Empêche la propagation de l'événement au document
     this.dropdownEquipeReceveuseOpen[index] = !this.dropdownEquipeReceveuseOpen[index];
+    this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+    this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+    this.dropdownEquipeReceveuseOpen[index == 0 ? 1 : 0] = false; // Fermer la dropdown si clic extérieur
   }
 
-  toggleDropdownEquipeVisiteuse(index) {
+  toggleDropdownEquipeVisiteuse(event: Event, index) {
+    event.stopPropagation(); 
     this.dropdownEquipeVisiteuseOpen[index] = !this.dropdownEquipeVisiteuseOpen[index];
+    this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+    this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+    this.dropdownEquipeVisiteuseOpen[index == 0 ? 1 : 0] = false; // Fermer la dropdown si clic extérieur
+    
   }
 
   // Méthode pour sélectionner une option
@@ -87,4 +137,6 @@ export class RencontresComponent implements OnInit {
 
     return charValid
   }
+
+  
 }

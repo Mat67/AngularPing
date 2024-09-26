@@ -55,23 +55,23 @@
         <ng-template #elseBlock>
           <div class="dropdown" [ngClass]="{ 'show': dropdownOpen }">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              (click)="lectureSeule ? null : toggleDropdownEquipeReceveuse(i < 10 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
+              (click)="lectureSeule ? null : toggleDropdownEquipeReceveuse($event, i < (match.rencontres?.length || 0) / 2 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
               {{ rencontre.doubleEquipeReceveuse || ' ' }} <!-- Affiche la valeur sélectionnée -->
             </button>
 
-            <div class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeReceveuseOpen[i < 10 ? 0 : 1] }"
+            <div #dropdownMenusReceveur  class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeReceveuseOpen[i < (match.rencontres?.length || 0) / 2 ? 0 : 1] }"
               aria-labelledby="dropdownMenuButton">
-              <button *ngFor="let option of match.GetCompositionDoubleEquipeReceveuse()[i < 10 ? 0 : 1]"
-                class="dropdown-item hoverable" (click)="lectureSeule ? null : selectOptionEquipeReceveuse(option.split('|')[0], rencontre, i < 10 ? 0 : 1)">
+              <button *ngFor="let option of match.GetCompositionDoubleEquipeReceveuse()[i < (match.rencontres?.length || 0) / 2 ? 0 : 1]"
+                class="dropdown-item hoverable" (click)="lectureSeule ? null : selectOptionEquipeReceveuse(option.split('|')[0], rencontre, i < (match.rencontres?.length || 0) / 2 ? 0 : 1)">
 
               <div *ngIf="option && option.trim() !== ''" class="flex-item">
                 {{ option }} | 
-                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[0]).nom }} - 
-                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[1]).nom  }} <!-- Affichage détaillé -->
+                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[0])?.nom }} - 
+                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[1])?.nom  }} <!-- Affichage détaillé -->
               </div>
               
               <div *ngIf="!option || option.trim() === ''">
-                <span style="visibility: hidden;"></span>
+                <span style="visibility: hidden;">Aucune donnée disponible</span>
               </div>
 
               </button>
@@ -88,19 +88,19 @@
         <ng-template #elseBlock2>
           <div class="dropdown" [ngClass]="{ 'show': dropdownOpen }">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
-              (click)="lectureSeule ? null : toggleDropdownEquipeVisiteuse(i < 10 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
+              (click)="lectureSeule ? null : toggleDropdownEquipeVisiteuse($event, i < (match.rencontres?.length || 0) / 2 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
               {{ rencontre.doubleEquipeVisiteuse || ' ' }} <!-- Affiche la valeur sélectionnée -->
             </button>
 
-            <div class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeVisiteuseOpen[i < 10 ? 0 : 1] }"
+            <div #dropdownMenusVisiteur  class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeVisiteuseOpen[i < (match.rencontres?.length || 0) / 2 ? 0 : 1] }"
               aria-labelledby="dropdownMenuButton">
-              <button *ngFor="let option of match.GetCompositionDoubleEquipeVisiteuse()[i < 10 ? 0 : 1]"
-                class="dropdown-item hoverable" (click)="lectureSeule ? null : selectOptionEquipeVisiteuse(option.split('|')[0], rencontre, i < 10 ? 0 : 1)">
+              <button *ngFor="let option of match.GetCompositionDoubleEquipeVisiteuse()[i < (match.rencontres?.length || 0) / 2 ? 0 : 1]"
+                class="dropdown-item hoverable" (click)="lectureSeule ? null : selectOptionEquipeVisiteuse(option.split('|')[0], rencontre, i < (match.rencontres?.length || 0) / 2 ? 0 : 1)">
 
                 <div *ngIf="option && option.trim() !== ''" class="flex-item">
                   {{ option }} | 
-                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[0]).nom }} - 
-                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[1]).nom  }} <!-- Affichage détaillé -->
+                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[0])?.nom }} - 
+                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[1])?.nom  }} <!-- Affichage détaillé -->
                 </div>
               
               <div *ngIf="!option || option.trim() === ''">
