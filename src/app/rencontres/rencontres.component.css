@@ -14,3 +14,20 @@
   height: 40px; /* Ajustez la valeur en pixels selon vos besoins */
   background-color: #ccc; /* Ajoutez une couleur de fond pour mieux visualiser la séparation */
 }
+
+/* styles.css ou votre fichier de styles global */
+.dropdown-toggle, .dropdown-item {
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.hoverable {
+  display: flex; /* S'assurer que le contenu est aligné */
+  align-items: center; /* Centrer verticalement */
+}
+
+.hoverable:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Couleur de fond au survol */
+  color: #0056b3; /* Couleur du texte au survol */
+}

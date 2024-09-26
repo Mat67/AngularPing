@@ -11,8 +11,6 @@ import { SignatureMobileComponent } from './signature-mobile/signature-mobile.co
 
 
 
-
-
 const routes: Routes = [
   { path: 'matchs/:matchId/equipes/:equipeId/signature', component: SignatureMobileComponent },
   { path: 'matchs/:matchId', component: MatchDetailComponent, resolve: { match: MatchResolverService}, },

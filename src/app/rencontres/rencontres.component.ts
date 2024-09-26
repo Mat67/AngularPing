@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Rencontre } from '../model/rencontre';
+import { Rencontre, RencontreDouble } from '../model/rencontre';
 import { Match, Match6 } from '../model/match';
 
 @Component({
@@ -8,6 +8,9 @@ import { Match, Match6 } from '../model/match';
   styleUrls: ['./rencontres.component.css']
 })
 export class RencontresComponent implements OnInit {
+
+  dropdownOpen: boolean[] = []
+ 
   @Input() rencontres: Rencontre[]
 
   @Input() match: Match;
@@ -18,6 +21,8 @@ export class RencontresComponent implements OnInit {
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() {
+    this.dropdownOpen[0] = false
+    this.dropdownOpen[1] = false
   }
 
 
@@ -36,6 +41,16 @@ export class RencontresComponent implements OnInit {
     } else {
       return ''; // Laissez une chaîne vide pour la couleur par défaut
     }
+  }
+
+  toggleDropdown(index) {
+    this.dropdownOpen[index] = !this.dropdownOpen[index];
+  }
+
+  // Méthode pour sélectionner une option
+  selectOption(value: string, rencontre : RencontreDouble, index: number) {
+    rencontre.doubleEquipeVisiteuse = value;  // Sauvegarde de la valeur
+    this.dropdownOpen[index] = false
   }
 
   omit_number(score, evt):boolean {

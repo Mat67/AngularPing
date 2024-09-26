@@ -67,6 +67,17 @@ export abstract class Match {
     return []
   }
 
+
+  public GetCompositionDoubleEquipeReceveuse() : string[][]
+  {
+    return []
+  }
+
+  public GetCompositionDoubleEquipeVisiteuse() : string[][]
+  {
+    return []
+  }
+
   public static fabriqueMatch(obj): Match {
     var match: Match
 
@@ -210,6 +221,22 @@ export class Match6 extends Match {
     rencontres.push(this.rencontres.slice(-10).find(r => r.getResultat() === 0))
 
     return rencontres
+  }
+
+  public GetCompositionDoubleEquipeReceveuse() : string[][]
+  {
+    return [
+      [ '', 'A-B', 'A-C', 'B-C'],
+      [ '', 'D-E', 'D-F', 'E-F'], 
+    ]
+  }
+
+  public GetCompositionDoubleEquipeVisiteuse() : string[][]
+  {
+    return [
+      [ '', 'U-V', 'U-W', 'V-W'],
+      [ '', 'X-Y', 'X-Z', 'Y-Z'], 
+    ]
   }
 
 
