@@ -1,30 +1,38 @@
-<ng-template #contentNouvelleRencontre let-modal  id="modalNouvelleRencontre">
+<ng-template #contentNouvelleRencontre let-modal id="modalNouvelleRencontre">
   <div class="container">
-    <div class="row">
-      <div class="modal-content">
+    <div class="row justify-content-center">
+      <div class="modal-content col-lg-6">
         <div class="modal-header">
           <h5 class="modal-title">Nouvelle rencontre</h5>
+          <button type="button" class="btn btn-danger btn-sm" aria-label="Close" (click)="modal.close('Annuler')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
           <div class="row">
-            <div class="col-2">
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('3')">
-                3 joueurs
-              </button >
+            <div class="col-4">
+              <div class="card shadow-sm card-hover" (click)="modal.close('3')">
+                <div class="card-body">
+                  <h5 class="card-title">3 joueurs</h5>
+                  <i class="fas fa-users fa-2x"></i>
+                </div>
+              </div>
             </div>
-
-            <div class="col-2">
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('4')">
-                4 joueurs
-              </button >
+            <div class="col-4">
+              <div class="card shadow-sm card-hover" (click)="modal.close('4')">
+                <div class="card-body">
+                  <h5 class="card-title">4 joueurs</h5>
+                  <i class="fas fa-users fa-2x"></i>
+                </div>
+              </div>
             </div>
-
-            <div class="col-2">
-
-
-              <button  class="row" class="btn btn-outline-primary" (click)="modal.close('6')" routerLink="/matchs/nouveau" routerLinkActive="active" ariaCurrentWhenActive="page" style="cursor:pointer;">
-                6 joueurs
-              </button >
+            <div class="col-4">
+              <div class="card shadow-sm card-hover" (click)="modal.close('6')" routerLink="/matchs/nouveau" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <div class="card-body">
+                  <h5 class="card-title">6 joueurs</h5>
+                  <i class="fas fa-users fa-2x"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -36,5 +44,4 @@
   </div>
 </ng-template>
 
-
-<div class="nav-link"  (click)="openNouvelleRencontre(contentNouvelleRencontre)" style="cursor:pointer;">Nouvelle rencontre</div>
+<div class="nav-link" (click)="openNouvelleRencontre(contentNouvelleRencontre)" style="cursor:pointer;">Nouvelle rencontre</div>

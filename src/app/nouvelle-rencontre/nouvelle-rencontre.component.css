@@ -1,0 +1,16 @@
+.card-hover {
+    transition: background-color 0.3s, transform 0.1s;
+  }
+  
+  .card-hover:hover {
+    background-color: #e0f7fa; /* Couleur de fond au survol (bleu clair) */
+  }
+  
+  .icon-hover {
+    transition: transform 0.3s; /* Transition pour l'animation */
+  }
+  
+  .card-hover:hover .icon-hover {
+    transform: translateY(-10px); /* Déplace l'icône vers le haut lors du survol */
+  }
+  
