@@ -41,8 +41,8 @@ export class ChargerRencontreComponent {
 
   public async supprimer(match:Match) {
     this.repository.supprimerMatch(match.id)
-
-    this.matchs = await this.repository.listeMatchsSauvegardes()
+    this.matchs = this.matchs.filter(m => m.id !== match.id);
+    //this.matchs = await this.repository.listeMatchsSauvegardes()
   }
 
   confirmAndDelete(match: Match) {
