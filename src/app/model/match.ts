@@ -22,7 +22,7 @@ export abstract class Match {
       minute: 0,
       second: 0
     }
-    
+
 
     this.getFormule().forEach((element) => {
       var joueurEquipeReceveuse = this.equipeReceveuse.getJoueurByPosition(
@@ -62,19 +62,16 @@ export abstract class Match {
   signatureEquipeVisiteuse = undefined;
 
   rencontres: Rencontre[];
-  public getFormule() : string[][]
-  {
+  public getFormule(): string[][] {
     return []
   }
 
 
-  public GetCompositionDoubleEquipeReceveuse() : string[][]
-  {
+  public GetCompositionDoubleEquipeReceveuse(): string[][] {
     return []
   }
 
-  public GetCompositionDoubleEquipeVisiteuse() : string[][]
-  {
+  public GetCompositionDoubleEquipeVisiteuse(): string[][] {
     return []
   }
 
@@ -163,7 +160,7 @@ export abstract class Match {
   }
 
   public getRencontresSuivantes(): Rencontre[] {
-    return this.rencontres.filter(r => r.getResultat() === 0).slice(0,2)
+    return this.rencontres.filter(r => r.getResultat() === 0).slice(0, 2)
   }
 
   public chargerMath(match) {
@@ -216,57 +213,54 @@ export class Match6 extends Match {
 
   public getRencontresSuivantes() {
     var rencontres = []
-    
+
     rencontres.push(this.rencontres.slice(0, 10).find(r => r.getResultat() === 0))
     rencontres.push(this.rencontres.slice(-10).find(r => r.getResultat() === 0))
 
     return rencontres
   }
 
-  public GetCompositionDoubleEquipeReceveuse() : string[][]
-  {
+  public GetCompositionDoubleEquipeReceveuse(): string[][] {
     return [
-      [ '', 'A-B', 'A-C', 'B-C'],
-      [ '', 'D-E', 'D-F', 'E-F'], 
+      ['', 'A-B', 'A-C', 'B-C'],
+      ['', 'D-E', 'D-F', 'E-F'],
     ]
   }
 
-  public GetCompositionDoubleEquipeVisiteuse() : string[][]
-  {
+  public GetCompositionDoubleEquipeVisiteuse(): string[][] {
     return [
-      [ '', 'U-V', 'U-W', 'V-W'],
-      [ '', 'X-Y', 'X-Z', 'Y-Z'], 
+      ['', 'U-V', 'U-W', 'V-W'],
+      ['', 'X-Y', 'X-Z', 'Y-Z'],
     ]
   }
 
 
-  public getFormule(): string[][]
-  {
+  public getFormule(): string[][] {
     return [['A', 'U'],
-      ['B', 'V'],
-      ['C', 'W'],
-      ['B', 'U'],
-      ['A', 'W'],
-      ['C', 'V'],
-      ['D1', 'D1'],
-      ['B', 'W'],
-      ['C', 'U'],
-      ['A', 'V'],
-      ['D', 'X'],
-      ['E', 'Y'],
-      ['F', 'Z'],
-      ['D2', 'D2'],
-      ['E', 'X'],
-      ['D', 'Z'],
-      ['F', 'Y'],
-      ['E', 'Z'],
-      ['F', 'X'],
-      ['D', 'Y'],
+    ['B', 'V'],
+    ['C', 'W'],
+    ['B', 'U'],
+    ['A', 'W'],
+    ['C', 'V'],
+    ['D1', 'D1'],
+    ['B', 'W'],
+    ['C', 'U'],
+    ['A', 'V'],
+    ['D', 'X'],
+    ['E', 'Y'],
+    ['F', 'Z'],
+    ['D2', 'D2'],
+    ['E', 'X'],
+    ['D', 'Z'],
+    ['F', 'Y'],
+    ['E', 'Z'],
+    ['F', 'X'],
+    ['D', 'Y'],
     ];
   }
 
   public getPointFromScore(score: any): number {
-    if (score <= 4) 
+    if (score <= 4)
       return 1
     else if (score < 10)
       return 2
@@ -274,7 +268,7 @@ export class Match6 extends Match {
       return 3
     else if (score >= 16)
       return 5
-    else 
+    else
       return 4
   }
 }
@@ -284,31 +278,44 @@ export class Match4 extends Match {
     super(4)
   }
 
-  public getFormule(): string[][]
-  {
+  public GetCompositionDoubleEquipeReceveuse(): string[][] {
+    return [
+      ['', 'A-B', 'A-C', 'A-D', 'B-C', 'B-D', 'C-D'],
+      ['', 'A-B', 'A-C', 'A-D', 'B-C', 'B-D', 'C-D'],
+    ]
+  }
+
+  public GetCompositionDoubleEquipeVisiteuse(): string[][] {
+    return [
+      ['', 'U-V', 'U-W', 'V-W', 'U-Z', 'W-X', 'W-Y', 'W-Z'],
+      ['', 'U-V', 'U-W', 'V-W', 'U-Z', 'W-X', 'W-Y', 'W-Z'],
+    ]
+  }
+
+  public getFormule(): string[][] {
     return [['A', 'U'],
-      ['B', 'V'],
-      ['C', 'W'],
-      ['D', 'X'],
-      ['A', 'V'],
-      ['B', 'U'],
-      ['D', 'W'],
-      ['C', 'X'],
-      ['D1', 'D1'],
-      ['D2', 'D2'],
-      ['D', 'U'],
-      ['C', 'V'],
-      ['A', 'X'],
-      ['B', 'W'],
-      ['C', 'U'],
-      ['D', 'V'],
-      ['A', 'W'],
-      ['B', 'X'],
+    ['B', 'V'],
+    ['C', 'W'],
+    ['D', 'X'],
+    ['A', 'V'],
+    ['B', 'U'],
+    ['D', 'W'],
+    ['C', 'X'],
+    ['D1', 'D1'],
+    ['D2', 'D2'],
+    ['D', 'U'],
+    ['C', 'V'],
+    ['A', 'X'],
+    ['B', 'W'],
+    ['C', 'U'],
+    ['D', 'V'],
+    ['A', 'W'],
+    ['B', 'X'],
     ];
   }
 
   public getPointFromScore(score: any): number {
-    if (score <= 4) 
+    if (score <= 4)
       return 1
     else if (score < 9)
       return 2
@@ -316,7 +323,7 @@ export class Match4 extends Match {
       return 3
     else if (score >= 14)
       return 5
-    else 
+    else
       return 4
   }
 }
@@ -327,24 +334,36 @@ export class Match3 extends Match {
     super(3)
   }
 
-
-  public getFormule(): string[][]
+  public GetCompositionDoubleEquipeReceveuse() : string[][]
   {
+    return [
+      [ '', 'A-B', 'A-C', 'B-C', ]
+    ]
+  }
+
+  public GetCompositionDoubleEquipeVisiteuse() : string[][]
+  {
+    return [
+      [ '', 'U-V', 'U-W', 'V-W'],
+    ]
+  }
+
+  public getFormule(): string[][] {
     return [['A', 'U'],
-      ['B', 'V'],
-      ['C', 'W'],
-      ['B', 'U'],
-      ['D1', 'D1'],
-      ['A', 'W'],
-      ['C', 'V'],
-      ['B', 'W'],
-      ['C', 'U'],
-      ['A', 'V'],
+    ['B', 'V'],
+    ['C', 'W'],
+    ['B', 'U'],
+    ['D1', 'D1'],
+    ['A', 'W'],
+    ['C', 'V'],
+    ['B', 'W'],
+    ['C', 'U'],
+    ['A', 'V'],
     ];
   }
 
   public getPointFromScore(score: any): number {
-    if (score <= 2) 
+    if (score <= 2)
       return 1
     else if (score < 5)
       return 2
@@ -352,7 +371,7 @@ export class Match3 extends Match {
       return 3
     else if (score >= 8)
       return 5
-    else 
+    else
       return 4
   }
 }
