@@ -13,6 +13,7 @@ export class RencontresComponent implements OnInit {
   @Input() match: Match;
   @Input() lectureSeule: boolean
   @Input() cacherCompositionEquipeReceveuse: boolean
+  @Input() cacherCompositionEquipeVisiteuse: boolean
 
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 

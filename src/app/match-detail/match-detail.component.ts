@@ -21,6 +21,7 @@ export class MatchDetailComponent implements OnInit {
   equipes: string[]
   godeMode: boolean
   cacherComposition: boolean
+  cacherCompositionVisiteur: boolean
 
   constructor(private repository: RepositoryService, public toastService: ToastService, private route: ActivatedRoute) {
     this.app = new App();
@@ -114,7 +115,7 @@ export class MatchDetailComponent implements OnInit {
   }
 
   onCacherCompositionEquipeVisiteuse(cacherComposition) {
-
+    this.cacherCompositionVisiteur = cacherComposition
   }
 
   @HostListener('window:keydown', ['$event'])
