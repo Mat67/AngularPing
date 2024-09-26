@@ -1,4 +1,5 @@
 <form class="row g-3 needs-validation" novalidate></form>
+
 <table class="table table-striped">
   <thead>
     <tr class="text-center">
@@ -16,9 +17,12 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let rencontre of match.rencontres; let i = index">
+
       <tr *ngIf="match.rencontres?.length < 20 || i < (match.rencontres?.length || 0) / 2"
         [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
-        <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre, i: i }"></ng-container>
+        <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre, i: i, match: match, equipeReceveuse: equipeReceveuse }"></ng-container>
+      
+      
       </tr>
 
       <!-- Ajoutez une ligne de séparation après la première moitié -->
@@ -28,7 +32,7 @@
 
       <tr *ngIf="match.rencontres?.length === 20 && i >= (match.rencontres?.length || 0) / 2"
         [ngStyle]="{ 'background-color': getBackgroundColor(rencontre) }">
-        <ng-container *ngTemplateOutlet="rencontreRowTemplate; context: { $implicit: rencontre }"></ng-container>
+        <ng-container *ngTemplateOutlet="rencontreRowTemplate; context:  { $implicit: rencontre, i: i, match: match, equipeReceveuse: equipeReceveuse }"></ng-container>
       </tr>
     </ng-container>
     <!-- Ajoutez une ligne de séparation après la première moitié 
@@ -40,7 +44,7 @@
   
       <app-rencontre-row *ngIf="i >= (match.rencontres?.length || 0) / 2" [rencontre]="rencontre"></app-rencontre-row>-->
     <!-- Définissez le ng-template pour la ligne de rencontre -->
-    <ng-template #rencontreRowTemplate let-rencontre let-i="i">
+    <ng-template #rencontreRowTemplate let-rencontre let-i="i" let-match="match" let-equipeReceveuse="equipeReceveuse" >
       <td scope="row" style="text-align: center; font-weight: bold;">{{ rencontre.getFormule() }}</td>
       <td>
         <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
@@ -49,14 +53,30 @@
           </div>
         </ng-template>
         <ng-template #elseBlock>
-          <select class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }}"
-            *ngIf="!cacherCompositionEquipeVisiteuse" [(ngModel)]="rencontre.doubleEquipeReceveuse"
-            name="{{ 'doubleEquipeVisiteuse' + i }}" (blur)="onBlurMethod()" [disabled]="lectureSeule">
-            <option *ngFor="let option of match.GetCompositionDoubleEquipeReceveuse()[i <= 10 ? 0 : 1]"
-              [value]="option">
-              {{ option }}
-            </option>
-          </select>
+          <div class="dropdown" [ngClass]="{ 'show': dropdownOpen }">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              (click)="toggleDropdownEquipeReceveuse(i < 10 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
+              {{ rencontre.doubleEquipeReceveuse || ' ' }} <!-- Affiche la valeur sélectionnée -->
+            </button>
+
+            <div class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeReceveuseOpen[i < 10 ? 0 : 1] }"
+              aria-labelledby="dropdownMenuButton">
+              <button *ngFor="let option of match.GetCompositionDoubleEquipeReceveuse()[i < 10 ? 0 : 1]"
+                class="dropdown-item hoverable" (click)="selectOptionEquipeReceveuse(option.split('|')[0], rencontre, i < 10 ? 0 : 1)">
+
+              <div *ngIf="option && option.trim() !== ''" class="flex-item">
+                {{ option }} | 
+                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[0]).nom }} - 
+                {{ match.equipeReceveuse.getJoueurByPosition(option.split('-')[1]).nom  }} <!-- Affichage détaillé -->
+              </div>
+              
+              <div *ngIf="!option || option.trim() === ''">
+                <span style="visibility: hidden;"></span>
+              </div>
+
+              </button>
+            </div>
+          </div>
 
         </ng-template>
       </td>
@@ -68,20 +88,20 @@
         <ng-template #elseBlock2>
           <div class="dropdown" [ngClass]="{ 'show': dropdownOpen }">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              (click)="toggleDropdown(i < 10 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
+              (click)="toggleDropdownEquipeVisiteuse(i < 10 ? 0 : 1)" aria-haspopup="true" aria-expanded="dropdownOpen">
               {{ rencontre.doubleEquipeVisiteuse || ' ' }} <!-- Affiche la valeur sélectionnée -->
             </button>
 
-            <div class="dropdown-menu" [ngClass]="{ 'show': dropdownOpen[i < 10 ? 0 : 1] }"
+            <div class="dropdown-menu" [ngClass]="{ 'show': dropdownEquipeVisiteuseOpen[i < 10 ? 0 : 1] }"
               aria-labelledby="dropdownMenuButton">
               <button *ngFor="let option of match.GetCompositionDoubleEquipeVisiteuse()[i < 10 ? 0 : 1]"
-                class="dropdown-item hoverable" (click)="selectOption(option.split('|')[0], rencontre, i < 10 ? 0 : 1)">
+                class="dropdown-item hoverable" (click)="selectOptionEquipeVisiteuse(option.split('|')[0], rencontre, i < 10 ? 0 : 1)">
 
-              <div *ngIf="option && option.trim() !== ''" class="flex-item">
-                {{ option }} | 
-                {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[0]) }} - 
-                {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[1]) }} <!-- Affichage détaillé -->
-              </div>
+                <div *ngIf="option && option.trim() !== ''" class="flex-item">
+                  {{ option }} | 
+                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[0]).nom }} - 
+                  {{ match.equipeVisiteuse.getJoueurByPosition(option.split('-')[1]).nom  }} <!-- Affichage détaillé -->
+                </div>
               
               <div *ngIf="!option || option.trim() === ''">
                 <span style="visibility: hidden;">Aucune donnée disponible</span>

@@ -36,7 +36,7 @@
     </div>
     <div class="row noprint" style="margin-top: 60px;">
       <div class="col-12">
-        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" 
+        <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" [equipeReceveuse]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" 
         [lectureSeule]="estEnLectureSeule()" 
         [cacherCompositionEquipeReceveuse]="cacherComposition"
         [cacherCompositionEquipeVisiteuse]="cacherCompositionVisiteur"/>

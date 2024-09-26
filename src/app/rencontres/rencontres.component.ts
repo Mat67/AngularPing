@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Rencontre, RencontreDouble } from '../model/rencontre';
 import { Match, Match6 } from '../model/match';
+import { Equipe } from '../model/equipe';
 
 @Component({
   selector: 'app-rencontres',
@@ -9,9 +10,11 @@ import { Match, Match6 } from '../model/match';
 })
 export class RencontresComponent implements OnInit {
 
-  dropdownOpen: boolean[] = []
- 
+  dropdownEquipeVisiteuseOpen: boolean[] = []
+  dropdownEquipeReceveuseOpen: boolean[] = []
+  
   @Input() rencontres: Rencontre[]
+  @Input() equipeReceveuse: Equipe
 
   @Input() match: Match;
   @Input() lectureSeule: boolean
@@ -21,8 +24,11 @@ export class RencontresComponent implements OnInit {
   @Output() BlurMethod: EventEmitter<any> = new EventEmitter();
 
   constructor() {
-    this.dropdownOpen[0] = false
-    this.dropdownOpen[1] = false
+    this.dropdownEquipeVisiteuseOpen[0] = false
+    this.dropdownEquipeVisiteuseOpen[1] = false
+
+    this.dropdownEquipeReceveuseOpen[0] = false
+    this.dropdownEquipeReceveuseOpen[1] = false
   }
 
 
@@ -43,14 +49,23 @@ export class RencontresComponent implements OnInit {
     }
   }
 
-  toggleDropdown(index) {
-    this.dropdownOpen[index] = !this.dropdownOpen[index];
+  toggleDropdownEquipeReceveuse(index) {
+    this.dropdownEquipeReceveuseOpen[index] = !this.dropdownEquipeReceveuseOpen[index];
+  }
+
+  toggleDropdownEquipeVisiteuse(index) {
+    this.dropdownEquipeVisiteuseOpen[index] = !this.dropdownEquipeVisiteuseOpen[index];
   }
 
   // Méthode pour sélectionner une option
-  selectOption(value: string, rencontre : RencontreDouble, index: number) {
+  selectOptionEquipeReceveuse(value: string, rencontre : RencontreDouble, index: number) {
+    rencontre.doubleEquipeReceveuse = value;  // Sauvegarde de la valeur
+    this.dropdownEquipeReceveuseOpen[index] = false
+  }
+
+  selectOptionEquipeVisiteuse(value: string, rencontre : RencontreDouble, index: number) {
     rencontre.doubleEquipeVisiteuse = value;  // Sauvegarde de la valeur
-    this.dropdownOpen[index] = false
+    this.dropdownEquipeVisiteuseOpen[index] = false
   }
 
   omit_number(score, evt):boolean {
