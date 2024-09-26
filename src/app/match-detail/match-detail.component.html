@@ -17,8 +17,8 @@
 
   <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"  [lectureSeule]="estEnLectureSeule()"></app-entete>
 
-  <div class="container" style="display : table; width: 100%; margin-bottom: 20px; margin-top: 60px;">
-    <div class="row">
+  <div class="container noprint" style="display : table; width: 100%; margin-bottom: 20px; margin-top: 60px;">
+    <div class="row noprint">
       <div class="col-6">
         <app-equipe [equipe]="app.match.equipeReceveuse" 
         (BlurMethod)="onBlurMethod()" 
@@ -34,7 +34,7 @@
         [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
     </div>
-    <div class="row" style="margin-top: 60px;">
+    <div class="row noprint" style="margin-top: 60px;">
       <div class="col-12">
         <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" (BlurMethod)="onBlurMethod()" 
         [lectureSeule]="estEnLectureSeule()" 
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div style="display : table-row; height: 100%;" *ngIf="afficher()">
+  <div class="noprint" style="display : table-row; height: 100%;" *ngIf="afficher()">
     <app-bottom-bar [match]="app.match" [lectureSeule]="estEnLectureSeule()" [godeMode]="godeMode"></app-bottom-bar>
   </div>
 </div>

@@ -18,8 +18,7 @@ app-print-page {
 
 
 
-@media print {
-
+@media print { 
     /* invert the display (show/hide) properties of the main */
     /* aplication component and the printing component       */
     .noprint {
@@ -58,14 +57,24 @@ app-print-page {
         display: none;
     }
 
-     /* Appliquer des marges minimales */
-     body {
+    /* Appliquer des marges minimales */
+    body {
         margin: 0;
-      }
-      
-      /* Supprimer les entêtes et pieds de page */
-      @page {
+        padding: 0;
+        font-size: 8px;
+        /* Assurez-vous que la taille de police est cohérente */
+    }
+
+    .container-fluid {
+        width: 100%;
+        height: auto;
+        /* Permet d'utiliser toute la hauteur de la page */
+    }
+
+
+    /* Supprimer les entêtes et pieds de page */
+    @page {
         margin: 0;
-        size: auto;
-      }
+        size: A4;
+    }
 }
