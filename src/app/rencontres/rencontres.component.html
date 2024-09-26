@@ -53,11 +53,11 @@
         </ng-template>
       </td>
       <td>
-        <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'  && !cacherCompositionEquipeVisiteuse; then thenBlock2 else elseBlock2"></div>
+        <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
         <ng-template #thenBlock2 >
           <div *ngIf="!cacherCompositionEquipeVisiteuse">{{ rencontre.getNomJoueurEquipeVisiteuse() }}</div>
         </ng-template>
-        <ng-template #elseBlock2 *ngIf="!cacherCompositionEquipeVisiteuse">
+        <ng-template #elseBlock2 >
           <input type="text" class="form-control form-control-sm" id="{{ 'doubleEquipeVisiteuse' + i }} "
             *ngIf="!cacherCompositionEquipeVisiteuse"
             [(ngModel)]="rencontre.doubleEquipeVisiteuse" name="{{ 'doubleEquipeVisiteuse' + i }}"
