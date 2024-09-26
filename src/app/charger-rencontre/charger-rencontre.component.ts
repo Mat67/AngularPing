@@ -45,6 +45,14 @@ export class ChargerRencontreComponent {
     this.matchs = await this.repository.listeMatchsSauvegardes()
   }
 
+  confirmAndDelete(match: Match) {
+    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette rencontre ?');
+    if (confirmation) {
+      this.supprimer(match);
+    }
+  }
+  
+
   public afficheDateDepuis(match:Match) {
 
     if (match && match.Date) {

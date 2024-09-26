@@ -1,1 +1,7 @@
 .cursor-pointer {cursor: pointer;}
+
+.modal-body {
+    max-height: 600px; /* Ajustez la hauteur selon vos besoins */
+    overflow-y: auto;  /* Ajoute une barre de défilement verticale */
+  }
+  

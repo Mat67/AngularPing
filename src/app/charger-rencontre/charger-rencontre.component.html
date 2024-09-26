@@ -20,8 +20,7 @@
                         <span *ngIf="matchs[i].getStatus() === 'TERMINE'" class="badge text-bg-success">Termine</span>
                       </div>
                       <div class="col-2 text-center">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="supprimer(matchs[i])">X</button>
-
+                        <button type="button" class="btn btn-danger btn-sm" (click)="confirmAndDelete(matchs[i]); $event.stopPropagation()">X</button>
                       </div>
                     </div>
                     <div class="row">
