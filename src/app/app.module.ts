@@ -23,6 +23,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { ChampSignatureComponent } from './champ-signature/champ-signature.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SignatureMobileComponent } from './signature-mobile/signature-mobile.component';
+import { RencontreMobileComponent } from './rencontre-mobile/rencontre-mobile.component';
 import { SplitPipe } from './pipe/split-pipe';  // <--- Ajustez le chemin si nécessaire
 
 @NgModule({
@@ -43,6 +44,7 @@ import { SplitPipe } from './pipe/split-pipe';  // <--- Ajustez le chemin si né
     ScoreValidationDirective,
     ChampSignatureComponent,
     SignatureMobileComponent,
+    RencontreMobileComponent,
     SplitPipe
   ],
   imports: [

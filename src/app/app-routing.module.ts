@@ -7,12 +7,14 @@ import { Match } from './model/match';
 import { MatchResolverService } from './services/match-resolver.service';
 import { RepositoryService } from './services/repository.service';
 import { SignatureMobileComponent } from './signature-mobile/signature-mobile.component';
+import { RencontreMobileComponent } from './rencontre-mobile/rencontre-mobile.component';
 
 
 
 
 const routes: Routes = [
   { path: 'matchs/:matchId/equipes/:equipeId/signature', component: SignatureMobileComponent },
+  { path: 'matchs/:matchId/rencontres/:rencontreId', component: RencontreMobileComponent },
   { path: 'matchs/:matchId', component: MatchDetailComponent, resolve: { match: MatchResolverService}, },
   { path: '', component: HomeComponent }
 

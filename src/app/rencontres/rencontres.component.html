@@ -121,10 +121,10 @@
           [disabled]="(manche.score === '' && rencontre.getResultat() !== 0) || (y > 0 && rencontre.manches[y-1].score === '' && manche.score === '') " />
       </td>
 
-      <td class="score">
+      <td class="score" [ngClass]="{'font-weight-bold': rencontre.getPointEquipeReveuse() === '1'}">
         {{ rencontre.getPointEquipeReveuse() }}
       </td>
-      <td class="score">
+      <td class="score" [ngClass]="{'font-weight-bold': rencontre.getPointEquipeVisiteuse() === '1'}">
         {{ rencontre.getPointEquipeVisiteuse() }}
       </td>
     </ng-template>

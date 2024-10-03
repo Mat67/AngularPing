@@ -31,3 +31,7 @@
   background-color: rgba(0, 123, 255, 0.1); /* Couleur de fond au survol */
   color: #0056b3; /* Couleur du texte au survol */
 }
+
+.font-weight-bold {
+  font-weight: bold;
+}

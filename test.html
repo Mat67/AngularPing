@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feuille de Match - Tennis de Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .players {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .players div {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            width: 48%;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        .score-table {
+            margin-top: 10px;
+        }
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .score-row div {
+            width: 48%;
+            text-align: center;
+        }
+        .manche-label {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Feuille de Match</h2>
+
+    <!-- Section des joueurs (toujours visible en haut) -->
+    <div class="players">
+        <div id="player1-name">Joueur 1</div>
+        <div id="player2-name">Joueur 2</div>
+    </div>
+
+    <!-- Formulaire pour entrer les scores -->
+    <form action="#" method="POST">
+
+        <!-- Manche 1 -->
+        <div class="manche-label">Manche 1</div>
+        <div class="score-row">
+            <div>
+                <input type="number" class="score-input" name="scoreA1" placeholder="Score Joueur 1" min="0" required>
+            </div>
+            <div>
+                <input type="number" class="score-input" name="scoreB1" placeholder="Score Joueur 2" min="0" required>
+            </div>
+        </div>
+
+        <!-- Manche 2 -->
+        <div class="manche-label">Manche 2</div>
+        <div class="score-row">
+            <div>
+                <input type="number" class="score-input" name="scoreA2" placeholder="Score Joueur 1" min="0">
+            </div>
+            <div>
+                <input type="number" class="score-input" name="scoreB2" placeholder="Score Joueur 2" min="0">
+            </div>
+        </div>
+
+        <!-- Manche 3 -->
+        <div class="manche-label">Manche 3</div>
+        <div class="score-row">
+            <div>
+                <input type="number" class="score-input" name="scoreA3" placeholder="Score Joueur 1" min="0">
+            </div>
+            <div>
+                <input type="number" class="score-input" name="scoreB3" placeholder="Score Joueur 2" min="0">
+            </div>
+        </div>
+
+        <!-- Manche 4 -->
+        <div class="manche-label">Manche 4</div>
+        <div class="score-row">
+            <div>
+                <input type="number" class="score-input" name="scoreA4" placeholder="Score Joueur 1" min="0">
+            </div>
+            <div>
+                <input type="number" class="score-input" name="scoreB4" placeholder="Score Joueur 2" min="0">
+            </div>
+        </div>
+
+        <!-- Manche 5 -->
+        <div class="manche-label">Manche 5</div>
+        <div class="score-row">
+            <div>
+                <input type="number" class="score-input" name="scoreA5" placeholder="Score Joueur 1" min="0">
+            </div>
+            <div>
+                <input type="number" class="score-input" name="scoreB5" placeholder="Score Joueur 2" min="0">
+            </div>
+        </div>
+
+        <!-- Bouton pour soumettre le résultat -->
+        <button type="submit">Enregistrer le Résultat</button>
+    </form>
+</div>
+
+</body>
+</html>
