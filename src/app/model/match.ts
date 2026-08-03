@@ -287,8 +287,8 @@ export class Match4 extends Match {
 
   public GetCompositionDoubleEquipeVisiteuse(): string[][] {
     return [
-      ['', 'U-V', 'U-W', 'V-W', 'U-Z', 'W-X', 'W-Y', 'W-Z'],
-      ['', 'U-V', 'U-W', 'V-W', 'U-Z', 'W-X', 'W-Y', 'W-Z'],
+      ['', 'U-V', 'U-W', 'U-X', 'V-W', 'V-X', 'W-X'],
+      ['', 'U-V', 'U-W', 'U-X', 'V-W', 'V-X', 'W-X'],
     ]
   }
 
