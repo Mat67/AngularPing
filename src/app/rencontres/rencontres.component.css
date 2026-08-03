@@ -1,11 +1,11 @@
 .manche {
-    min-width: 60px;
+    min-width: 48px;
     max-width: 60px;
     text-align: center;
 }
 
 .score {
-  min-width: 60px;
+  min-width: 48px;
   max-width: 60px;
   text-align: center;
 }
@@ -34,4 +34,14 @@
 
 .font-weight-bold {
   font-weight: bold;
+}
+
+.player-hover {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.player-hover:hover {
+  color: #0284c7;
 }

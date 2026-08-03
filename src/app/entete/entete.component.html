@@ -1,30 +1,25 @@
-<div class="container">
-    <div class="row">
-        <div class="col-2 form-group">
-            <label class="m-5">SAISON {{ match.getSaison() }}</label>
+<div class="container px-2 px-md-3">
+    <div class="row align-items-center mb-3 text-center text-md-start">
+        <div class="col-12 col-md-3 mb-2 mb-md-0">
+            <span class="badge bg-primary fs-6 px-3 py-2">SAISON {{ match.getSaison() }}</span>
         </div>
 
-        <div class="col-8">
-            <h1 class="m-5">Feuille de match</h1>
+        <div class="col-12 col-md-9 text-center text-md-start">
+            <h1 class="h2 fw-bold text-dark m-0">Feuille de match</h1>
         </div>
-
-
     </div>
 
-
-    <div class="row">
-
-
-        <div class="col-4 form-group">
-            <label for="DateHeure">Date / Heure</label>
-            <div class="row">
+    <div class="row g-2">
+        <div class="col-12 col-sm-6 col-md-4 mb-2">
+            <label for="DateHeure" class="form-label fw-bold small mb-1">Date / Heure</label>
+            <div class="row g-1">
                 <div class="col-7">
-                    <div class="input-group">
+                    <div class="input-group input-group-sm">
                         <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="match.Date"
                             (blur)="onBlurMethod()" ngbDatepicker required #d="ngbDatepicker"
                             [readonly]="lectureSeule" />
                         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button" [disabled]="lectureSeule">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                                 class="bi bi-calendar-date" viewBox="0 0 16 16">
                                 <path
                                     d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
@@ -36,44 +31,40 @@
                 </div>
 
                 <div class="col-5">
-                    <div class="input-group">
+                    <div class="input-group input-group-sm">
                         <ngb-timepicker [spinners]="false" [(ngModel)]="match.Heure" (blur)="onBlurMethod()" required
                             [readonlyInputs]="lectureSeule"></ngb-timepicker>
-
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-        <div class="col-2 form-group">
-            <label for="categorie">Catégorie</label>
-            <select class="form-control form-control custom-select" id="categorie" [(ngModel)]="match.categorie"
+        <div class="col-6 col-sm-4 col-md-2 mb-2">
+            <label for="categorie" class="form-label fw-bold small mb-1">Catégorie</label>
+            <select class="form-select form-select-sm" id="categorie" [(ngModel)]="match.categorie"
                 (blur)="onBlurMethod()" [disabled]="lectureSeule">
                 <option>Messieurs</option>
                 <option>Dames</option>
             </select>
         </div>
 
-        <div class="col-2 form-group">
-            <label for="epreuve">Epreuve</label>
-            <select class="form-control form-control custom-select" id="epreuve" [(ngModel)]="match.epreuve"
+        <div class="col-6 col-sm-4 col-md-2 mb-2">
+            <label for="epreuve" class="form-label fw-bold small mb-1">Epreuve</label>
+            <select class="form-select form-select-sm" id="epreuve" [(ngModel)]="match.epreuve"
                 (blur)="onBlurMethod()" [disabled]="lectureSeule">
                 <option>Championnat par équipe</option>
             </select>
         </div>
 
-
-        <div class="col-1 form-group">
-            <label for="journee">Journée</label>
-            <input type="number" placeholder="#" class="form-control form-control" min="1" max="16"
+        <div class="col-4 col-sm-4 col-md-1 mb-2">
+            <label for="journee" class="form-label fw-bold small mb-1">Journée</label>
+            <input type="number" placeholder="#" class="form-control form-control-sm" min="1" max="16"
                 [(ngModel)]="match.journee" (blur)="onBlurMethod()" [disabled]="lectureSeule"/>
         </div>
 
-        <div class="col-2 form-group">
-            <label for="division">Division</label>
-            <select class="form-control form-control custom-select" id="division" [(ngModel)]="match.division"
+        <div class="col-5 col-sm-4 col-md-2 mb-2">
+            <label for="division" class="form-label fw-bold small mb-1">Division</label>
+            <select class="form-select form-select-sm" id="division" [(ngModel)]="match.division"
                 (blur)="onBlurMethod()" [disabled]="lectureSeule">
                 <option>Excellence</option>
                 <option>Promotion d'excellence</option>
@@ -84,9 +75,9 @@
             </select>
         </div>
 
-        <div class="col-1 form-group">
-            <label for="poule">Poule</label>
-            <select class="form-control form-control custom-select" id="poule" [(ngModel)]="match.poule"
+        <div class="col-3 col-sm-4 col-md-1 mb-2">
+            <label for="poule" class="form-label fw-bold small mb-1">Poule</label>
+            <select class="form-select form-select-sm" id="poule" [(ngModel)]="match.poule"
                 (blur)="onBlurMethod()" [disabled]="lectureSeule">
                 <option>A</option>
                 <option>B</option>
@@ -99,7 +90,6 @@
                 <option>I</option>
             </select>
         </div>
-
     </div>
 
     <!-- <div class="row">

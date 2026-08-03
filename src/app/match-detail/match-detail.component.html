@@ -12,21 +12,21 @@
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 
 
-<div style="padding-top: 20px; padding-bottom: 20px;" *ngIf="afficher()">
+<div style="padding-top: 20px; padding-bottom: 90px;" *ngIf="afficher()">
   <app-print-page [match]="app.match" ></app-print-page>
 
   <app-entete [match]="app.match" (BlurMethod)="onBlurMethod()"  [lectureSeule]="estEnLectureSeule()"></app-entete>
 
-  <div class="container noprint" style="display : table; width: 100%; margin-bottom: 20px; margin-top: 60px;">
+  <div class="container noprint mb-4" style="margin-top: 30px;">
     <div class="row noprint">
-      <div class="col-6">
+      <div class="col-12 col-md-6 mb-4 mb-md-0">
         <app-equipe [equipe]="app.match.equipeReceveuse" 
         (BlurMethod)="onBlurMethod()" 
         (cacherCompositionMethod)="onCacherCompositionEquipeReceveuse($event)" 
         [joueurs]="joueurs" [equipes]="equipes" [nomEquipePlaceHolder]="'Equipe receveuse'"
         [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <app-equipe [equipe]="app.match.equipeVisiteuse" 
         (BlurMethod)="onBlurMethod()" 
         (cacherCompositionMethod)="onCacherCompositionEquipeVisiteuse($event)" 
@@ -34,7 +34,7 @@
         [lectureSeule]="estEnLectureSeule()"></app-equipe>
       </div>
     </div>
-    <div class="row noprint" style="margin-top: 60px;">
+    <div class="row noprint" style="margin-top: 30px;">
       <div class="col-12">
         <app-rencontres [rencontres]="app.match.rencontres" [match]="app.match" [equipeReceveuse]="app.match.equipeReceveuse" (BlurMethod)="onBlurMethod()" 
         [lectureSeule]="estEnLectureSeule()" 

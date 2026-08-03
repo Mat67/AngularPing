@@ -13,16 +13,17 @@
     </button>
   </div>
   <div class="row">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center" style="width: 10%">#</th>
-          <th scope="col" class="text-center" style="width: 45%">Nom</th>
-          <th scope="col" class="text-center" style="width: 15%">Clt</th>
-          <th scope="col" class="text-center" style="width: 30%">Licence</th>
-          <th scope="col" style="width: 50px;"></th> <!-- Colonne fixe pour le bouton -->
-        </tr>
-      </thead>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm align-middle">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center" style="width: 10%">#</th>
+            <th scope="col" class="text-center" style="width: 45%">Nom</th>
+            <th scope="col" class="text-center" style="width: 15%">Clt</th>
+            <th scope="col" class="text-center" style="width: 30%">Licence</th>
+            <th scope="col" style="width: 50px;"></th> <!-- Colonne fixe pour le bouton -->
+          </tr>
+        </thead>
       <tbody>
         <tr *ngFor="let joueur of equipe.joueurs; index as i" (mouseenter)="joueur.showButton = true"
           (mouseleave)="joueur.showButton = false" [ngClass]="joueur.estCapitaine ? 'table-info' : ''">

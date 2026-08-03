@@ -1,6 +1,5 @@
-<form class="row g-3 needs-validation" novalidate></form>
-
-<table class="table table-striped">
+<div class="table-responsive shadow-sm rounded">
+<table class="table table-striped align-middle mb-0">
   <thead>
     <tr class="text-center">
       <th scope="col" style="width: 7%;">#</th>
@@ -49,7 +48,42 @@
       <td>
         <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-          <div id="{{ i }} d" *ngIf="!cacherCompositionEquipeReceveuse">{{ rencontre.getNomJoueurEquipeReceveuse() }}
+          <div id="{{ i }} d" *ngIf="!cacherCompositionEquipeReceveuse">
+            <span class="player-hover"
+                  [ngbTooltip]="tpReceveur"
+                  container="body"
+                  placement="top">
+              {{ rencontre.getNomJoueurEquipeReceveuse() }}
+            </span>
+
+            <ng-template #tpReceveur>
+              <div class="text-start p-2 text-white" style="min-width: 200px; max-width: 260px;">
+                <div class="fw-bold fs-6 mb-1 text-info text-truncate">{{ rencontre.joueurEquipeReceveuse?.nom }}</div>
+                <div class="small mb-2 d-flex align-items-center justify-content-between">
+                  <span class="text-light opacity-90">🎯 Classement</span>
+                  <span class="badge bg-light text-dark fw-bold px-2 py-1">{{ rencontre.joueurEquipeReceveuse?.classement || 'N/C' }}</span>
+                </div>
+                <div class="border-top border-secondary pt-2 mt-1">
+                  <div class="small fw-semibold text-warning mb-1 text-truncate">
+                    ⚔️ vs {{ rencontre.joueurEquipeVisiteuse?.nom }}
+                  </div>
+                  <div *ngIf="getPlayerStats(rencontre.joueurEquipeReceveuse, rencontre.joueurEquipeVisiteuse) as stats">
+                    <div *ngIf="stats.total > 0"
+                         class="badge px-2 py-1 fs-7 text-white"
+                         [ngClass]="{
+                           'bg-success': stats.victoires > stats.defaites,
+                           'bg-primary': stats.victoires === stats.defaites,
+                           'bg-danger': stats.victoires < stats.defaites
+                         }">
+                      {{ stats.victoires }} V - {{ stats.defaites }} D ({{ (stats.victoires / stats.total * 100) | number:'1.0-0' }}%)
+                    </div>
+                    <div *ngIf="stats.total === 0" class="small text-white-50 fst-italic">
+                      Aucun précédent face-à-face
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
           </div>
         </ng-template>
         <ng-template #elseBlock>
@@ -83,7 +117,43 @@
       <td>
         <div *ngIf="rencontre.getTypeRencontre() === 'RencontreSimple'; then thenBlock2 else elseBlock2"></div>
         <ng-template #thenBlock2>
-          <div *ngIf="!cacherCompositionEquipeVisiteuse">{{ rencontre.getNomJoueurEquipeVisiteuse() }}</div>
+          <div *ngIf="!cacherCompositionEquipeVisiteuse">
+            <span class="player-hover"
+                  [ngbTooltip]="tpVisiteur"
+                  container="body"
+                  placement="top">
+              {{ rencontre.getNomJoueurEquipeVisiteuse() }}
+            </span>
+
+            <ng-template #tpVisiteur>
+              <div class="text-start p-2 text-white" style="min-width: 200px; max-width: 260px;">
+                <div class="fw-bold fs-6 mb-1 text-info text-truncate">{{ rencontre.joueurEquipeVisiteuse?.nom }}</div>
+                <div class="small mb-2 d-flex align-items-center justify-content-between">
+                  <span class="text-light opacity-90">🎯 Classement</span>
+                  <span class="badge bg-light text-dark fw-bold px-2 py-1">{{ rencontre.joueurEquipeVisiteuse?.classement || 'N/C' }}</span>
+                </div>
+                <div class="border-top border-secondary pt-2 mt-1">
+                  <div class="small fw-semibold text-warning mb-1 text-truncate">
+                    ⚔️ vs {{ rencontre.joueurEquipeReceveuse?.nom }}
+                  </div>
+                  <div *ngIf="getPlayerStats(rencontre.joueurEquipeVisiteuse, rencontre.joueurEquipeReceveuse) as stats">
+                    <div *ngIf="stats.total > 0"
+                         class="badge px-2 py-1 fs-7 text-white"
+                         [ngClass]="{
+                           'bg-success': stats.victoires > stats.defaites,
+                           'bg-primary': stats.victoires === stats.defaites,
+                           'bg-danger': stats.victoires < stats.defaites
+                         }">
+                      {{ stats.victoires }} V - {{ stats.defaites }} D ({{ (stats.victoires / stats.total * 100) | number:'1.0-0' }}%)
+                    </div>
+                    <div *ngIf="stats.total === 0" class="small text-white-50 fst-italic">
+                      Aucun précédent face-à-face
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
         </ng-template>
         <ng-template #elseBlock2>
           <div class="dropdown" [ngClass]="{ 'show': dropdownOpen }">
@@ -116,7 +186,7 @@
       <td *ngFor="let manche of rencontre.manches; index as y" style="text-align: center;">
         <input type="text" class="form-control manche" id="{{ 'manche' + i + y }}"
           (keypress)="omit_number(rencontre.manches[y].score, $event)" [(ngModel)]="rencontre.manches[y].score"
-          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod()" autocomplete="off"
+          name=" {{ 'manche' + i + y }}" style="padding: 0%;" (blur)="onBlurMethod(rencontre)" autocomplete="off"
           appScoreValidation="rencontre.manches[y]" [readonly]="lectureSeule"
           [disabled]="(manche.score === '' && rencontre.getResultat() !== 0) || (y > 0 && rencontre.manches[y-1].score === '' && manche.score === '') " />
       </td>
@@ -132,3 +202,4 @@
 
 
 </table>
+</div>

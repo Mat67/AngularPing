@@ -12,6 +12,7 @@ import { Joueur } from '../model/joueur';
   templateUrl: './match-detail.component.html',
   styleUrls: ['./match-detail.component.css'],
 })
+// Trigger hot reload for bottom padding fix
 export class MatchDetailComponent implements OnInit {
   app: App;
   onBlurMethod: any;

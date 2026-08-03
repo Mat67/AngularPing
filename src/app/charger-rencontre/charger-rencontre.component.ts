@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { App } from '../model/app';
@@ -22,7 +23,7 @@ export class ChargerRencontreComponent {
   loading: boolean = false;
   hasMore: boolean = true;
 
-  constructor(private modalService: NgbModal, private repository: RepositoryService) {}
+  constructor(private modalService: NgbModal, private repository: RepositoryService, private router: Router) {}
 
   public open() {
     this.openChargerRencontre(this.contentChargerRencontre);
@@ -90,9 +91,12 @@ export class ChargerRencontreComponent {
   }
 
   public onClick(match: Match) {
-    if (this.matchs.find(m => m.id === match.id)) {
-      this.app.match = match;
+    if (match) {
+      if (this.app) {
+        this.app.match = match;
+      }
       this.modalService.dismissAll();
+      this.router.navigate(['/matchs/' + match.id]);
     }
   }
 

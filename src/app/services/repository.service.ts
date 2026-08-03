@@ -29,6 +29,7 @@ export class RepositoryService {
   sauvegarderMatchResolver: (value: unknown) => void;
   getAllJoueursResolver: (value: Joueur[]) => void;
   getAllEquipesResolver: (value: string[]) => void;
+  private faceAFaceResolversQueue: Array<(value: any) => void> = [];
 
   constructor() {
     const createWebSocket = (uri) => {
@@ -99,6 +100,14 @@ export class RepositoryService {
                   var equipes = d.data || [];
                   this.getAllEquipesResolver(equipes.map(e => e.nomEquipe));
                   this.getAllEquipesResolver = undefined;
+                }
+              }
+              else if (d.message === 'getFaceAFaceStatsResult' || d.message === 'getFaceAFaceStatsResultat') {
+                if (this.faceAFaceResolversQueue.length > 0) {
+                  const resolver = this.faceAFaceResolversQueue.shift();
+                  if (resolver) {
+                    resolver(d.data);
+                  }
                 }
               }
 
@@ -274,6 +283,31 @@ export class RepositoryService {
         clearTimeout(timer);
         resolve(val);
       };
+    });
+  }
+
+  async getFaceAFaceStats(joueur1: any, joueur2: any, matchIdActuel?: string): Promise<any> {
+    if (this.ws) {
+      this.ws.next({
+        message: 'getFaceAFaceStats',
+        data: {
+          joueur1,
+          joueur2,
+          matchIdActuel
+        }
+      });
+    }
+
+    return await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        const idx = this.faceAFaceResolversQueue.indexOf(resolve);
+        if (idx !== -1) {
+          this.faceAFaceResolversQueue.splice(idx, 1);
+        }
+        reject('timeout');
+      }, 5000);
+
+      this.faceAFaceResolversQueue.push(resolve);
     });
   }
 }

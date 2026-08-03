@@ -1,25 +1,20 @@
-<footer class="page-footer p-1 fixed-bottom bg-light">
+<footer class="page-footer py-2 fixed-bottom bg-light border-top shadow-sm">
     <div class="container">
-        <div class="row">
-            <div class="col-2"  ></div>
-            <div class="score-counter col-4 text-center"  >
-                <span style="font-weight: bold;">
-                    {{ match.equipeReceveuse.nomEquipe }} - {{ match.equipeVisiteuse.nomEquipe }}  
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div class="score-counter d-flex align-items-center">
+                <span class="fw-bold d-none d-md-inline me-3 text-truncate" style="max-width: 250px;">
+                    {{ match.equipeReceveuse.nomEquipe || 'Receveur' }} - {{ match.equipeVisiteuse.nomEquipe || 'Visiteur' }}  
                 </span>
-                <div style="width: 30px;"></div>
+                <div class="d-flex align-items-center">
+                    <div class="digit" id="digit1">{{ match.scoreEquipeReceveuse() }}</div>
+                    <span class="separator px-1">-</span>
+                    <div class="digit" id="digit3">{{ match.scoreEquipeVisiteuse() }}</div>
+                </div>
+            </div>
               
-                <div class="digit" id="digit1">{{ match.scoreEquipeReceveuse()}}</div>
-                <span class="separator">-</span>
-                <div class="digit" id="digit3">{{ match.scoreEquipeVisiteuse() }}</div>
-              </div>
-              
-            <div class="col-2">
+            <div class="d-flex align-items-center gap-2 ms-auto">
                 <app-modal [match]="match" [godeMode]="godeMode"></app-modal>
-            </div>
-            <div class="col-2">
                 <button class="btn btn-success" (click)="imprimer()" [disabled]="!isButtonImprimerActif() && !isGodMode">Imprimer</button>
-            </div>
-            <div class="col-2">
                 <button class="btn btn-outline-primary" (click)="random()" *ngIf="isGodMode">Random</button>
             </div>
         </div>
