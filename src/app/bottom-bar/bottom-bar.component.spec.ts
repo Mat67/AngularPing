@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { BottomBarComponent } from './bottom-bar.component';
-import { Match, Match6 } from '../model/match';
+import { Match6 } from '../model/match';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BottomBarComponent', () => {
   let component: BottomBarComponent;
@@ -9,7 +10,9 @@ describe('BottomBarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BottomBarComponent ]
+      declarations: [ BottomBarComponent ],
+      imports: [ RouterTestingModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

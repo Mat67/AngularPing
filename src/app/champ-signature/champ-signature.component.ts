@@ -45,12 +45,13 @@ export class ChampSignatureComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.signaturePad is now available
-    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
-    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
-    this.signaturePad.fromDataURL(this.signature)
-
-
+    if (this.signaturePad) {
+      this.signaturePad.set('minWidth', 5);
+      this.signaturePad.clear();
+      if (this.signature) {
+        this.signaturePad.fromDataURL(this.signature);
+      }
+    }
   }
 
   drawComplete(event: MouseEvent | Touch) {

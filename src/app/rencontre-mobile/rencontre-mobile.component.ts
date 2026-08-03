@@ -48,25 +48,24 @@ export class RencontreMobileComponent implements OnInit {
 
 
     onSubmit() {
-        // Logic pour traiter les résultats du match
-        const result = {
-            joueur1: {
-                manche1: this.scoreA1,
-                manche2: this.scoreA2,
-                manche3: this.scoreA3,
-                manche4: this.scoreA4,
-                manche5: this.scoreA5
-            },
-            joueur2: {
-                manche1: this.scoreB1,
-                manche2: this.scoreB2,
-                manche3: this.scoreB3,
-                manche4: this.scoreB4,
-                manche5: this.scoreB5
-            }
-        };
+        if (this.rencontre && this.rencontre.manches) {
+            const scores = [
+                { a: this.scoreA1, b: this.scoreB1 },
+                { a: this.scoreA2, b: this.scoreB2 },
+                { a: this.scoreA3, b: this.scoreB3 },
+                { a: this.scoreA4, b: this.scoreB4 },
+                { a: this.scoreA5, b: this.scoreB5 }
+            ];
 
-        console.log('Résultat du match:', result);
-        // Tu peux ensuite envoyer ces données à un service, les stocker, etc.
+            scores.forEach((s, idx) => {
+                if (this.rencontre.manches[idx] && s.a !== undefined && s.b !== undefined && s.a !== null && s.b !== null) {
+                    this.rencontre.manches[idx].score = `${s.a}-${s.b}`;
+                }
+            });
+        }
+
+        if (this.match) {
+            this.repository.sauvegarderMatch(this.match);
+        }
     }
 }

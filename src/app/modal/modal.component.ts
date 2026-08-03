@@ -68,20 +68,20 @@ export class ModalComponent implements OnInit {
   }
 
   isButtonImprimerActif() {
-    return (
-      this.match.signatureEquipeReceveuse !== undefined &&
-      this.match.signatureEquipeVisiteuse !== undefined
+    return !!(
+      this.match?.signatureEquipeReceveuse &&
+      this.match?.signatureEquipeVisiteuse
     );
   }
 
   supprimerSignatureEquipeReceveuse() {
     this.match.signatureEquipeReceveuse = undefined
-    this.repository.ModifierSignature(this.match.id, '1', this.match.signatureEquipeReceveuse )
+    this.repository.ModifierSignature(this.match.id, '0', undefined)
   }
 
   supprimerSignatureEquipeVisiteuse() {
     this.match.signatureEquipeVisiteuse = undefined
-    this.repository.ModifierSignature(this.match.id, '1', this.match.signatureEquipeVisiteuse)
+    this.repository.ModifierSignature(this.match.id, '1', undefined)
   }
 
   getQRCodeSignatureUrlEquipeReceveuse() {
@@ -90,7 +90,6 @@ export class ModalComponent implements OnInit {
 
   private getQRCodeUrlSignature(equipeId) {
     return 'http://serveur-mat.synology.me/#/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
-    //return 'http://localhost:4200/matchs/' + this.match.id + '/equipes/' + equipeId + '/signature'
   }
 
   getQRCodeSignatureUrlEquipeVisiteuse() {
@@ -99,9 +98,11 @@ export class ModalComponent implements OnInit {
 
   Imprimer() {
     this.repository.GetSignatures(this.match.id).then((s) => {
-      this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
-      this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
-    })
+      if (s) {
+        this.signatureEquipeReceveuse = s.signatureEquipeReceveuse
+        this.signatureEquipeVisiteuse = s.signatureEquipeVisiteuse
+      }
+    }).catch(err => console.warn(err))
 
 
     this.modalService.dismissAll()
@@ -110,7 +111,7 @@ export class ModalComponent implements OnInit {
 
 
   peutSigner() {
-    return this.match.matchEstTermine() && this.match.signatureEquipeReceveuse == undefined && this.match.signatureEquipeVisiteuse == undefined
+    return !!(this.match?.matchEstTermine() && (!this.match?.signatureEquipeReceveuse || !this.match?.signatureEquipeVisiteuse));
   }
 
 

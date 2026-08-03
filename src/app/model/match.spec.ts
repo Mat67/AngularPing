@@ -32,10 +32,12 @@ describe('Match', () => {
   });
 
   it('Saison 20xx/20xx', () => {
-    var match =  new Match6();
-    
-    var expectedSaison = new Date().getFullYear() + "/" + (new Date().getFullYear() + 1) 
-    
+    var match = new Match6();
+    var aujourdhui = new Date();
+    var expectedSaison = aujourdhui > new Date(aujourdhui.getFullYear(), 7, 31)
+      ? aujourdhui.getFullYear() + "/" + (aujourdhui.getFullYear() + 1)
+      : (aujourdhui.getFullYear() - 1) + "/" + aujourdhui.getFullYear();
+
     expect(match.getSaison()).toBe(expectedSaison);
   });
 });

@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { RencontresComponent } from './rencontres.component';
-import { Rencontre } from '../model/rencontre';
+import { RencontreSimple } from '../model/rencontre';
 import { Joueur } from '../model/joueur';
-import { Match, Match6 } from '../model/match';
-import { RencontreSimple } from '../model/rencontre-simple';
+import { Match6 } from '../model/match';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RencontresComponent', () => {
   let component: RencontresComponent;
@@ -12,7 +12,9 @@ describe('RencontresComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RencontresComponent ]
+      declarations: [ RencontresComponent ],
+      imports: [ FormsModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

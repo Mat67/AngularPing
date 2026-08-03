@@ -54,20 +54,13 @@ export class ChargerRencontreComponent {
   
 
   public afficheDateDepuis(match:Match) {
-
     if (match && match.Date) {
-      var tmpDate
-
-
-      tmpDate = new Date(match.Date)
-      var tmpHeure =
-      tmpHeure = match.Heure
-
+      var tmpDate = new Date(match.Date)
+      var tmpHeure = match.Heure
 
       var d = moment(new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpHeure ? tmpHeure.hour : 0, tmpHeure ? tmpHeure.minute : 0))
       return d.locale('fr').fromNow();
     } else
       return ''
-
   }
 }

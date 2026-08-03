@@ -48,94 +48,86 @@ export class RencontresComponent implements OnInit {
   // Fermer le dropdown si un clic est détecté à l'extérieur
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {
-    // Si le clic est à l'extérieur de la dropdown (ni sur le bouton, ni sur la dropdown elle-même)
-    this.dropdownMenusReceveur.forEach((dropdown, index) => {
-      if (dropdown && !dropdown.nativeElement.contains(event.target)) {
-        if (index == 0) {
-          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
+    if (this.dropdownMenusReceveur) {
+      this.dropdownMenusReceveur.forEach((dropdown, index) => {
+        if (dropdown && !dropdown.nativeElement.contains(event.target)) {
+          this.dropdownEquipeReceveuseOpen[index] = false;
         }
+      });
+    }
 
-        if (index == 1) {
-          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
+    if (this.dropdownMenusVisiteur) {
+      this.dropdownMenusVisiteur.forEach((dropdown, index) => {
+        if (dropdown && !dropdown.nativeElement.contains(event.target)) {
+          this.dropdownEquipeVisiteuseOpen[index] = false;
         }
-      }
-    });
-
-    this.dropdownMenusVisiteur.forEach((dropdown, index) => {
-      if (dropdown && !dropdown.nativeElement.contains(event.target)) {
-        if (index == 0) {
-          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-        }
-
-        if (index == 1) {
-          this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-          this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-        }
-      }
-    });
+      });
+    }
   }
 
   getBackgroundColor(rencontre: any): string {
-    if (this.match.getRencontresSuivantes().filter(r => r?.getFormule() === rencontre?.getFormule()).length > 0) {
-      return '#CCE5FF'; // Changez la couleur selon vos besoins
+    if (this.match && this.match.getRencontresSuivantes().filter(r => r?.getFormule() === rencontre?.getFormule()).length > 0) {
+      return '#CCE5FF';
     } else {
-      return ''; // Laissez une chaîne vide pour la couleur par défaut
+      return '';
     }
   }
 
   toggleDropdownEquipeReceveuse(event: Event, index) {
-    event.stopPropagation(); // Empêche la propagation de l'événement au document
+    event.stopPropagation();
     this.dropdownEquipeReceveuseOpen[index] = !this.dropdownEquipeReceveuseOpen[index];
-    this.dropdownEquipeVisiteuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-    this.dropdownEquipeVisiteuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-    this.dropdownEquipeReceveuseOpen[index == 0 ? 1 : 0] = false; // Fermer la dropdown si clic extérieur
+    this.dropdownEquipeVisiteuseOpen[0] = false;
+    this.dropdownEquipeVisiteuseOpen[1] = false;
+    this.dropdownEquipeReceveuseOpen[index == 0 ? 1 : 0] = false;
   }
 
   toggleDropdownEquipeVisiteuse(event: Event, index) {
     event.stopPropagation(); 
     this.dropdownEquipeVisiteuseOpen[index] = !this.dropdownEquipeVisiteuseOpen[index];
-    this.dropdownEquipeReceveuseOpen[0] = false; // Fermer la dropdown si clic extérieur
-    this.dropdownEquipeReceveuseOpen[1] = false; // Fermer la dropdown si clic extérieur
-    this.dropdownEquipeVisiteuseOpen[index == 0 ? 1 : 0] = false; // Fermer la dropdown si clic extérieur
-    
+    this.dropdownEquipeReceveuseOpen[0] = false;
+    this.dropdownEquipeReceveuseOpen[1] = false;
+    this.dropdownEquipeVisiteuseOpen[index == 0 ? 1 : 0] = false;
   }
 
   // Méthode pour sélectionner une option
   selectOptionEquipeReceveuse(value: string, rencontre : RencontreDouble, index: number) {
-    rencontre.doubleEquipeReceveuse = value;  // Sauvegarde de la valeur
-    this.dropdownEquipeReceveuseOpen[index] = false
+    rencontre.doubleEquipeReceveuse = value;
+    this.dropdownEquipeReceveuseOpen[index] = false;
   }
 
   selectOptionEquipeVisiteuse(value: string, rencontre : RencontreDouble, index: number) {
-    rencontre.doubleEquipeVisiteuse = value;  // Sauvegarde de la valeur
-    this.dropdownEquipeVisiteuseOpen[index] = false
+    rencontre.doubleEquipeVisiteuse = value;
+    this.dropdownEquipeVisiteuseOpen[index] = false;
   }
 
-  omit_number(score, evt):boolean {
-    var charValid =  (evt.key === '-' || !isNaN(evt.key))
-    if (charValid) {
-      var separateur = score.indexOf('-')
+  omit_number(score: string, evt: KeyboardEvent): boolean {
+    const val = score || '';
+    const charValid = (evt.key === '-' || (!isNaN(Number(evt.key)) && evt.key !== ' '));
+    if (!charValid) {
+      if (evt && evt.preventDefault) evt.preventDefault();
+      return false;
+    }
 
-
-      if (evt.key === '-' && separateur !== -1)
-        return false // Pas le droit d'avoir plus d'1 occurence de '-'
-      else if (evt.key === '-' && separateur === -1 && score.split('-')[0].length === 0)
-        return false // impossible de saisir '-' si on a pas au moins 1 nombre sur la partie de gauche
-      else if (!isNaN(evt.key)) {
-        var partieGaucheValide = score.split('-')[0].length < 2 || separateur !== -1
-        var partieDroiteValide = separateur === -1 || score.split('-')[1].length < 2
-        return partieGaucheValide && partieDroiteValide
+    const separateur = val.indexOf('-');
+    if (evt.key === '-' && separateur !== -1) {
+      if (evt && evt.preventDefault) evt.preventDefault();
+      return false;
+    }
+    if (evt.key === '-' && separateur === -1 && val.split('-')[0].length === 0) {
+      if (evt && evt.preventDefault) evt.preventDefault();
+      return false;
+    }
+    if (!isNaN(Number(evt.key)) && evt.key !== ' ') {
+      const parts = val.split('-');
+      const partieGaucheValide = parts[0].length < 2 || separateur !== -1;
+      const partieDroiteValide = separateur === -1 || (parts[1] && parts[1].length < 2);
+      if (!(partieGaucheValide && partieDroiteValide)) {
+        if (evt && evt.preventDefault) evt.preventDefault();
+        return false;
       }
     }
 
-    return charValid
+    return true;
   }
 
   

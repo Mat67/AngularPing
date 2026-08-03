@@ -23,7 +23,12 @@ export class PrintPageComponent implements OnInit {
   }
 
   getDateHeure() {
-    return `${this.getDate()} ${this.getHeure()}`
+    const d = this.getDate();
+    const h = this.getHeure();
+    if (d && h) return `${d} ${h}`;
+    if (d) return d;
+    if (h) return h;
+    return '';
   }
 
 

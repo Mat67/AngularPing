@@ -4,17 +4,20 @@ export class Manche {
    */
   public getResultat(): number {
     try {
-      if (!this.score)
-      return 0
+      if (!this.score) return 0;
 
-    var scoreSplite = this.score.split("-");
-    if (scoreSplite.length !== 2) return 0;
+      var scoreSplite = this.score.split("-");
+      if (scoreSplite.length !== 2) return 0;
 
-    return parseInt(scoreSplite[0]) - parseInt(scoreSplite[1]);
+      const p1 = parseInt(scoreSplite[0], 10);
+      const p2 = parseInt(scoreSplite[1], 10);
+
+      if (isNaN(p1) || isNaN(p2)) return 0;
+
+      return p1 - p2;
     } catch (error) {
-      var a = ''
+      return 0;
     }
-
   }
 
   public static fabrique(score: string) {

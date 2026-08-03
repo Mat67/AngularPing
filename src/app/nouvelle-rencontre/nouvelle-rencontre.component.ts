@@ -26,13 +26,16 @@ export class NouvelleRencontreComponent {
   }
 
   public async creerNouvelleRencontre(nombreJoueur) {
-    var match = Match.fabriqueMatch(nombreJoueur)
+    var match = Match.fabriqueMatch(nombreJoueur);
 
-    this.repository.sauvegarderMath(match)
-
-    await new Promise((resolve, reject) => {
-      setTimeout(() => resolve('OK'), 1000)
-    })
+    try {
+      await Promise.race([
+        this.repository.sauvegarderMatch(match),
+        new Promise((r) => setTimeout(r, 2000))
+      ]);
+    } catch (e) {
+      console.warn('Sauvegarde WebSocket non confirmée, navigation poursuivie', e);
+    }
 
     this.router.navigate(['/matchs/' + match.id]);
   }

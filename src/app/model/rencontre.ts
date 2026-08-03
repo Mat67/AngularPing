@@ -100,12 +100,16 @@ export class Rencontre {
     return "";
   }
 
-  getPointEquipeReveuse(): string {
+  getPointEquipeReceveuse(): string {
     var score = this.getResultat();
 
     if (score > 0) return "1";
     else if (score < 0) return "0";
     else return "";
+  }
+
+  getPointEquipeReveuse(): string {
+    return this.getPointEquipeReceveuse();
   }
 
   getPointEquipeVisiteuse(): string {

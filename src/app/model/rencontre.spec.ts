@@ -1,6 +1,5 @@
-import { Rencontre } from './rencontre';
+import { Rencontre, RencontreSimple } from './rencontre';
 import { Joueur } from './joueur';
-import { RencontreSimple } from './rencontre-simple';
 
 describe('Rencontre', () => {
   it('should create an instance', () => {

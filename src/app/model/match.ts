@@ -80,10 +80,10 @@ export abstract class Match {
 
     var switchValue
 
-    if (isNaN(obj)) {
+    if (typeof obj === 'object' && obj !== null) {
       switchValue = obj?.equipeReceveuse?.joueurs?.length
     } else {
-      switchValue = obj
+      switchValue = Number(obj)
     }
 
     switch (switchValue) {
@@ -101,8 +101,8 @@ export abstract class Match {
         break;
     }
 
-    if (isNaN(obj)) {
-      match.chargerMath(obj)
+    if (typeof obj === 'object' && obj !== null && match) {
+      match.chargerMatch(obj)
     }
 
     return match
@@ -163,17 +163,12 @@ export abstract class Match {
     return this.rencontres.filter(r => r.getResultat() === 0).slice(0, 2)
   }
 
-  public chargerMath(match) {
+  public chargerMatch(match) {
     for (const key in match) {
       if (Object.prototype.hasOwnProperty.call(match, key)) {
 
         if (['equipeReceveuse', 'equipeVisiteuse'].indexOf(key) !== -1)
           this[key] = Equipe.fabrique(match[key].nomEquipe, match[key].joueurs)
-        // else if (key === 'Date')
-        //   this[key] = new Date(match[key]?.year, match[key]?.month, match[key]?.Date?.Day)
-        // else if (key === 'Heure')
-        //   this[key]
-
         else if (key === 'rencontres') {
           this[key] = []
           match[key].forEach(r => {
@@ -188,15 +183,16 @@ export abstract class Match {
 
             var rencontre = Rencontre.fabriqueRencontre(data)
             this[key].push(rencontre)
-
-            // if (r.joueurEquipeReceveuse && r.joueurEquipeVisiteuse)
-            //   Rencontre.fabriqueDouble(r)
           })
         }
         else
           this[key] = match[key]
       }
     }
+  }
+
+  public chargerMath(match) {
+    this.chargerMatch(match);
   }
 
   public toString() {

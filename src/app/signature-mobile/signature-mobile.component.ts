@@ -26,37 +26,36 @@ export class SignatureMobileComponent {
     this.equipeId = this.route.snapshot.paramMap.get('equipeId');
 
     this.repository.getMatch(this.matchId).then(m => {
-      this.match = m
-    }).then(() => {
-      this.repository.GetSignatures(this.matchId).then((s) => {
-        if (this.equipeId === '0') {
-          this.signature = s.signatureEquipeReceveuse
-          this.nomEquipe = this.match.equipeReceveuse.nomEquipe
-        }
-        else if (this.equipeId === '1') {
-          this.signature = s.signatureEquipeVisiteuse
-          this.nomEquipe = this.match.equipeVisiteuse.nomEquipe
-        }
-
-        this.resultat = this.match.toString()
-      })
-    })
-
-
+      this.match = m;
+      if (m) {
+        this.repository.GetSignatures(this.matchId).then((s) => {
+          if (s) {
+            if (this.equipeId === '0') {
+              this.signature = s.signatureEquipeReceveuse;
+              this.nomEquipe = this.match?.equipeReceveuse?.nomEquipe;
+            } else if (this.equipeId === '1') {
+              this.signature = s.signatureEquipeVisiteuse;
+              this.nomEquipe = this.match?.equipeVisiteuse?.nomEquipe;
+            }
+          }
+          if (this.match) {
+            this.resultat = this.match.toString();
+          }
+        }).catch(err => console.warn(err));
+      }
+    }).catch(err => console.warn(err));
   }
 
   signatureChanged(base64data) {
     this.signature = base64data
   }
 
-
   validerSignature() {
-    this.repository.ModifierSignature(this.matchId, this.equipeId, this.signature)
+    this.repository.ModifierSignature(this.matchId, this.equipeId, this.signature);
   }
 
   effacerSignature() {
-    //this.repository.ModifierSignature(this.matchId, this.equipeId, null)
-    this.signature = undefined
+    this.signature = undefined;
   }
 
   signature: string

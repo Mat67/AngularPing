@@ -41,11 +41,12 @@ export class RepositoryService {
                 if (this.getMatchsResolver) {
                   var matchs = [];
 
-                  d.data.forEach((m) => {
+                  d.data?.forEach((m) => {
                     matchs.push(Match.fabriqueMatch(m));
                   });
 
                   this.getMatchsResolver(matchs);
+                  this.getMatchsResolver = undefined;
                 }
 
               } else if (d.message === 'getMatchResult') {
@@ -53,44 +54,55 @@ export class RepositoryService {
                   var m = Match.fabriqueMatch(d.data)
 
                   this.getMatchResolver(m);
+                  this.getMatchResolver = undefined;
                 }
               } else if (d.message === 'sauvegarderMatchResultat') {
                 if (this.sauvegarderMatchResolver) {
                   this.sauvegarderMatchResolver(d.data)
                   this.sauvegarderMatchResolver = undefined
-
                 }
-                this.onMatchUpdate(Match.fabriqueMatch(d.data));
+                if (this.onMatchUpdate) {
+                  this.onMatchUpdate(Match.fabriqueMatch(d.data));
+                }
               } else if (d.message === 'ModifierSignatureResultat') {
                 var signature = {
-                  matchId:d.data.matchId,
-                  equipeId:d.data.equipeId,
-                  signature: d.data.signature,
+                  matchId:d.data?.matchId,
+                  equipeId:d.data?.equipeId,
+                  signature: d.data?.signature,
                 }
                 if (this.onSignatureUpdate)
                   this.onSignatureUpdate(signature);
               }
               else if (d.message === 'getSignaturesResultat') {
-                this.getSignaturesResolver(d.data);
+                if (this.getSignaturesResolver) {
+                  this.getSignaturesResolver(d.data);
+                  this.getSignaturesResolver = undefined;
+                }
               }
               else if (d.message === 'getAllJoueursResult') {
-                var joueurs = [];
-
-                  d.data.forEach((j) => {
+                if (this.getAllJoueursResolver) {
+                  var joueurs = [];
+                  d.data?.forEach((j) => {
                     joueurs.push(Joueur.fabrique(j));
                   });
-
-                
-                this.getAllJoueursResolver(joueurs);
+                  this.getAllJoueursResolver(joueurs);
+                  this.getAllJoueursResolver = undefined;
+                }
               }
               else if (d.message === 'getAllEquipesResult') {
-                var equipes = d.data;                
-                this.getAllEquipesResolver(equipes.map(e => e.nomEquipe));
+                if (this.getAllEquipesResolver) {
+                  var equipes = d.data || [];
+                  this.getAllEquipesResolver(equipes.map(e => e.nomEquipe));
+                  this.getAllEquipesResolver = undefined;
+                }
               }
 
               console.log('recu du serveur ' + d.message);
             },
-            (error) => observer.error(error),
+            (error) => {
+              if (this.onError) this.onError(error);
+              observer.error(error);
+            },
             () => observer.complete()
           );
 
@@ -100,8 +112,8 @@ export class RepositoryService {
             }
           };
         } catch (error) {
+          if (this.onError) this.onError(error);
           observer.error(error);
-          this.onError(error);
         }
       });
     };
@@ -111,7 +123,7 @@ export class RepositoryService {
         retryWhen((errors) =>
           errors.pipe(
             tap((err) => {
-              this.onError(err);
+              if (this.onError) this.onError(err);
             }),
             delay(5000)
           )
@@ -123,38 +135,50 @@ export class RepositoryService {
       );
   }
 
-  async sauvegarderMath(match: Match) {
-    this.ws.next({ message: 'sauvegarderMatch', data: match });
-
+  async sauvegarderMatch(match: Match) {
+    if (this.ws) {
+      this.ws.next({ message: 'sauvegarderMatch', data: match });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.sauvegarderMatchResolver = resolve;
+      const timer = setTimeout(() => {
+        this.sauvegarderMatchResolver = undefined;
+        reject('timeout');
+      }, 50000);
 
-      setTimeout(() => reject('timeout'), 50000);
+      this.sauvegarderMatchResolver = (val) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
+  }
 
-
-    //   let matchsIds = this.getListeMatchesId()
-    //   var matchTrouve = matchsIds.indexOf(match.id) !== -1;
-    //   if (!matchTrouve){
-    //     matchsIds.push(match.id);
-    //     localStorage.setItem('eps-matchs', JSON.stringify(matchsIds));
-    // }
-    //   localStorage.setItem('eps-match-' + match.id, JSON.stringify(match))
+  async sauvegarderMath(match: Match) {
+    return this.sauvegarderMatch(match);
   }
 
   async getMatch(id: string) : Promise<Match> {
-    this.ws.next({ message: 'getMatch', data : id });
+    if (this.ws) {
+      this.ws.next({ message: 'getMatch', data : id });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.getMatchResolver = resolve;
+      const timer = setTimeout(() => {
+        this.getMatchResolver = undefined;
+        reject('timeout');
+      }, 5000);
 
-      setTimeout(() => reject('timeout'), 5000);
+      this.getMatchResolver = (val) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
   }
 
   supprimerMatch(id: string) {
-    this.ws.next({ message: 'supprimerMatch', data: id });
+    if (this.ws) {
+      this.ws.next({ message: 'supprimerMatch', data: id });
+    }
   }
 
   getListeMatchesId() {
@@ -165,12 +189,20 @@ export class RepositoryService {
   }
 
   async listeMatchsSauvegardes(): Promise<Match[]> {
-    this.ws.next({ message: 'getMatchs' });
+    if (this.ws) {
+      this.ws.next({ message: 'getMatchs' });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.getMatchsResolver = resolve;
+      const timer = setTimeout(() => {
+        this.getMatchsResolver = undefined;
+        reject('timeout');
+      }, 5000);
 
-      setTimeout(() => reject('timeout'), 5000);
+      this.getMatchsResolver = (val: Match[]) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
   }
 
@@ -181,36 +213,62 @@ export class RepositoryService {
       signature: signature
     }
 
-    this.ws.next({ message: 'ModifierSignature', data: data });
+    if (this.ws) {
+      this.ws.next({ message: 'ModifierSignature', data: data });
+    }
   }
 
   async GetSignatures( matchId: string): Promise<any>  {
-    this.ws.next({ message: 'getSignatures', data: matchId });
+    if (this.ws) {
+      this.ws.next({ message: 'getSignatures', data: matchId });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.getSignaturesResolver = resolve;
+      const timer = setTimeout(() => {
+        this.getSignaturesResolver = undefined;
+        reject('timeout');
+      }, 5000);
 
-      setTimeout(() => reject('timeout'), 5000);
+      this.getSignaturesResolver = (val) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
   }
 
   async getAllJoueurs() : Promise<Joueur[]> {
-    this.ws.next({ message: 'getAllJoueurs' });
+    if (this.ws) {
+      this.ws.next({ message: 'getAllJoueurs' });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.getAllJoueursResolver = resolve;
+      const timer = setTimeout(() => {
+        this.getAllJoueursResolver = undefined;
+        reject('timeout');
+      }, 5000);
 
-      setTimeout(() => reject('timeout'), 5000);
+      this.getAllJoueursResolver = (val) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
   }
 
   async getAllEquipes() : Promise<string[]> {
-    this.ws.next({ message: 'getAllEquipes' });
+    if (this.ws) {
+      this.ws.next({ message: 'getAllEquipes' });
+    }
 
     return await new Promise((resolve, reject) => {
-      this.getAllEquipesResolver = resolve;
+      const timer = setTimeout(() => {
+        this.getAllEquipesResolver = undefined;
+        reject('timeout');
+      }, 5000);
 
-      setTimeout(() => reject('timeout'), 5000);
+      this.getAllEquipesResolver = (val) => {
+        clearTimeout(timer);
+        resolve(val);
+      };
     });
   }
 }

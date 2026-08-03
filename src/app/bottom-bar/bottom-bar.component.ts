@@ -14,6 +14,8 @@ export class BottomBarComponent implements OnInit {
   @Input() match: Match;
   @Input() lectureSeule: boolean;
   @Input() godeMode: boolean;
+  @Input() godMode: boolean;
+  get isGodMode(): boolean { return this.godMode || this.godeMode; }
 
   constructor(private repository: RepositoryService) { }
 
@@ -26,9 +28,11 @@ export class BottomBarComponent implements OnInit {
 
 
   isButtonImprimerActif() {
-    return this.match.matchEstTermine() 
-    && this.match.signatureEquipeReceveuse != undefined 
-    && this.match.signatureEquipeVisiteuse != undefined
+    return !!(
+      this.match?.matchEstTermine() &&
+      this.match?.signatureEquipeReceveuse &&
+      this.match?.signatureEquipeVisiteuse
+    );
   }
 
 
@@ -72,5 +76,9 @@ export class BottomBarComponent implements OnInit {
         }
       });
     });
+
+    if (this.match) {
+      this.repository.sauvegarderMatch(this.match);
+    }
   }
 }
