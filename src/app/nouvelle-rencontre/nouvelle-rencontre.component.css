@@ -1,16 +1,31 @@
-.card-hover {
-    transition: background-color 0.3s, transform 0.1s;
-  }
-  
-  .card-hover:hover {
-    background-color: #e0f7fa; /* Couleur de fond au survol (bleu clair) */
-  }
-  
-  .icon-hover {
-    transition: transform 0.3s; /* Transition pour l'animation */
-  }
-  
-  .card-hover:hover .icon-hover {
-    transform: translateY(-10px); /* Déplace l'icône vers le haut lors du survol */
-  }
+.card-selection-player {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-color: #e2e8f0 !important;
+  background-color: #ffffff;
+}
+
+.card-selection-player:hover {
+  transform: translateY(-4px);
+  border-color: #0284c7 !important;
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.15);
+  background-color: #f8fafc;
+}
+
+.player-count-badge {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: transform 0.25s ease;
+}
+
+.card-selection-player:hover .player-count-badge {
+  transform: scale(1.1);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
   

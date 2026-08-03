@@ -110,7 +110,7 @@ export abstract class Match {
 
   public getSaison(): string {
     var aujourdhui = new Date();
-    if (aujourdhui > new Date(aujourdhui.getFullYear(), 7, 31))
+    if (aujourdhui > new Date(aujourdhui.getFullYear(), 6, 31))
       return aujourdhui.getFullYear() + "/" + (aujourdhui.getFullYear() + 1);
     else return aujourdhui.getFullYear() - 1 + "/" + aujourdhui.getFullYear();
   }

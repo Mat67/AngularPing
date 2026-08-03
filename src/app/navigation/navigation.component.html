@@ -1,29 +1,52 @@
 
 
-<nav class="navbar navbar-light bg-light fixed-top">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-light bg-white fixed-top border-bottom shadow-sm py-2">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-2">
+      <button class="navbar-toggler border-0 shadow-none p-1 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand d-flex align-items-center gap-2 m-0 fw-bold fs-5 text-dark text-decoration-none" routerLink="/">
+        <img src="assets/logo-couleurs.png" alt="Étoile Pongiste Schleithal" height="32" class="d-inline-block align-text-top logo-img">
+        <span>Étoile pongiste <span class="text-primary">SCHLEITHAL</span></span>
+      </a>
+    </div>
+  </div>
 
-
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true"  tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="offcanvas offcanvas-start border-0 shadow-lg" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header border-bottom px-4 py-3 bg-light">
+      <div class="d-flex align-items-center gap-2">
+        <img src="assets/logo-couleurs.png" alt="Étoile Pongiste Schleithal" height="36">
+        <h5 class="offcanvas-title fw-bold fs-6 m-0 text-dark" id="offcanvasNavbarLabel">Étoile pongiste <span class="text-primary">SCHLEITHAL</span></h5>
       </div>
-      <div class="offcanvas-body">
-        <!-- [ngClass]="{ 'show': navbarOpen }" -->
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <app-nouvelle-rencontre [app]="app" />
-            </li>
-            <li class="nav-item">
-              <app-charger-rencontre [app]="app" />
-            </li>
-          </ul>
-        </div>
+      <button type="button" class="btn-close text-reset shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-4 py-4 d-flex flex-column justify-content-between">
+      <ul class="navbar-nav flex-grow-1 gap-2 pe-0">
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom d-flex align-items-center gap-3 px-3 py-2.5 rounded" routerLink="/" data-bs-dismiss="offcanvas">
+            <i class="fa-solid fa-house text-primary fs-5"></i>
+            <span class="fw-medium">Accueil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link-custom rounded cursor-pointer" (click)="navNrComp.open()">
+            <div (click)="$event.stopPropagation()">
+              <app-nouvelle-rencontre #navNrComp [app]="app" />
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link-custom rounded cursor-pointer" (click)="navCrComp.open()">
+            <div (click)="$event.stopPropagation()">
+              <app-charger-rencontre #navCrComp [app]="app" />
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer border-top pt-3 text-center text-muted small">
+        <i class="fa-solid fa-table-tennis-paddle-ball text-primary me-1"></i> Étoile Pongiste Schleithal &copy; {{ currentYear }}
       </div>
     </div>
   </div>

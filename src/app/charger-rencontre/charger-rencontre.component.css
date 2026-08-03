@@ -1,7 +1,15 @@
-.cursor-pointer {cursor: pointer;}
+.cursor-pointer {
+  cursor: pointer;
+}
 
-.modal-body {
-    max-height: 600px; /* Ajustez la hauteur selon vos besoins */
-    overflow-y: auto;  /* Ajoute une barre de défilement verticale */
-  }
+.card-match-item {
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.card-match-item:hover {
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.12) !important;
+  transform: translateY(-2px);
+}
   

@@ -4,8 +4,8 @@ import { Match } from '../model/match';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Joueur } from '../model/joueur';
 
-const WS_URL = 'wss://serveur-mat.synology.me:8989';
-//const WS_URL = 'ws://localhost:8999';
+//const WS_URL = 'wss://serveur-mat.synology.me:8989';
+const WS_URL = 'ws://localhost:8999';
 
 export interface Message {
   author: string;
@@ -41,11 +41,16 @@ export class RepositoryService {
                 if (this.getMatchsResolver) {
                   var matchs = [];
 
-                  d.data?.forEach((m) => {
+                  const rawItems = Array.isArray(d.data) ? d.data : (d.data?.items || []);
+                  const totalCount = Array.isArray(d.data) ? d.data.length : (d.data?.totalCount ?? rawItems.length);
+                  const page = d.data?.page ?? 1;
+                  const pageSize = d.data?.pageSize ?? 5;
+
+                  rawItems.forEach((m) => {
                     matchs.push(Match.fabriqueMatch(m));
                   });
 
-                  this.getMatchsResolver(matchs);
+                  this.getMatchsResolver({ matchs, totalCount, page, pageSize });
                   this.getMatchsResolver = undefined;
                 }
 
@@ -188,9 +193,9 @@ export class RepositoryService {
     return JSON.parse(strMatches);
   }
 
-  async listeMatchsSauvegardes(): Promise<Match[]> {
+  async listeMatchsSauvegardes(page: number = 1, pageSize: number = 5): Promise<{ matchs: Match[], totalCount: number, page: number, pageSize: number }> {
     if (this.ws) {
-      this.ws.next({ message: 'getMatchs' });
+      this.ws.next({ message: 'getMatchs', data: { page, pageSize } });
     }
 
     return await new Promise((resolve, reject) => {
@@ -199,7 +204,7 @@ export class RepositoryService {
         reject('timeout');
       }, 5000);
 
-      this.getMatchsResolver = (val: Match[]) => {
+      this.getMatchsResolver = (val: any) => {
         clearTimeout(timer);
         resolve(val);
       };

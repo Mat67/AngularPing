@@ -1,0 +1,33 @@
+.hero-container {
+  padding-top: 80px;
+}
+
+.hero-logo {
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.action-card,
+.action-card * {
+  cursor: pointer !important;
+}
+
+.action-card {
+  transition: all 0.2s ease;
+  border-radius: 0.75rem !important;
+  background: #ffffff;
+}
+
+.action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.08) !important;
+}
+
+.icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,10 +1,9 @@
-import { Component,  Input  } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { App } from '../model/app';
 import { Match } from '../model/match';
 import { RepositoryService } from '../services/repository.service';
-
 
 @Component({
   selector: 'app-nouvelle-rencontre',
@@ -13,15 +12,20 @@ import { RepositoryService } from '../services/repository.service';
 })
 export class NouvelleRencontreComponent {
   @Input() app: App;
+  @ViewChild('contentNouvelleRencontre') contentNouvelleRencontre: any;
 
   constructor(private modalService: NgbModal, private repository: RepositoryService, private router: Router) { }
 
+  public open() {
+    this.openNouvelleRencontre(this.contentNouvelleRencontre);
+  }
+
   openNouvelleRencontre(content) {
-    this.modalService.open(content, { size: 'md', centered: true }).result.then((result) => {
+    const targetContent = content || this.contentNouvelleRencontre;
+    this.modalService.open(targetContent, { size: 'md', centered: true }).result.then((result) => {
       if (!isNaN(result))
         this.creerNouvelleRencontre(+result)
     }, (reason) => {
-      ///this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 

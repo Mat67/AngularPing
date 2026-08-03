@@ -10,6 +10,7 @@ import { App } from '../model/app';
 })
 export class NavigationComponent {
   @Input() app: App;
+  currentYear = new Date().getFullYear();
 
   constructor(private modalService: NgbModal) { }
 

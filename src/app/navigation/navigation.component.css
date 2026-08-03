@@ -1,0 +1,27 @@
+.logo-img {
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover .logo-img {
+  transform: scale(1.08);
+}
+
+.nav-link-custom,
+.nav-link-custom * {
+  cursor: pointer !important;
+}
+
+.nav-link-custom {
+  transition: all 0.2s ease;
+  color: #334155;
+  text-decoration: none;
+}
+
+.nav-link-custom:hover {
+  background-color: #f1f5f9;
+  color: #0284c7;
+}
+
+.offcanvas {
+  max-width: 320px;
+}

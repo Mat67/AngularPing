@@ -36,6 +36,20 @@ describe('RepositoryService', () => {
     });
   });
 
+  describe('listeMatchsSauvegardes', () => {
+    it('should send getMatchs message with page and pageSize params', () => {
+      const mockWs = { next: jasmine.createSpy('next') };
+      service.ws = mockWs as any;
+
+      service.listeMatchsSauvegardes(2, 10);
+
+      expect(mockWs.next).toHaveBeenCalledWith({
+        message: 'getMatchs',
+        data: { page: 2, pageSize: 10 }
+      });
+    });
+  });
+
   describe('ModifierSignature', () => {
     it('should call ws.next with ModifierSignature message when ws is initialized', () => {
       const mockWs = { next: jasmine.createSpy('next') };

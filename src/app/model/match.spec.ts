@@ -34,7 +34,7 @@ describe('Match', () => {
   it('Saison 20xx/20xx', () => {
     var match = new Match6();
     var aujourdhui = new Date();
-    var expectedSaison = aujourdhui > new Date(aujourdhui.getFullYear(), 7, 31)
+    var expectedSaison = aujourdhui > new Date(aujourdhui.getFullYear(), 6, 31)
       ? aujourdhui.getFullYear() + "/" + (aujourdhui.getFullYear() + 1)
       : (aujourdhui.getFullYear() - 1) + "/" + aujourdhui.getFullYear();
 
